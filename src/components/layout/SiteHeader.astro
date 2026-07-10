@@ -14,6 +14,67 @@ const {
       <p class="eyebrow">Instituto de Física</p>
       <p class="hero-copy__institution">Universidade Federal Fluminense</p>
       <h1>{title}</h1>
+      <button type="button" class="hero-contact-link" data-contact-open aria-haspopup="dialog" aria-controls="contactDialog">
+        Contato
+      </button>
     </div>
   </div>
 </header>
+
+<dialog id="contactDialog" class="contact-dialog" aria-labelledby="contactDialogTitle">
+  <form method="dialog" class="contact-dialog__backdrop">
+    <article class="contact-dialog__panel">
+      <header class="contact-dialog__header">
+        <div>
+          <p class="contact-dialog__eyebrow">Contato</p>
+          <h2 id="contactDialogTitle">Suporte</h2>
+        </div>
+        <button type="submit" class="contact-dialog__close" aria-label="Fechar contato">×</button>
+      </header>
+
+      <div class="contact-dialog__body">
+        <p>
+          Para problemas <strong>técnicos, conceituais, matemáticos, pedagógicos</strong> ou de qualquer outra natureza relacionados ao
+          portal e ao material, envie uma mensagem para o Prof. Mario Reis.
+        </p>
+
+        <ul class="contact-dialog__list">
+          <li><strong>Prof. Mario Reis</strong></li>
+          <li><strong>Instituto de Física — UFF</strong></li>
+          <li><a href="https://profmarioreis.wordpress.com">profmarioreis.wordpress.com</a></li>
+          <li><a href="mailto:marioreis@id.uff.br">marioreis@id.uff.br</a></li>
+        </ul>
+
+        <p>
+          Se possível, descreva brevemente a página, a prática ou o simulador envolvido no problema para facilitar a análise.
+        </p>
+      </div>
+    </article>
+  </form>
+</dialog>
+
+<script>
+  const contactDialog = document.querySelector("#contactDialog");
+  const contactOpen = document.querySelector("[data-contact-open]");
+  const contactBackdrop = document.querySelector(".contact-dialog__backdrop");
+
+  if (contactDialog instanceof HTMLDialogElement && contactOpen instanceof HTMLButtonElement) {
+    contactOpen.addEventListener("click", () => {
+      contactDialog.showModal();
+    });
+
+    if (contactBackdrop instanceof HTMLFormElement) {
+      contactBackdrop.addEventListener("click", (event) => {
+        if (event.target === contactBackdrop) {
+          contactDialog.close();
+        }
+      });
+    }
+
+    contactDialog.addEventListener("cancel", () => {
+      if (contactDialog.open) {
+        contactDialog.close();
+      }
+    });
+  }
+</script>
