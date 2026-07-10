@@ -7,6 +7,8 @@ import PracticeCard from "../components/ui/PracticeCard.astro";
 import ProgressStrip from "../components/ui/ProgressStrip.astro";
 import { availablePractices, plannedPractices, practiceCatalog, practiceCounts } from "../lib/content/practice-catalog";
 
+const rawBaseUrl = import.meta.env.BASE_URL;
+const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl : `${rawBaseUrl}/`;
 const portalSteps = [
   {
     label: "Antes da aula",
@@ -40,7 +42,7 @@ const portalSteps = [
       </div>
       <div class="action-banner__actions">
         {availablePractices.map((practice) => (
-          <a class="button-link" href={`/praticas/${practice.slug}/`}>{practice.shortTitle}</a>
+          <a class="button-link" href={`${baseUrl}praticas/${practice.slug}/`}>{practice.shortTitle}</a>
         ))}
       </div>
     </div>
