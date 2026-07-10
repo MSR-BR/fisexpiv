@@ -2,82 +2,278 @@
 title: "Carga-massa"
 practiceSlug: "carga-massa"
 order: 2
-summary: "Segunda prática habilitada, preparada para receber a reescrita completa do experimento de razão carga-massa."
+summary: "Determinação da razão carga-massa do elétron a partir da trajetória do feixe em um campo magnético gerado por bobinas de Helmholtz."
 status: "available"
-estimatedTime: "1 a 2 encontros de laboratório"
+estimatedTime: "1 encontro de laboratório"
 learningFocus:
-  - "Relacionar a montagem experimental com a grandeza carga-massa"
-  - "Preparar a aquisição de dados de forma organizada e interpretável"
-  - "Estruturar a análise sem antecipar resultados não validados"
-materialsStatus: "PDF antigo ainda não incorporado"
-sourcesStatus: "Aguardando roteiro e simuladores correspondentes"
+  - "Relacionar a curvatura do feixe de elétrons com a ação da força magnética"
+  - "Usar a tensão de aceleração, a corrente nas bobinas e o raio da órbita para obter q/m"
+  - "Comparar o método direto com o método gráfico"
+  - "Discutir o significado histórico da medida de carga-massa do elétron"
+materialsStatus: "Roteiro reestruturado e pronto para uso em aula"
+sourcesStatus: "Material-base da disciplina, simulador externo e bibliografia introdutória"
 ---
 
 import PracticeSection from "../../../components/practice/PracticeSection.astro";
+import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
-<PracticeSection title="Objetivos de aprendizagem" note="A estrutura já está pronta para receber o conteúdo real da prática.">
+<PracticeSection id="objetivos-de-aprendizagem" title="Objetivos de aprendizagem">
   <ul>
-    <li>Compreender o propósito físico da medida de carga-massa.</li>
-    <li>Organizar o procedimento experimental de forma progressiva e legível.</li>
-    <li>Preparar a futura análise de dados sem inventar parâmetros ou resultados.</li>
+    <li>Compreender por que a medida de carga-massa do elétron foi decisiva para a física moderna.</li>
+    <li>Relacionar força magnética, movimento circular e energia de aceleração no aparato experimental.</li>
+    <li>Medir a corrente nas bobinas, a tensão de aceleração e o raio do feixe com atenção às incertezas.</li>
+    <li>Obter a razão <code>q/m</code> por cálculo direto e por ajuste gráfico.</li>
+    <li>Discutir limitações experimentais, compatibilidade com o valor esperado e qualidade do procedimento.</li>
   </ul>
 </PracticeSection>
 
-<PracticeSection title="Introdução teórica">
-  <div class="callout">
-    <strong>Pendente de validação.</strong> A redação teórica desta prática será construída quando você enviar o PDF antigo e o material complementar correspondente.
-  </div>
+<PracticeSection id="introducao-teorica" title="Introdução teórica">
   <p>
-    Esta seção está reservada para a explicação física da razão carga-massa, dos princípios do arranjo experimental e das hipóteses
-    necessárias à interpretação dos dados.
+    Esta prática retoma um experimento ligado à consolidação da física moderna. No fim do século XIX, o estudo dos raios catódicos
+    mostrou que esses feixes eram desviados por campos elétricos e magnéticos. Em 1897, J. J. Thomson mediu a razão carga-massa
+    das partículas do feixe e concluiu que elas tinham carga negativa e massa muito menor que a dos íons de hidrogênio. O resultado
+    foi decisivo porque indicava que o átomo não era indivisível.
+  </p>
+  <p>
+    A importância histórica da medida não está apenas no número obtido. O experimento mostrou que existia uma partícula mais leve
+    do que o átomo mais simples então conhecido, o que abriu caminho para a identificação do elétron como constituinte universal da
+    matéria. Mais tarde, esse quadro influenciou diretamente os modelos atômicos e a própria formulação da física quântica.
+  </p>
+  <p>
+    Em particular, a informação de que a partícula negativa do átomo tinha massa muito menor do que a parte positiva ajudou a
+    estabelecer a ideia de um núcleo pesado cercado por elétrons. Essa diferença de massas aparece depois na interpretação dos modelos
+    atômicos iniciais, inclusive na formulação de Bohr. Assim, nesta prática, medir <code>q/m</code> não é apenas aplicar uma fórmula:
+    é reproduzir, em escala didática, uma etapa importante da construção da física do século XX.
   </p>
 </PracticeSection>
 
-<PracticeSection title="Descrição do experimento">
+<PracticeSection id="modelo-fisico-e-equacoes-de-trabalho" title="Modelo físico e equações de trabalho">
   <p>
-    O texto final deverá explicar os componentes experimentais, o que é observado, quais grandezas são controladas e como a prática
-    se conecta à teoria.
+    O feixe de elétrons é acelerado por uma diferença de potencial <code>V</code>. Admitindo que a energia cinética adquirida vem da
+    energia elétrica, temos:
+  </p>
+  <LatexBlock expression={String.raw`\frac{1}{2}mv^2 = qV`} />
+  <p>
+    Depois de acelerados, os elétrons entram em uma região onde o campo magnético é aproximadamente uniforme e perpendicular à
+    velocidade do feixe. Nessa situação, a força magnética atua como força centrípeta:
+  </p>
+  <LatexBlock expression={String.raw`qvB = \frac{mv^2}{r}`} />
+  <p>
+    Eliminando a velocidade, obtém-se:
+  </p>
+  <LatexBlock expression={String.raw`\frac{q}{m} = \frac{2V}{r^2B^2}`} />
+  <p>
+    No aparato usado no laboratório, o campo é produzido por um par de bobinas de Helmholtz:
+  </p>
+  <LatexBlock expression={String.raw`B = \frac{8\mu_0N}{5\sqrt{5}R}\,I`} />
+  <p>
+    onde <code>I</code> é a corrente nas bobinas, <code>N</code> é o número de espiras e <code>R</code> é o raio das bobinas. Para este
+    conjunto experimental, a expressão final pode ser escrita como:
+  </p>
+  <LatexBlock expression={String.raw`\frac{q}{m} = 3{,}287\times 10^6 \,\frac{V}{(rI)^2}`} />
+  <p>
+    Essa forma numérica deve ser usada com unidades do SI: <code>V</code> em volts, <code>I</code> em ampères e <code>r</code> em
+    metros. Se o raio for medido em centímetros, ele deve ser convertido para metros antes do cálculo.
   </p>
 </PracticeSection>
 
-<PracticeSection title="Roteiro experimental">
+<PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
+  <p>
+    O experimento utiliza um tubo com gás a baixa pressão, um canhão de elétrons, um par de bobinas de Helmholtz e fontes de
+    alimentação independentes para aquecimento, aceleração e geração do campo magnético. O feixe luminoso observado no interior
+    do tubo aparece porque os elétrons colidem com o gás e excitam seus átomos.
+  </p>
+  <p>
+    A partir do ajuste da tensão de aceleração e da corrente nas bobinas, o feixe descreve uma trajetória aproximadamente circular.
+    Mede-se então o raio da órbita na régua espelhada do aparato e, com os valores de <code>V</code>, <code>I</code> e <code>r</code>,
+    calcula-se a razão <code>q/m</code>.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
   <ul>
-    <li>Sequência detalhada ainda pendente.</li>
-    <li>As instruções finais serão reescritas para remover ambiguidades do roteiro antigo.</li>
-    <li>Os passos deverão deixar clara a intenção física de cada ajuste e medida.</li>
+    <li>aparato <code>e/m</code> com tubo e bobinas de Helmholtz;</li>
+    <li>fonte para o aquecedor do canhão de elétrons;</li>
+    <li>fonte de alta tensão para aceleração dos elétrons;</li>
+    <li>fonte de baixa tensão para as bobinas de Helmholtz;</li>
+    <li>amperímetro ou multímetro para medir a corrente nas bobinas;</li>
+    <li>voltímetro ou multímetro para medir a tensão de aceleração;</li>
+    <li>cabos de conexão.</li>
   </ul>
-</PracticeSection>
-
-<PracticeSection title="Aquisição de dados">
   <p>
-    Este bloco receberá a tabela-base de coleta, os cuidados com unidades, repetições e organização mínima das medições.
+    A leitura principal da prática é feita com o feixe visível no interior do tubo, ajustado para uma órbita estável e bem definida.
   </p>
 </PracticeSection>
 
-<PracticeSection title="Análise e interpretação dos dados">
-  <p>
-    A análise será estruturada para mostrar como extrair a grandeza de interesse, estimar incertezas e discutir a coerência física dos
-    resultados, sempre a partir de fontes reais.
-  </p>
-</PracticeSection>
-
-<PracticeSection title="Discussão e conclusão">
-  <p>
-    A conclusão da prática deverá sintetizar o que foi medido, quais limitações surgem no experimento e como interpretar o alcance do
-    resultado obtido.
-  </p>
-</PracticeSection>
-
-<PracticeSection title="Perguntas conceituais e aplicadas">
+<PracticeSection id="procedimento-experimental" title="Procedimento experimental">
+  <ol>
+    <li>Se necessário, use o capuz do aparato para reduzir a interferência da luz ambiente.</li>
+    <li>Coloque a chave do equipamento na posição de medida do experimento <code>e/m</code>.</li>
+    <li>Deixe inicialmente o controle de corrente das bobinas em <code>OFF</code>.</li>
+    <li>Conecte as fontes e os medidores conforme a montagem do laboratório.</li>
+    <li>Ajuste a alimentação do aquecedor para <code>6,3 V</code>, ou para o valor indicado no tubo.</li>
+    <li>Ajuste a tensão de aceleração na faixa indicada pelo professor e não ultrapasse o limite operacional do aparato.</li>
+    <li>Aumente lentamente a corrente nas bobinas, monitorando o amperímetro para que ela não ultrapasse <code>2,0 A</code>.</li>
+    <li>Espere o aquecimento do cátodo e observe o aparecimento do feixe.</li>
+    <li>Se necessário, gire o tubo no próprio suporte para alinhar o feixe e obter uma trajetória bem definida.</li>
+    <li>Leia a corrente <code>I</code> nas bobinas e a tensão <code>V</code> de aceleração e registre os valores com suas incertezas.</li>
+    <li>Meça o raio do feixe na régua espelhada, evitando paralaxe. Quando possível, meça dos dois lados e trabalhe com a média.</li>
+    <li>Calcule <code>q/m</code> pelo método direto.</li>
+    <li>Em seguida, reúna os dados da turma e faça a análise gráfica de <code>r^2</code> em função de <code>V/I^2</code>.</li>
+  </ol>
   <div class="callout">
-    <strong>Fonte necessária.</strong> As perguntas serão escritas quando houver material suficiente para garantir aderência ao experimento real.
+    <strong>Cuidado operacional.</strong> A tensão do aquecedor não deve ultrapassar o valor especificado no tubo. Correntes altas nas
+    bobinas e aquecimento inadequado podem danificar o equipamento ou prejudicar a estabilidade do feixe.
   </div>
 </PracticeSection>
 
-<PracticeSection title="Referências">
+<PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
+  <p>
+    Registre as leituras com unidades e incertezas. Se o raio for inicialmente lido em centímetros, anote também sua conversão para
+    metros antes dos cálculos.
+  </p>
+
+  <h3>Medida individual</h3>
+
+  | Grandeza | Valor lido | Incerteza | Unidade | Observações |
+  | --- | --- | --- | --- | --- |
+  | Tensão de aceleração `V` |  |  | V |  |
+  | Corrente nas bobinas `I` |  |  | A |  |
+  | Raio à esquerda |  |  | cm |  |
+  | Raio à direita |  |  | cm |  |
+  | Raio médio `r` |  |  | m | já convertido para SI |
+
+  <h3>Tabela para a análise gráfica da turma</h3>
+
+  | Medida | `V` (V) | `\Delta V` (V) | `I` (A) | `\Delta I` (A) | `r` (m) | `\Delta r` (m) | `r^2` (m²) | `V/I^2` (V/A²) |
+  | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+  | 1 |  |  |  |  |  |  |  |  |
+  | 2 |  |  |  |  |  |  |  |  |
+  | 3 |  |  |  |  |  |  |  |  |
+  | 4 |  |  |  |  |  |  |  |  |
+  | 5 |  |  |  |  |  |  |  |  |
+</PracticeSection>
+
+<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+  <p>
+    Para o método direto, calcule:
+  </p>
+  <LatexBlock expression={String.raw`\frac{q}{m} = 3{,}287\times 10^6 \,\frac{V}{(rI)^2}`} />
+  <p>
+    Tratando a constante do aparato como fixa, a propagação linear da incerteza pode ser escrita como:
+  </p>
+  <LatexBlock expression={String.raw`\Delta\!\left(\frac{q}{m}\right)_{\mathrm{lin}} = \frac{q}{m}\left(\frac{\Delta V}{V} + 2\frac{\Delta r}{r} + 2\frac{\Delta I}{I}\right)`} />
+  <p>
+    Já a propagação em quadratura fica:
+  </p>
+  <LatexBlock expression={String.raw`\Delta\!\left(\frac{q}{m}\right)_{\mathrm{quad}} = \frac{q}{m}\sqrt{\left(\frac{\Delta V}{V}\right)^2 + \left(2\frac{\Delta r}{r}\right)^2 + \left(2\frac{\Delta I}{I}\right)^2}`} />
+  <p>
+    Compare o valor obtido com o valor de referência do elétron,
+  </p>
+  <LatexBlock expression={String.raw`\left|\frac{q}{m}\right| \approx 1{,}76\times 10^{11}\ \mathrm{C/kg}`} />
+  <p>
+    e discuta se a diferença observada é compatível com as incertezas experimentais.
+  </p>
+  <p>
+    Para o método gráfico, defina:
+  </p>
+  <LatexBlock expression={String.raw`y = r^2 \qquad \text{e} \qquad x = \frac{V}{I^2}`} />
+  <p>
+    A equação do experimento assume então a forma:
+  </p>
+  <LatexBlock expression={String.raw`r^2 = a\left(\frac{V}{I^2}\right)`} />
+  <p>
+    com
+  </p>
+  <LatexBlock expression={String.raw`a = \frac{3{,}287\times 10^6}{q/m}`} />
+  <p>
+    Portanto, se <code>a</code> for o coeficiente angular da reta ajustada,
+  </p>
+  <LatexBlock expression={String.raw`\frac{q}{m} = \frac{3{,}287\times 10^6}{a}`} />
+  <p>
+    e a incerteza associada ao ajuste pode ser propagada por:
+  </p>
+  <LatexBlock expression={String.raw`\Delta\!\left(\frac{q}{m}\right) = \frac{3{,}287\times 10^6}{a^2}\,\Delta a`} />
+  <p>
+    Se o coeficiente linear do ajuste aparecer significativamente diferente de zero, discuta possíveis fontes de erro sistemático:
+    paralaxe, leitura do raio, desalinhamento do tubo, instabilidade do feixe ou limitações do ajuste.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
+  <ol>
+    <li>Por que a medida de <code>q/m</code> foi historicamente importante para a ideia de divisibilidade do átomo?</li>
+    <li>Por que a trajetória do feixe se torna circular quando a velocidade é perpendicular ao campo magnético?</li>
+    <li>Se a tensão de aceleração aumentar e a corrente nas bobinas permanecer fixa, o que deve acontecer com o raio da órbita?</li>
+    <li>Se a corrente nas bobinas aumentar e a tensão permanecer fixa, o que deve acontecer com o raio da órbita?</li>
+    <li>Por que a conversão do raio para unidades do SI é indispensável antes de usar a fórmula numérica do aparato?</li>
+    <li>Que vantagens o método gráfico oferece em relação ao uso de uma única medida?</li>
+    <li>Quais erros experimentais podem afetar mais fortemente a medida do raio?</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="simulador" title="Simulador">
+  <p>
+    O simulador sugerido para esta prática é o da UFC:
+    <a href="https://www.laboratoriovirtual.fisica.ufc.br/razao-carga-massa-do-eletron"> Determinação da razão carga-massa do
+    elétron</a>.
+  </p>
+  <p>
+    Ele é útil para revisar a lógica física do experimento depois da bancada: como o raio muda quando a tensão de aceleração aumenta,
+    como o raio diminui quando o campo magnético fica mais intenso e por que a dependência principal envolve <code>V</code>,
+    <code>I</code> e <code>r</code>.
+  </p>
+  <p>
+    Use o simulador como apoio conceitual e, se a interface disponibilizar leituras numéricas, monte uma tabela exploratória separada
+    do relatório principal. Não misture automaticamente esses dados com as medidas reais do laboratório, porque as incertezas
+    instrumentais da bancada não são reproduzidas pelo ambiente virtual.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
+  <p>
+    O relatório pode ser organizado em uma sequência simples:
+  </p>
+  <ol>
+    <li>objetivo da prática;</li>
+    <li>breve contextualização histórica sobre a descoberta do elétron e o papel da medida de <code>q/m</code>;</li>
+    <li>descrição do aparato e das grandezas medidas;</li>
+    <li>tabela com os valores de <code>V</code>, <code>I</code> e <code>r</code>, incluindo unidades e incertezas;</li>
+    <li>cálculo direto de <code>q/m</code> com propagação de incertezas;</li>
+    <li>análise gráfica de <code>r^2</code> em função de <code>V/I^2</code> e determinação de <code>q/m</code> pelo coeficiente angular;</li>
+    <li>comparação entre o método direto, o método gráfico e o valor de referência;</li>
+    <li>discussão das limitações experimentais;</li>
+    <li>conclusão física do resultado obtido.</li>
+  </ol>
+  <div class="callout">
+    <strong>Dica prática.</strong> Não entregue apenas o valor final. Mostre pelo menos uma vez a substituição numérica completa, a
+    conversão de unidades e a forma como a incerteza foi calculada.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
+  <p>
+    Na discussão, procure responder:
+  </p>
+  <ol>
+    <li>o valor obtido para <code>q/m</code> é compatível com o valor esperado dentro das incertezas?</li>
+    <li>o método gráfico produziu um resultado mais estável do que o método direto?</li>
+    <li>quais etapas do experimento mais influenciaram a qualidade do resultado final?</li>
+    <li>o experimento cumpriu seu papel de mostrar por que a medida de <code>q/m</code> foi importante para a física moderna?</li>
+  </ol>
+  <p>
+    Na conclusão, conecte o resultado numérico à interpretação histórica: medir <code>q/m</code> ajudou a identificar o elétron como
+    partícula leve, negativa e constitutiva da matéria.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="referencias" title="Referências">
   <ul>
-    <li>Pendente de validação.</li>
-    <li>PDF antigo da prática, quando fornecido.</li>
-    <li>Material teórico complementar associado à prática.</li>
+    <li>Reis, M. <em>Quantum Mechanics: Theory and Applications</em>. Elsevier, 2026.</li>
+    <li>Halliday, D.; Resnick, R.; Walker, J. <em>Fundamentos de Física</em>.</li>
+    <li>Young, H. D.; Freedman, R. A. <em>Física Universitária com Física Moderna</em>.</li>
+    <li>Serway, R. A.; Jewett, J. W. <em>Física para Cientistas e Engenheiros</em>.</li>
+    <li>Tipler, P. A.; Mosca, G. <em>Física para Cientistas e Engenheiros</em>.</li>
+    <li>Laboratório Virtual de Física da UFC. <em>Determinação da razão carga-massa do elétron</em>. Disponível em: <a href="https://www.laboratoriovirtual.fisica.ufc.br/razao-carga-massa-do-eletron">https://www.laboratoriovirtual.fisica.ufc.br/razao-carga-massa-do-eletron</a>.</li>
   </ul>
 </PracticeSection>
