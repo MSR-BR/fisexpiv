@@ -1,0 +1,33 @@
+---
+import SiteHeader from "../components/layout/SiteHeader.astro";
+import PracticeMenu from "../components/navigation/PracticeMenu.astro";
+import "katex/dist/katex.min.css";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  currentSlug?: string;
+}
+
+const { title, description, currentSlug } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <SiteHeader title="Física Experimental IV" />
+    <main class="wrap main-shell">
+      <PracticeMenu currentSlug={currentSlug} />
+      <div class="page-shell">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>

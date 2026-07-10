@@ -1,0 +1,56 @@
+---
+import StatusBadge from "./StatusBadge.astro";
+import type { PracticeCatalogItem } from "../../types/practice";
+
+interface Props {
+  practice: PracticeCatalogItem;
+  compact?: boolean;
+}
+
+const { practice, compact = false } = Astro.props;
+const isAvailable = practice.status === "available";
+---
+
+<article class={`practice-card practice-card--${practice.status}`}>
+  <div class="practice-card__top">
+    <p class="eyebrow">Prática</p>
+    <StatusBadge status={practice.status} />
+  </div>
+
+  <h3>{practice.title}</h3>
+
+  <div class="practice-card__chips" aria-label="Resumo de recursos">
+    <span>{isAvailable ? "Roteiro iniciado" : "Aguardando desenvolvimento"}</span>
+    <span>{practice.sourceStatus}</span>
+  </div>
+
+  {!compact ? (
+    <>
+      <dl class="practice-card__details">
+        <div>
+          <dt>Materiais</dt>
+          <dd>{practice.materialStatus}</dd>
+        </div>
+        <div>
+          <dt>Fontes</dt>
+          <dd>{practice.sourceStatus}</dd>
+        </div>
+      </dl>
+
+      <div class="practice-card__materials">
+        <strong>{isAvailable ? "Disponível agora" : "Planejado para a prática"}</strong>
+        <ul>
+          {(isAvailable ? practice.availableMaterials : practice.plannedMaterials).map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </>
+  ) : null}
+
+  <div class="practice-card__footer">
+    {isAvailable ? (
+      <a class="button-link" href={`/praticas/${practice.slug}/`}>Abrir prática</a>
+    ) : (
+      <span class="button-link button-link--muted" aria-disabled="true">Em breve</span>
+    )}
+  </div>
+</article>

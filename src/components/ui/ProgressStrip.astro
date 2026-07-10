@@ -1,0 +1,25 @@
+---
+interface Step {
+  label: string;
+  note: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+---
+
+<div class="progress-strip" aria-label="Fluxo de desenvolvimento das práticas">
+  {steps.map((step, index) => (
+    <article class="progress-step">
+      <span class="progress-step__number">{String(index + 1).padStart(2, "0")}</span>
+      <div class="progress-step__content">
+        <h3>{step.label}</h3>
+        <p>{step.note}</p>
+      </div>
+    </article>
+  ))}
+</div>
+

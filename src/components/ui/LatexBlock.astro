@@ -1,0 +1,17 @@
+---
+import katex from "katex";
+
+interface Props {
+  expression: string;
+}
+
+const { expression } = Astro.props;
+
+const html = katex.renderToString(expression, {
+  displayMode: true,
+  throwOnError: false,
+  strict: "ignore",
+});
+---
+
+<div class="latex-block" set:html={html} />

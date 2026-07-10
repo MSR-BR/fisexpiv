@@ -1,0 +1,139 @@
+import type { PracticeCatalogItem } from "../../types/practice";
+
+export const practiceCatalog: PracticeCatalogItem[] = [
+  {
+    slug: "revisao",
+    title: "Revisão",
+    shortTitle: "Revisão",
+    summary: "Mapa inicial do curso com conceitos-chave, organização do semestre e preparação para as práticas subsequentes.",
+    status: "available",
+    hasSimulator: false,
+    simulatorSummary: "Sem simulador definido para esta etapa",
+    materialStatus: "Roteiro reestruturado com base no PDF da prática 1",
+    sourceStatus: "PDF base incorporado",
+    availableMaterials: ["roteiro em desenvolvimento", "estrutura da prática"],
+    plannedMaterials: ["simuladores externos, se aplicável"],
+  },
+  {
+    slug: "carga-massa",
+    title: "Carga-massa",
+    shortTitle: "Carga-massa",
+    summary: "Prática dedicada à razão carga-massa, com roteiro experimental, aquisição de dados e leitura física dos resultados.",
+    status: "available",
+    hasSimulator: false,
+    simulatorSummary: "Simulador ainda não selecionado",
+    materialStatus: "Página estrutural pronta para receber o PDF da prática",
+    sourceStatus: "Aguardando PDF e materiais de apoio",
+    availableMaterials: ["roteiro em desenvolvimento", "estrutura da prática"],
+    plannedMaterials: ["simulador interno ou externo, se aprovado"],
+  },
+  {
+    slug: "radiacao-termica",
+    title: "Radiação térmica",
+    shortTitle: "Radiação térmica",
+    summary: "Estudo das características fundamentais da radiação emitida por corpos em função da temperatura.",
+    status: "planned",
+    hasSimulator: true,
+    simulatorSummary: "Simulador previsto, ainda a definir",
+    materialStatus: "Catálogo criado; conteúdo ainda não iniciado",
+    sourceStatus: "Aguardando PDF antigo",
+    availableMaterials: [],
+    plannedMaterials: ["pdf antigo", "suporte teórico", "simulador a definir"],
+  },
+  {
+    slug: "stefan-boltzmann",
+    title: "Stefan-Boltzmann",
+    shortTitle: "Stefan-Boltzmann",
+    summary: "Exploração experimental da lei de Stefan-Boltzmann e da relação entre potência radiada e temperatura.",
+    status: "planned",
+    hasSimulator: true,
+    simulatorSummary: "Possível simulador externo",
+    materialStatus: "Catálogo criado; conteúdo ainda não iniciado",
+    sourceStatus: "Aguardando PDF antigo",
+    availableMaterials: [],
+    plannedMaterials: ["pdf antigo", "simulador externo, se houver"],
+  },
+  {
+    slug: "efeito-fotoeletrico",
+    title: "Efeito fotoelétrico",
+    shortTitle: "Efeito fotoelétrico",
+    summary: "Prática sobre emissão fotoelétrica, potencial de corte e interpretação em termos quânticos.",
+    status: "planned",
+    hasSimulator: true,
+    simulatorSummary: "Provável integração com simulador externo",
+    materialStatus: "Catálogo criado; conteúdo ainda não iniciado",
+    sourceStatus: "Aguardando PDF antigo e apoio teórico",
+    availableMaterials: [],
+    plannedMaterials: ["pdf antigo", "material de mecânica quântica", "simulador externo"],
+  },
+  {
+    slug: "espectroscopia",
+    title: "Espectroscopia",
+    shortTitle: "Espectroscopia",
+    summary: "Análise de espectros, identificação de linhas e relação com estrutura atômica e instrumentação.",
+    status: "planned",
+    hasSimulator: true,
+    simulatorSummary: "Simulador previsto, ainda a definir",
+    materialStatus: "Catálogo criado; conteúdo ainda não iniciado",
+    sourceStatus: "Aguardando PDF antigo",
+    availableMaterials: [],
+    plannedMaterials: ["pdf antigo", "suporte teórico", "simulador a definir"],
+  },
+  {
+    slug: "difracao",
+    title: "Difração",
+    shortTitle: "Difração",
+    summary: "Investigação de padrões de difração e leitura quantitativa de parâmetros experimentais.",
+    status: "planned",
+    hasSimulator: true,
+    simulatorSummary: "Simulador externo ou interno previsto",
+    materialStatus: "Catálogo criado; conteúdo ainda não iniciado",
+    sourceStatus: "Aguardando PDF antigo",
+    availableMaterials: [],
+    plannedMaterials: ["pdf antigo", "simulador externo ou interno"],
+  },
+  {
+    slug: "diodos",
+    title: "Diodos",
+    shortTitle: "Diodos",
+    summary: "Caracterização de diodos, curvas de resposta e discussão de comportamento em diferentes regimes.",
+    status: "planned",
+    hasSimulator: false,
+    simulatorSummary: "Nenhum simulador definido por enquanto",
+    materialStatus: "Catálogo criado; conteúdo ainda não iniciado",
+    sourceStatus: "Aguardando PDF antigo",
+    availableMaterials: [],
+    plannedMaterials: ["pdf antigo", "suporte teórico"],
+  },
+  {
+    slug: "radioatividade",
+    title: "Radioatividade",
+    shortTitle: "Radioatividade",
+    summary: "Estudo experimental de contagens, decaimento e interpretação estatística de medidas radioativas.",
+    status: "planned",
+    hasSimulator: true,
+    simulatorSummary: "Simulador previsto, ainda a definir",
+    materialStatus: "Catálogo criado; conteúdo ainda não iniciado",
+    sourceStatus: "Aguardando PDF antigo",
+    availableMaterials: [],
+    plannedMaterials: ["pdf antigo", "simulador a definir"],
+  },
+];
+
+export const enabledPracticeSlugs = practiceCatalog
+  .filter((practice) => practice.status === "available")
+  .map((practice) => practice.slug);
+
+export const practiceCounts = {
+  total: practiceCatalog.length,
+  available: practiceCatalog.filter((practice) => practice.status === "available").length,
+  planned: practiceCatalog.filter((practice) => practice.status === "planned").length,
+  withSimulators: practiceCatalog.filter((practice) => practice.hasSimulator).length,
+};
+
+export const availablePractices = practiceCatalog.filter((practice) => practice.status === "available");
+export const plannedPractices = practiceCatalog.filter((practice) => practice.status === "planned");
+
+export function getPracticeCatalogItem(slug: string) {
+  return practiceCatalog.find((practice) => practice.slug === slug);
+}

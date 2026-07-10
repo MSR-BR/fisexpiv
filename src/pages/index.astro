@@ -1,0 +1,146 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContentBlock from "../components/ui/ContentBlock.astro";
+import InfoCallout from "../components/ui/InfoCallout.astro";
+import MetricCard from "../components/ui/MetricCard.astro";
+import PracticeCard from "../components/ui/PracticeCard.astro";
+import ProgressStrip from "../components/ui/ProgressStrip.astro";
+import { availablePractices, plannedPractices, practiceCatalog, practiceCounts } from "../lib/content/practice-catalog";
+
+const portalSteps = [
+  {
+    label: "Antes da aula",
+    note: "Leia a introdução, confira os materiais e identifique quais medidas precisarão aparecer no relatório.",
+  },
+  {
+    label: "Durante a prática",
+    note: "Siga o roteiro experimental e registre os dados com atenção, incluindo faixa, resolução e observações importantes.",
+  },
+  {
+    label: "Depois da aula",
+    note: "Volte ao portal para organizar o relatório, revisar a análise dos dados e usar simuladores quando houver esse recurso.",
+  },
+];
+---
+
+<BaseLayout
+  title="Física Experimental IV | Portal da disciplina"
+  description="Portal da disciplina com acesso às práticas, organização comum dos roteiros e apoio à elaboração dos relatórios."
+>
+  <ContentBlock
+    id="portal"
+    eyebrow="Página inicial"
+    title="Física Experimental IV"
+    description="Este portal reúne os roteiros da disciplina em um único lugar. Cada prática segue a mesma estrutura: introdução teórica, experimento, aquisição de dados, análise, discussão e relatório."
+  >
+    <div class="action-banner">
+      <div>
+        <strong>Comece pelas práticas já liberadas.</strong>
+        <p>As páginas de <code>Revisão</code> e <code>Carga-massa</code> já estão disponíveis. As demais serão abertas ao longo do semestre.</p>
+      </div>
+      <div class="action-banner__actions">
+        {availablePractices.map((practice) => (
+          <a class="button-link" href={`/praticas/${practice.slug}/`}>{practice.shortTitle}</a>
+        ))}
+      </div>
+    </div>
+
+    <div class="stats-grid" aria-label="Resumo do semestre">
+      <MetricCard value={practiceCounts.total} label="práticas no menu" />
+      <MetricCard value={practiceCounts.available} label="práticas liberadas agora" />
+      <MetricCard value={practiceCounts.planned} label="práticas em preparação" />
+      <MetricCard value={availablePractices.length} label="páginas já acessíveis" />
+    </div>
+  </ContentBlock>
+
+  <ContentBlock
+    id="ativas"
+    eyebrow="Acesso rápido"
+    title="Práticas liberadas"
+    description="Estas são as práticas já prontas para consulta, preparação da aula e elaboração de relatório."
+  >
+    <div class="practice-grid practice-grid--featured">
+      {availablePractices.map((practice) => <PracticeCard practice={practice} compact />)}
+    </div>
+  </ContentBlock>
+
+  <ContentBlock
+    id="como-usar"
+    eyebrow="Orientação"
+    title="Como usar este portal"
+    description="A proposta é que a página acompanhe o aluno antes, durante e depois da prática."
+  >
+    <div class="info-grid">
+      <InfoCallout title="Antes da prática" tone="success">
+        <p>Leia a introdução teórica, confira os materiais e observe quais grandezas precisarão ser medidas e discutidas.</p>
+      </InfoCallout>
+      <InfoCallout title="Durante a prática">
+        <p>Use o roteiro experimental e registre os dados com organização. Sempre anote também faixa, resolução e observações relevantes.</p>
+      </InfoCallout>
+      <InfoCallout title="Depois da prática" tone="planned">
+        <p>Volte à página para montar o relatório, revisar a análise dos dados e usar simuladores quando houver essa opção.</p>
+      </InfoCallout>
+    </div>
+
+    <ProgressStrip steps={portalSteps} />
+  </ContentBlock>
+
+  <ContentBlock
+    id="estrutura"
+    eyebrow="Em cada prática"
+    title="O que você encontrará em cada página"
+    description="O objetivo é que todas as práticas tenham uma organização comum, facilitando o estudo ao longo do semestre."
+  >
+    <div class="info-grid">
+      <InfoCallout title="Parte teórica">
+        <p>Introdução conceitual curta, linguagem objetiva e foco nos pontos que realmente serão usados na bancada.</p>
+      </InfoCallout>
+      <InfoCallout title="Parte experimental" tone="success">
+        <p>Procedimento, tabelas para aquisição de dados, análise orientada e discussão do significado físico dos resultados.</p>
+      </InfoCallout>
+      <InfoCallout title="Relatório e extras">
+        <p>Orientação para o relatório, perguntas conceituais e, quando fizer sentido, simuladores para retomada da prática.</p>
+      </InfoCallout>
+    </div>
+  </ContentBlock>
+
+  <ContentBlock
+    id="catalogo"
+    eyebrow="Catálogo do semestre"
+    title="Práticas do semestre"
+    description="O menu já mostra todas as práticas previstas. As páginas serão habilitadas gradualmente."
+  >
+    <div class="practice-grid">
+      {practiceCatalog.map((practice) => <PracticeCard practice={practice} compact />)}
+    </div>
+  </ContentBlock>
+
+  <ContentBlock
+    id="status"
+    eyebrow="Acompanhamento"
+    title="O que já está aberto e o que vem depois"
+    description="As próximas práticas já estão mapeadas, mas seguem desabilitadas até que o material correspondente seja incorporado."
+  >
+    <div class="pipeline-grid">
+      {plannedPractices.map((practice) => (
+        <article class="pipeline-card">
+          <div class="pipeline-card__top">
+            <span class="pipeline-card__title">{practice.title}</span>
+            <span class="pipeline-card__status">Em preparação</span>
+          </div>
+          <p>{practice.summary}</p>
+          <dl class="pipeline-card__details">
+            <div>
+              <dt>Fontes</dt>
+              <dd>{practice.sourceStatus}</dd>
+            </div>
+            <div>
+              <dt>Estado atual</dt>
+              <dd>{practice.materialStatus}</dd>
+            </div>
+          </dl>
+        </article>
+      ))}
+    </div>
+  </ContentBlock>
+</BaseLayout>

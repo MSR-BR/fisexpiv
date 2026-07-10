@@ -1,0 +1,11 @@
+---
+interface Props {
+  status: "available" | "planned";
+}
+
+const { status } = Astro.props;
+const label = status === "available" ? "Disponível" : "Em preparação";
+---
+
+<span class={`status-badge status-badge--${status}`}>{label}</span>
+

@@ -1,0 +1,265 @@
+---
+title: "Revisão"
+practiceSlug: "revisao"
+order: 1
+summary: "Revisão de uso do multímetro digital, escrita de incertezas e análise de um circuito com três resistores em série com um LED."
+status: "available"
+estimatedTime: "1 encontro de laboratório"
+learningFocus:
+  - "Usar o multímetro digital para medidas diretas de resistência, tensão e corrente"
+  - "Escrever corretamente a incerteza associada a uma medida direta"
+  - "Aplicar propagação de incertezas à resistência equivalente e à corrente"
+  - "Interpretar um circuito em série que inclui resistores e um LED"
+materialsStatus: "Roteiro da prática em desenvolvimento"
+sourcesStatus: "Material-base da disciplina e referências de apoio"
+---
+
+import PracticeSection from "../../../components/practice/PracticeSection.astro";
+import LatexBlock from "../../../components/ui/LatexBlock.astro";
+
+<PracticeSection
+  id="objetivos-de-aprendizagem"
+  title="Objetivos de aprendizagem"
+>
+  <ul>
+    <li>Rever o uso correto do multímetro digital em medidas de resistência, tensão e corrente.</li>
+    <li>Escrever a incerteza de uma medida direta usando a especificação do aparelho.</li>
+    <li>Calcular a resistência equivalente de resistores em série e propagar as incertezas por dois procedimentos.</li>
+    <li>Comparar uma corrente calculada com uma corrente medida diretamente no circuito.</li>
+    <li>Reconhecer que a presença do LED exige cuidado na interpretação da queda de tensão total do circuito.</li>
+  </ul>
+</PracticeSection>
+
+<PracticeSection id="introducao-teorica" title="Introdução teórica">
+  <p>
+    Esta prática revisa dois pontos: uso do multímetro em medidas diretas e escrita correta de incertezas experimentais. Antes de
+    medir, defina a grandeza de interesse, escolha a função correta, a escala adequada e o borne apropriado. Resistências e tensões
+    são medidas em paralelo ao elemento de interesse. Correntes são medidas em série, com o circuito aberto no ponto de medição.
+    Como o circuito contém três resistores em série com um LED, a tensão da fonte não deve ser identificada automaticamente com a
+    soma das quedas de tensão apenas nos resistores.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="medidas-diretas-e-incerteza-do-multimetro" title="Medidas diretas e incerteza do multímetro">
+  <p>
+    A leitura do multímetro fornece o valor medido. A incerteza depende da faixa utilizada, da resolução e da especificação do
+    aparelho no manual. Uma forma usual de estimá-la é:
+  </p>
+  <LatexBlock expression={String.raw`\Delta = (\text{erro percentual}) \cdot (\text{valor lido}) + (\text{numero de digitos}) \cdot (\text{resolucao})`} />
+  <p>
+    O primeiro termo depende do valor lido. O segundo depende da resolução da faixa utilizada.
+  </p>
+  <p>
+    Para usar essa expressão, identifique no manual:
+  </p>
+  <ul>
+    <li>a especificação percentual da faixa escolhida;</li>
+    <li>o número de dígitos que deve ser somado ao cálculo;</li>
+    <li>a resolução correspondente à menor variação exibida na tela.</li>
+  </ul>
+  <p>
+    Ao final, a medida deve ser escrita com:
+  </p>
+  <ul>
+    <li>no máximo dois algarismos significativos na incerteza;</li>
+    <li>o valor central e a incerteza com o mesmo número de casas decimais;</li>
+    <li>a unidade fora do parêntese.</li>
+  </ul>
+</PracticeSection>
+
+<PracticeSection id="propagacao-de-incertezas" title="Propagação de incertezas">
+  <p>
+    Quando uma grandeza é calculada a partir de outras medidas, sua incerteza deve ser obtida a partir das incertezas das variáveis
+    medidas.
+  </p>
+  <p>
+    A forma linear soma os módulos das contribuições individuais e fornece uma estimativa conservadora:
+  </p>
+  <LatexBlock expression={String.raw`\Delta f = \left| \frac{\partial f}{\partial x} \right| \Delta x + \left| \frac{\partial f}{\partial y} \right| \Delta y + \left| \frac{\partial f}{\partial z} \right| \Delta z + \cdots`} />
+  <p>
+    A forma em quadratura combina as contribuições de modo estatístico:
+  </p>
+  <LatexBlock expression={String.raw`\Delta f = \sqrt{\left( \frac{\partial f}{\partial x} \right)^2 (\Delta x)^2 + \left( \frac{\partial f}{\partial y} \right)^2 (\Delta y)^2 + \left( \frac{\partial f}{\partial z} \right)^2 (\Delta z)^2 + \cdots}`} />
+  <p>
+    Nesta prática, as duas expressões serão aplicadas à resistência equivalente e à corrente calculada.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
+  <p>
+    O experimento usa uma fonte DC ajustável e um circuito com três resistores em série com um LED. Medem-se as resistências,
+    as quedas de tensão nos resistores e a corrente do circuito. Depois, calcula-se a resistência equivalente e compara-se a corrente
+    calculada com a corrente medida.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
+  <ul>
+    <li>01 fonte de tensão DC ajustável;</li>
+    <li>01 kit de circuito com três resistores e 1 LED;</li>
+    <li>01 multímetro digital com manual;</li>
+    <li>02 pontas de prova;</li>
+    <li>02 fios com terminais banana.</li>
+  </ul>
+  <p>
+    A montagem principal é um circuito em série contendo três resistores e um LED, alimentado por uma fonte DC ajustada para 10 V.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="procedimento-experimental" title="Procedimento experimental">
+  <ol>
+    <li>Antes de qualquer conexão, identifique se a próxima medida será de resistência, tensão ou corrente.</li>
+    <li>Selecione a função apropriada no multímetro e, sempre que necessário, comece na maior escala.</li>
+    <li>Conecte uma ponta de prova ao borne comum e a outra ao borne adequado para a grandeza escolhida.</li>
+    <li>Meça separadamente as três resistências do kit e registre cada valor com sua incerteza.</li>
+    <li>Monte o circuito com os três resistores em série com o LED e ajuste a fonte para 10 V.</li>
+    <li>Meça a tensão em cada resistor, sempre em paralelo ao elemento observado, e registre o resultado com a incerteza.</li>
+    <li>Calcule a resistência equivalente dos três resistores e propague a incerteza pelos dois métodos do roteiro.</li>
+    <li>Estime a corrente do circuito e propague sua incerteza pelos dois métodos.</li>
+    <li>Meça diretamente a corrente no circuito, agora com o multímetro em série, e compare com o valor calculado.</li>
+    <li>Discuta a compatibilidade entre os resultados e o papel do LED na interpretação do circuito.</li>
+  </ol>
+  <div class="callout">
+    <strong>Cuidado operacional.</strong> Medidas de resistência devem ser feitas sem o circuito alimentado. Medidas de corrente exigem
+    abrir o circuito e inserir o multímetro em série.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
+  <p>
+    Registre cada medida com os dados necessários para justificar a incerteza escrita.
+  </p>
+
+  <h3>Resistências medidas diretamente</h3>
+
+  | Grandeza | Valor lido | Faixa usada | Resolução | Especificação do manual | Incerteza | Resultado final |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | R0 |  |  |  |  |  |  |
+  | R1 |  |  |  |  |  |  |
+  | R2 |  |  |  |  |  |  |
+
+  <h3>Tensões medidas sobre os resistores</h3>
+
+  | Grandeza | Valor lido | Faixa usada | Resolução | Especificação do manual | Incerteza | Resultado final |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | V0 |  |  |  |  |  |  |
+  | V1 |  |  |  |  |  |  |
+  | V2 |  |  |  |  |  |  |
+
+  <h3>Corrente medida diretamente</h3>
+
+  | Grandeza | Valor lido | Faixa usada | Resolução | Especificação do manual | Incerteza | Resultado final |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | I_medida |  |  |  |  |  |  |
+</PracticeSection>
+
+<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+  <p>
+    Para três resistores em série:
+  </p>
+  <LatexBlock expression={String.raw`R_{\mathrm{eq}} = R_0 + R_1 + R_2`} />
+  <p>
+    As duas formas de propagação ficam:
+  </p>
+  <ul>
+    <li>
+      pela equação linear,
+      <LatexBlock expression={String.raw`\Delta R_{\mathrm{eq}} = \Delta R_0 + \Delta R_1 + \Delta R_2`} />
+    </li>
+    <li>
+      pela equação em quadratura,
+      <LatexBlock expression={String.raw`\Delta R_{\mathrm{eq}} = \sqrt{(\Delta R_0)^2 + (\Delta R_1)^2 + (\Delta R_2)^2}`} />
+    </li>
+  </ul>
+  <p>
+    Para estimar a corrente na parte resistiva do circuito:
+  </p>
+  <LatexBlock expression={String.raw`I_{\mathrm{calc}} = \frac{V_0 + V_1 + V_2}{R_{\mathrm{eq}}}`} />
+  <p>
+    Usa-se a soma das quedas de tensão nos resistores, e não diretamente a tensão da fonte, porque o LED também participa da
+    distribuição de tensão.
+  </p>
+  <p>
+    Definindo a tensão total sobre a parte resistiva por
+  </p>
+  <LatexBlock expression={String.raw`V_R = V_0 + V_1 + V_2`} />
+  <p>
+    as duas formas de propagação para a corrente podem ser escritas como:
+  </p>
+  <ul>
+    <li>
+      forma linear,
+      <LatexBlock expression={String.raw`\Delta I_{\mathrm{lin}} = \left| \frac{\partial I}{\partial V_R} \right| \Delta V_R + \left| \frac{\partial I}{\partial R_{\mathrm{eq}}} \right| \Delta R_{\mathrm{eq}} = \frac{\Delta V_R}{R_{\mathrm{eq}}} + \frac{V_R}{R_{\mathrm{eq}}^2}\Delta R_{\mathrm{eq}}`} />
+    </li>
+    <li>
+      forma em quadratura,
+      <LatexBlock expression={String.raw`\Delta I_{\mathrm{quad}} = \sqrt{\left(\frac{\Delta V_R}{R_{\mathrm{eq}}}\right)^2 + \left(\frac{V_R}{R_{\mathrm{eq}}^2}\Delta R_{\mathrm{eq}}\right)^2}`} />
+    </li>
+  </ul>
+  <p>
+    Compare a corrente calculada com a corrente medida e verifique se a diferença é compatível com as incertezas experimentais.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
+  <ol>
+    <li>Por que uma medida de resistência não deve ser feita com o circuito energizado?</li>
+    <li>Qual é a diferença prática entre ligar o multímetro em paralelo para medir tensão e em série para medir corrente?</li>
+    <li>O que muda na interpretação do circuito quando há um LED em série com os resistores?</li>
+    <li>Em que sentido a propagação linear é mais conservadora do que a propagação em quadratura?</li>
+    <li>Se a corrente calculada e a corrente medida diferirem além das incertezas, quais causas experimentais podem explicar isso?</li>
+    <li>Por que é importante registrar a faixa usada, a resolução e a especificação do manual junto com cada medida?</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="simulador" title="Simulador">
+  <p>
+    Para apoio ao relatório, você pode reconstruir o circuito no <a href="https://www.tinkercad.com/circuits">Tinkercad
+    Circuits</a> usando os mesmos elementos da prática: fonte, três resistores em série e LED.
+  </p>
+  <p>
+    O simulador não substitui a bancada na parte de incertezas instrumentais, porque não reproduz a especificação real do
+    multímetro usado no laboratório. Ainda assim, ele é útil para verificar qualitativamente as quedas de tensão nos resistores e
+    comparar a distribuição de tensão observada no circuito.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
+  <p>
+    O relatório deve mostrar os resultados e como eles foram obtidos. Uma estrutura simples é suficiente:
+  </p>
+  <ol>
+    <li>objetivo da prática;</li>
+    <li>descrição curta do circuito e dos instrumentos usados;</li>
+    <li>tabelas com as medidas de resistência, tensão e corrente;</li>
+    <li>explicação de como a incerteza de cada medida direta foi obtida a partir do manual do multímetro;</li>
+    <li>cálculo da resistência equivalente com propagação de incertezas pelos dois métodos;</li>
+    <li>cálculo da corrente e comparação com a corrente medida diretamente;</li>
+    <li>reconstrução do circuito no Tinkercad, para verificar qualitativamente as quedas de tensão nos resistores;</li>
+    <li>discussão do papel do LED na interpretação do circuito;</li>
+    <li>conclusão final, indicando o que foi aprendido e quais limitações apareceram.</li>
+  </ol>
+  <div class="callout">
+    <strong>Dica prática.</strong> O aluno deve registrar o desenvolvimento das contas, ao menos uma vez de forma completa, e não
+    apenas preencher a última linha com o valor final.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
+  <p>
+    Organize a discussão em torno das perguntas abaixo:
+  </p>
+  <ol>
+    <li>As resistências medidas são consistentes entre si e com a escrita correta das incertezas?</li>
+    <li>A resistência equivalente calculada é coerente com uma associação em série?</li>
+    <li>A corrente calculada é compatível com a corrente medida diretamente?</li>
+    <li>Que papel o LED desempenha na interpretação das quedas de tensão e dos limites da lei de Ohm neste circuito?</li>
+  </ol>
+  <p>
+    Na conclusão, relacione técnica de medida, qualidade do registro experimental e interpretação física do circuito.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="referencias" title="Referências">
+  <p>-</p>
+</PracticeSection>

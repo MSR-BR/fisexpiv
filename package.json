@@ -1,0 +1,31 @@
+{
+  "name": "fisexpiv",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.5"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "node scripts/test-e2e.mjs",
+    "check:content": "node scripts/validate-content.mjs",
+    "check:links": "node scripts/check-links.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^4.0.0",
+    "@types/node": "latest",
+    "katex": "^0.16.22",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

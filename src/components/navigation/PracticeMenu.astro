@@ -1,0 +1,92 @@
+---
+import { practiceCatalog } from "../../lib/content/practice-catalog";
+
+interface Props {
+  currentSlug?: string;
+}
+
+const { currentSlug } = Astro.props;
+---
+
+<aside class="practice-menu">
+  <div class="practice-menu__header">
+    <h2>Práticas</h2>
+    <button
+      type="button"
+      class="practice-menu__toggle"
+      data-practice-menu-toggle
+      aria-expanded="false"
+      aria-controls="practiceMenuNav"
+    >
+      Menu
+    </button>
+  </div>
+
+  <nav id="practiceMenuNav" class="practice-menu__nav" aria-label="Lista de práticas" data-practice-menu-nav>
+    <ul class="practice-menu__list">
+      {practiceCatalog.map((practice, index) => {
+        const isActive = practice.slug === currentSlug;
+        const isAvailable = practice.status === "available";
+        const className = [
+          "practice-menu__item",
+          isAvailable ? "is-available" : "is-planned",
+          isActive ? "is-active" : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        return (
+          <li>
+            {isAvailable ? (
+              <a class={className} href={`/praticas/${practice.slug}/`} aria-current={isActive ? "page" : undefined}>
+                <span class="practice-menu__number">{String(index + 1).padStart(2, "0")}</span>
+                <span class="practice-menu__content">
+                  <span class="practice-menu__title">{practice.title}</span>
+                  <span class="practice-menu__meta">Disponível agora</span>
+                </span>
+              </a>
+            ) : (
+              <span class={className} aria-disabled="true">
+                <span class="practice-menu__number">{String(index + 1).padStart(2, "0")}</span>
+                <span class="practice-menu__content">
+                  <span class="practice-menu__title">{practice.title}</span>
+                  <span class="practice-menu__meta">Em preparação</span>
+                </span>
+              </span>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  const toggle = document.querySelector("[data-practice-menu-toggle]");
+  const nav = document.querySelector("[data-practice-menu-nav]");
+
+  if (toggle instanceof HTMLButtonElement && nav instanceof HTMLElement) {
+    const syncMenu = () => {
+      const mobile = window.matchMedia("(max-width: 980px)").matches;
+      if (!mobile) {
+        nav.dataset.open = "true";
+        toggle.setAttribute("aria-expanded", "true");
+        return;
+      }
+
+      if (!nav.dataset.open) {
+        nav.dataset.open = "false";
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.dataset.open === "true";
+      nav.dataset.open = isOpen ? "false" : "true";
+      toggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    });
+
+    window.addEventListener("resize", syncMenu);
+    syncMenu();
+  }
+</script>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  currentSlug: string;
+}
+
+const {
+  title,
+  currentSlug,
+} = Astro.props;
+
+const sectionLinks = currentSlug === "revisao"
+  ? [
+      { id: "objetivos-de-aprendizagem", label: "Objetivos" },
+      { id: "introducao-teorica", label: "Teoria" },
+      { id: "medidas-diretas-e-incerteza-do-multimetro", label: "Incertezas" },
+      { id: "propagacao-de-incertezas", label: "Propagação" },
+      { id: "descricao-do-experimento", label: "Experimento" },
+      { id: "materiais-e-montagem", label: "Montagem" },
+      { id: "procedimento-experimental", label: "Procedimento" },
+      { id: "aquisicao-de-dados", label: "Dados" },
+      { id: "analise-e-interpretacao-dos-dados", label: "Análise" },
+      { id: "perguntas-conceituais-e-aplicadas", label: "Perguntas" },
+      { id: "simulador", label: "Simulador" },
+      { id: "como-organizar-o-relatorio", label: "Relatório" },
+      { id: "discussao-e-conclusao", label: "Discussão" },
+      { id: "referencias", label: "Referências" },
+    ]
+  : [];
+---
+
+<BaseLayout title={`${title} | Física Experimental IV`} description={title} currentSlug={currentSlug}>
+  <article class="practice-article">
+    <header class="practice-header">
+      <h1 class="practice-header__title">{title}</h1>
+
+      {sectionLinks.length > 0 ? (
+        <nav class="practice-outline" aria-label="Seções da prática">
+          {sectionLinks.map((section) => (
+            <a class="practice-outline__link" href={`#${section.id}`}>{section.label}</a>
+          ))}
+        </nav>
+      ) : null}
+    </header>
+
+    <slot />
+  </article>
+</BaseLayout>
