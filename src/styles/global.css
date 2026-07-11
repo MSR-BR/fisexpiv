@@ -773,6 +773,7 @@ img {
   display: grid;
   gap: 14px;
   min-width: 0;
+  overflow-x: clip;
 }
 
 .practice-section__body > * {
@@ -791,14 +792,15 @@ img {
 
 .practice-section__body table {
   display: block;
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
+  min-width: 0;
   max-width: 100%;
   margin: 16px 0;
   border-collapse: collapse;
   background: #fff;
   font-size: 0.96rem;
   overflow-x: auto;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -989,12 +991,19 @@ img {
   }
 
   .practice-section__body table {
+    width: 100%;
+    max-width: 100%;
     font-size: 0.9rem;
+    scrollbar-gutter: stable both-edges;
   }
 
   .practice-section__body th,
   .practice-section__body td {
     padding: 9px 10px;
+    min-width: 7rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
   }
 
   .practice-section__body .katex-display,
@@ -1069,5 +1078,11 @@ img {
 
   .practice-section__body table {
     font-size: 0.86rem;
+  }
+
+  .practice-section__body th,
+  .practice-section__body td {
+    min-width: 6.2rem;
+    padding: 8px 9px;
   }
 }
