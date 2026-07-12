@@ -47,7 +47,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   </p>
 </PracticeSection>
 
-<PracticeSection id="modelo-fisico-e-equacoes-de-trabalho" title="Modelo físico e equações de trabalho">
+<PracticeSection id="modelo-fisico" title="Modelo físico">
   <p>
     O feixe de elétrons é acelerado por uma diferença de potencial <code>V</code>. Admitindo que a energia cinética adquirida vem da
     energia elétrica, temos:
@@ -67,8 +67,20 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   </p>
   <LatexBlock expression={String.raw`B = \frac{8\mu_0N}{5\sqrt{5}R}\,I`} />
   <p>
-    onde <code>I</code> é a corrente nas bobinas, <code>N</code> é o número de espiras e <code>R</code> é o raio das bobinas. Para este
-    conjunto experimental, a expressão final pode ser escrita como:
+    No equipamento usado nesta prática, adota-se:
+  </p>
+  <ul>
+    <li><strong>mu_0 = 4pi x 10^-7 T.m/A</strong>, permeabilidade magnética do vácuo;</li>
+    <li><strong>N = 130</strong>, número de espiras de cada bobina;</li>
+    <li><strong>R = 15 cm = 0,15 m</strong>, raio das bobinas;</li>
+    <li><code>I</code>, corrente nas bobinas, medida em ampères durante o experimento.</li>
+  </ul>
+  <p>
+    Substituindo esses valores na expressão geral, obtém-se:
+  </p>
+  <LatexBlock expression={String.raw`\frac{q}{m} = \frac{2V(5/4)^3R^2}{(rN\mu_0I)^2}`} />
+  <p>
+    e, para este conjunto experimental, a forma numérica de trabalho fica:
   </p>
   <LatexBlock expression={String.raw`\frac{q}{m} = 3{,}287\times 10^6 \,\frac{V}{(rI)^2}`} />
   <p>
