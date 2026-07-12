@@ -44,7 +44,6 @@ const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl : `${rawBaseUrl}/`;
                 <span class="practice-menu__number">{String(index + 1).padStart(2, "0")}</span>
                 <span class="practice-menu__content">
                   <span class="practice-menu__title">{practice.title}</span>
-                  <span class="practice-menu__meta">Disponível agora</span>
                 </span>
               </a>
             ) : (
@@ -52,7 +51,6 @@ const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl : `${rawBaseUrl}/`;
                 <span class="practice-menu__number">{String(index + 1).padStart(2, "0")}</span>
                 <span class="practice-menu__content">
                   <span class="practice-menu__title">{practice.title}</span>
-                  <span class="practice-menu__meta">Em preparação</span>
                 </span>
               </span>
             )}

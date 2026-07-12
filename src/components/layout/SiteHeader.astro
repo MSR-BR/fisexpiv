@@ -14,9 +14,9 @@ const {
       <p class="eyebrow">Instituto de Física</p>
       <p class="hero-copy__institution">Universidade Federal Fluminense</p>
       <h1>{title}</h1>
-      <button type="button" class="hero-contact-link" data-contact-open aria-haspopup="dialog" aria-controls="contactDialog">
+      <a href="#contactDialog" class="hero-contact-link" data-contact-open aria-haspopup="dialog" aria-controls="contactDialog">
         Contato
-      </button>
+      </a>
     </div>
   </div>
 </header>
@@ -58,8 +58,9 @@ const {
   const contactOpen = document.querySelector("[data-contact-open]");
   const contactBackdrop = document.querySelector(".contact-dialog__backdrop");
 
-  if (contactDialog instanceof HTMLDialogElement && contactOpen instanceof HTMLButtonElement) {
-    contactOpen.addEventListener("click", () => {
+  if (contactDialog instanceof HTMLDialogElement && contactOpen instanceof HTMLElement) {
+    contactOpen.addEventListener("click", (event) => {
+      event.preventDefault();
       contactDialog.showModal();
     });
 
