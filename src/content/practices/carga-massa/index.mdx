@@ -67,11 +67,11 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   </p>
   <LatexBlock expression={String.raw`B = \frac{8\mu_0N}{5\sqrt{5}R}\,I`} />
   <p>
-    Substituindo a expressão do campo magnético na equação geral, obtém-se:
+    Substituindo a expressão de <code>B(I)</code> na equação de <code>q/m</code>, obtém-se:
   </p>
   <LatexBlock expression={String.raw`\frac{q}{m} = \frac{2V(5/4)^3R^2}{(rN\mu_0I)^2}`} />
   <p>
-    e, para este conjunto experimental, a forma numérica de trabalho fica:
+    Para este conjunto experimental, a forma numérica de trabalho fica:
   </p>
   <LatexBlock expression={String.raw`\frac{q}{m} = 3{,}287\times 10^6 \,\frac{V}{(rI)^2}`} />
   <p>
@@ -79,12 +79,13 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     metros. Se o raio for medido em centímetros, ele deve ser convertido para metros antes do cálculo.
   </p>
   <p>
-    Para a equação numérica acima, utilizam-se os valores reais do equipamento a ser utilizado, onde:
+    Na equação numérica acima, foram usados os valores reais do equipamento a ser utilizado, onde:
   </p>
   <ul>
     <li><strong>mu_0 = 4pi x 10^-7 T.m/A</strong>, permeabilidade magnética do vácuo;</li>
     <li><strong>N = 130</strong>, número de espiras de cada bobina;</li>
-    <li><strong>R = 15 cm = 0,15 m</strong>, raio das bobinas.</li>
+    <li><strong>R = 15 cm = 0,15 m</strong>, raio das bobinas;</li>
+    <li><strong>I</strong>, corrente nas bobinas, medida em ampères durante o experimento.</li>
   </ul>
 </PracticeSection>
 
