@@ -12,4 +12,5 @@ export interface PracticeCatalogItem {
   sourceStatus: string;
   availableMaterials: string[];
   plannedMaterials: string[];
+  pdfDownloadPath?: string;
 }

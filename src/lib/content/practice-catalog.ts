@@ -13,6 +13,7 @@ export const practiceCatalog: PracticeCatalogItem[] = [
     sourceStatus: "PDF base incorporado",
     availableMaterials: ["roteiro em desenvolvimento", "estrutura da prática"],
     plannedMaterials: ["simuladores externos, se aplicável"],
+    pdfDownloadPath: "/downloads/praticas/revisao.pdf",
   },
   {
     slug: "carga-massa",
@@ -26,6 +27,7 @@ export const practiceCatalog: PracticeCatalogItem[] = [
     sourceStatus: "Aguardando PDF e materiais de apoio",
     availableMaterials: ["roteiro em desenvolvimento", "estrutura da prática"],
     plannedMaterials: ["simulador interno ou externo, se aprovado"],
+    pdfDownloadPath: "/downloads/praticas/carga-massa.pdf",
   },
   {
     slug: "radiacao-termica",

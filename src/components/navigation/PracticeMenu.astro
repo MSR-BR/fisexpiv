@@ -66,27 +66,13 @@ const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl : `${rawBaseUrl}/`;
   const nav = document.querySelector("[data-practice-menu-nav]");
 
   if (toggle instanceof HTMLButtonElement && nav instanceof HTMLElement) {
-    const syncMenu = () => {
-      const mobile = window.matchMedia("(max-width: 980px)").matches;
-      if (!mobile) {
-        nav.dataset.open = "true";
-        toggle.setAttribute("aria-expanded", "true");
-        return;
-      }
-
-      if (!nav.dataset.open) {
-        nav.dataset.open = "false";
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    };
+    nav.dataset.open = "false";
+    toggle.setAttribute("aria-expanded", "false");
 
     toggle.addEventListener("click", () => {
       const isOpen = nav.dataset.open === "true";
       nav.dataset.open = isOpen ? "false" : "true";
       toggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
     });
-
-    window.addEventListener("resize", syncMenu);
-    syncMenu();
   }
 </script>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { getPracticeCatalogItem } from "../lib/content/practice-catalog";
 
 interface Props {
   title: string;
@@ -46,6 +47,10 @@ const sectionLinksByPractice: Record<string, Array<{ id: string; label: string }
 };
 
 const sectionLinks = sectionLinksByPractice[currentSlug] ?? [];
+const practiceMeta = getPracticeCatalogItem(currentSlug);
+const pdfDownloadPath = practiceMeta?.pdfDownloadPath
+  ? `${import.meta.env.BASE_URL}${practiceMeta.pdfDownloadPath.replace(/^\//, "")}`
+  : null;
 ---
 
 <BaseLayout title={`${title} | Física Experimental IV`} description={title} currentSlug={currentSlug}>
@@ -55,6 +60,11 @@ const sectionLinks = sectionLinksByPractice[currentSlug] ?? [];
 
       {sectionLinks.length > 0 ? (
         <nav class="practice-outline" aria-label="Seções da prática">
+          {pdfDownloadPath ? (
+            <a class="practice-outline__link practice-outline__link--download" href={pdfDownloadPath} download>
+              Baixar PDF
+            </a>
+          ) : null}
           {sectionLinks.map((section) => (
             <a class="practice-outline__link" href={`#${section.id}`}>{section.label}</a>
           ))}
