@@ -228,18 +228,24 @@ img {
   font-weight: 800;
 }
 
-.contact-dialog__body a,
-.practice-section__body a {
+.contact-dialog__body a:any-link,
+.practice-section__body a:any-link,
+.practice-section__body p a:any-link,
+.practice-section__body li a:any-link {
   color: var(--accent);
   text-decoration-line: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 0.18em;
 }
 
-.contact-dialog__body a:hover,
-.contact-dialog__body a:focus-visible,
-.practice-section__body a:hover,
-.practice-section__body a:focus-visible {
+.contact-dialog__body a:any-link:hover,
+.contact-dialog__body a:any-link:focus-visible,
+.practice-section__body a:any-link:hover,
+.practice-section__body a:any-link:focus-visible,
+.practice-section__body p a:any-link:hover,
+.practice-section__body p a:any-link:focus-visible,
+.practice-section__body li a:any-link:hover,
+.practice-section__body li a:any-link:focus-visible {
   color: var(--brand);
 }
 
