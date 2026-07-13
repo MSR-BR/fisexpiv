@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { getPracticeCatalogItem } from "../lib/content/practice-catalog";
+import { getTrackedLinkPath } from "../lib/content/tracked-links";
 
 interface Props {
   title: string;
@@ -49,7 +50,9 @@ const sectionLinksByPractice: Record<string, Array<{ id: string; label: string }
 const sectionLinks = sectionLinksByPractice[currentSlug] ?? [];
 const practiceMeta = getPracticeCatalogItem(currentSlug);
 const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const pdfDownloadPath = practiceMeta?.pdfDownloadPath
+const pdfDownloadPath = practiceMeta?.pdfTrackingResourceSlug
+  ? `${basePath}${getTrackedLinkPath("pdf", currentSlug, practiceMeta.pdfTrackingResourceSlug).replace(/^\//, "")}`
+  : practiceMeta?.pdfDownloadPath
   ? `${basePath}${practiceMeta.pdfDownloadPath.replace(/^\//, "")}`
   : null;
 ---

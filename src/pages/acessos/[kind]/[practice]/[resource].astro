@@ -1,0 +1,43 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getTrackedLink, trackedLinks } from "../../../../lib/content/tracked-links";
+
+export const getStaticPaths = (() =>
+  trackedLinks.map((item) => ({
+    params: {
+      kind: item.kind,
+      practice: item.practiceSlug,
+      resource: item.resourceSlug,
+    },
+    props: item,
+  }))) satisfies GetStaticPaths;
+
+const { kind, practiceSlug, resourceSlug, destination, label } = Astro.props;
+const trackedLink = getTrackedLink(kind, practiceSlug, resourceSlug);
+
+if (!trackedLink) {
+  throw new Error("Tracked link not found.");
+}
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <meta name="robots" content="noindex" />
+    <title>{label}</title>
+  </head>
+  <body data-destination={destination}>
+    <p>
+      Redirecionando para <a href={destination}>{label}</a>.
+    </p>
+    <script is:inline>
+      const redirectTarget = document.body.dataset.destination;
+
+      if (redirectTarget) {
+        window.location.replace(redirectTarget);
+      }
+    </script>
+  </body>
+</html>

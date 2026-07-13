@@ -12,6 +12,8 @@ interface Props {
 
 const { title, description, currentSlug } = Astro.props;
 const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const cloudflareWebAnalyticsToken =
+  import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN ?? "e1d22de83aaf4bf99a92805085d39ec2";
 ---
 
 <!doctype html>
@@ -21,6 +23,13 @@ const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_U
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {cloudflareWebAnalyticsToken ? (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: cloudflareWebAnalyticsToken })}
+      ></script>
+    ) : null}
   </head>
   <body data-project-base-path={basePath}>
     <SiteHeader title="Física Experimental IV" />
@@ -37,6 +46,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_U
 
       links.forEach((link) => {
         const href = link.getAttribute("href");
+        const forceNewTab = link.dataset.forceNewTab === "true";
 
         if (!href || href.startsWith("#")) {
           return;
@@ -46,7 +56,7 @@ const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_U
         const isSameOrigin = url.origin === window.location.origin;
         const isInternalProjectLink = isSameOrigin && url.pathname.startsWith(projectBasePath);
 
-        if (isInternalProjectLink) {
+        if (isInternalProjectLink && !forceNewTab) {
           link.removeAttribute("target");
           link.removeAttribute("rel");
           return;
