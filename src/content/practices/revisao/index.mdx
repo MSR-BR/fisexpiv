@@ -77,11 +77,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   </p>
   <LatexBlock expression={String.raw`\Delta f = \left| \frac{\partial f}{\partial x} \right| \Delta x + \left| \frac{\partial f}{\partial y} \right| \Delta y + \left| \frac{\partial f}{\partial z} \right| \Delta z + \cdots`} />
   <p>
-    A forma em quadratura combina as contribuições de modo estatístico:
-  </p>
-  <LatexBlock expression={String.raw`\Delta f = \sqrt{\left( \frac{\partial f}{\partial x} \right)^2 (\Delta x)^2 + \left( \frac{\partial f}{\partial y} \right)^2 (\Delta y)^2 + \left( \frac{\partial f}{\partial z} \right)^2 (\Delta z)^2 + \cdots}`} />
-  <p>
-    Nesta prática, as duas expressões serão aplicadas à resistência equivalente e à corrente calculada.
+    Neste roteiro, vamos considerar apenas a propagação linear, por ser uma forma direta e conservadora de tratar as incertezas.
   </p>
 </PracticeSection>
 
@@ -114,8 +110,8 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Meça separadamente as três resistências do kit e registre cada valor com sua incerteza.</li>
     <li>Monte o circuito com os três resistores em série com o LED e ajuste a fonte para 10 V.</li>
     <li>Meça a tensão em cada resistor, sempre em paralelo ao elemento observado, e registre o resultado com a incerteza.</li>
-    <li>Calcule a resistência equivalente dos três resistores e propague a incerteza pelos dois métodos do roteiro.</li>
-    <li>Estime a corrente do circuito e propague sua incerteza pelos dois métodos.</li>
+    <li>Calcule a resistência equivalente dos três resistores e propague a incerteza pela forma linear.</li>
+    <li>Estime a corrente do circuito e propague sua incerteza pela forma linear.</li>
     <li>Meça diretamente a corrente no circuito, agora com o multímetro em série, e compare com o valor calculado.</li>
     <li>Discuta a compatibilidade entre os resultados e o papel do LED na interpretação do circuito.</li>
   </ol>
@@ -161,18 +157,9 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   </p>
   <LatexBlock expression={String.raw`R_{\mathrm{eq}} = R_0 + R_1 + R_2`} />
   <p>
-    As duas formas de propagação ficam:
+    Neste roteiro, a incerteza da resistência equivalente será obtida pela forma linear:
   </p>
-  <ul>
-    <li>
-      pela equação linear,
-      <LatexBlock expression={String.raw`\Delta R_{\mathrm{eq}} = \Delta R_0 + \Delta R_1 + \Delta R_2`} />
-    </li>
-    <li>
-      pela equação em quadratura,
-      <LatexBlock expression={String.raw`\Delta R_{\mathrm{eq}} = \sqrt{(\Delta R_0)^2 + (\Delta R_1)^2 + (\Delta R_2)^2}`} />
-    </li>
-  </ul>
+  <LatexBlock expression={String.raw`\Delta R_{\mathrm{eq}} = \Delta R_0 + \Delta R_1 + \Delta R_2`} />
   <p>
     Para estimar a corrente na parte resistiva do circuito:
   </p>
@@ -186,18 +173,9 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   </p>
   <LatexBlock expression={String.raw`V_R = V_0 + V_1 + V_2`} />
   <p>
-    as duas formas de propagação para a corrente podem ser escritas como:
+    a propagação linear para a corrente pode ser escrita como:
   </p>
-  <ul>
-    <li>
-      forma linear,
-      <LatexBlock expression={String.raw`\Delta I_{\mathrm{lin}} = \left| \frac{\partial I}{\partial V_R} \right| \Delta V_R + \left| \frac{\partial I}{\partial R_{\mathrm{eq}}} \right| \Delta R_{\mathrm{eq}} = \frac{\Delta V_R}{R_{\mathrm{eq}}} + \frac{V_R}{R_{\mathrm{eq}}^2}\Delta R_{\mathrm{eq}}`} />
-    </li>
-    <li>
-      forma em quadratura,
-      <LatexBlock expression={String.raw`\Delta I_{\mathrm{quad}} = \sqrt{\left(\frac{\Delta V_R}{R_{\mathrm{eq}}}\right)^2 + \left(\frac{V_R}{R_{\mathrm{eq}}^2}\Delta R_{\mathrm{eq}}\right)^2}`} />
-    </li>
-  </ul>
+  <LatexBlock expression={String.raw`\Delta I_{\mathrm{calc}} = \left| \frac{\partial I}{\partial V_R} \right| \Delta V_R + \left| \frac{\partial I}{\partial R_{\mathrm{eq}}} \right| \Delta R_{\mathrm{eq}} = \frac{\Delta V_R}{R_{\mathrm{eq}}} + \frac{V_R}{R_{\mathrm{eq}}^2}\Delta R_{\mathrm{eq}}`} />
   <p>
     Compare a corrente calculada com a corrente medida e verifique se a diferença é compatível com as incertezas experimentais.
   </p>
@@ -208,7 +186,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Por que uma medida de resistência não deve ser feita com o circuito energizado?</li>
     <li>Qual é a diferença prática entre ligar o multímetro em paralelo para medir tensão e em série para medir corrente?</li>
     <li>O que muda na interpretação do circuito quando há um LED em série com os resistores?</li>
-    <li>Em que sentido a propagação linear é mais conservadora do que a propagação em quadratura?</li>
+    <li>Por que, neste roteiro, adotamos a propagação linear como procedimento de análise das incertezas?</li>
     <li>Se a corrente calculada e a corrente medida diferirem além das incertezas, quais causas experimentais podem explicar isso?</li>
     <li>Por que é importante registrar a faixa usada, a resolução e a especificação do manual junto com cada medida?</li>
   </ol>
@@ -216,13 +194,18 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
 <PracticeSection id="simulador" title="Simulador">
   <p>
-    Para apoio ao relatório, você pode reconstruir o circuito no <a href="https://www.tinkercad.com/circuits">Tinkercad
+    Como apoio conceitual, você pode reconstruir o circuito no simulador <a href="https://www.tinkercad.com/circuits">Tinkercad
     Circuits</a> usando os mesmos elementos da prática: fonte, três resistores em série e LED.
   </p>
   <p>
     O simulador não substitui a bancada na parte de incertezas instrumentais, porque não reproduz a especificação real do
     multímetro usado no laboratório. Ainda assim, ele é útil para verificar qualitativamente as quedas de tensão nos resistores e
     comparar a distribuição de tensão observada no circuito.
+  </p>
+  <p>
+    Use o simulador como apoio conceitual e monte uma tabela exploratória separada do relatório principal. Não misture
+    automaticamente esses dados com as medidas reais do laboratório, porque as incertezas instrumentais da bancada não são
+    reproduzidas pelo ambiente virtual.
   </p>
 </PracticeSection>
 
@@ -235,15 +218,18 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>descrição curta do circuito e dos instrumentos usados;</li>
     <li>tabelas com as medidas de resistência, tensão e corrente;</li>
     <li>explicação de como a incerteza de cada medida direta foi obtida a partir do manual do multímetro;</li>
-    <li>cálculo da resistência equivalente com propagação de incertezas pelos dois métodos;</li>
+    <li>cálculo da resistência equivalente com propagação linear das incertezas;</li>
     <li>cálculo da corrente e comparação com a corrente medida diretamente;</li>
-    <li>reconstrução do circuito no Tinkercad, para verificar qualitativamente as quedas de tensão nos resistores;</li>
+    <li>uma tabela exploratória separada com os dados obtidos no simulador;</li>
+    <li>uma análise curta dos dados do simulador, destacando o que eles ajudam a interpretar no circuito;</li>
+    <li>um gráfico construído a partir dos dados do simulador, apresentado separadamente dos dados reais da bancada;</li>
     <li>discussão do papel do LED na interpretação do circuito;</li>
     <li>conclusão final, indicando o que foi aprendido e quais limitações apareceram.</li>
   </ol>
   <div class="callout">
     <strong>Dica prática.</strong> O aluno deve registrar o desenvolvimento das contas, ao menos uma vez de forma completa, e não
-    apenas preencher a última linha com o valor final.
+    apenas preencher a última linha com o valor final. Para o tratamento dos dados e a construção de tabelas e gráficos, pode usar,
+    por exemplo, o Excel ou outra planilha equivalente.
   </div>
 </PracticeSection>
 
