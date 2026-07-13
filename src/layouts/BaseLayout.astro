@@ -11,6 +11,7 @@ interface Props {
 }
 
 const { title, description, currentSlug } = Astro.props;
+const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <!doctype html>
@@ -21,7 +22,7 @@ const { title, description, currentSlug } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body>
+  <body data-project-base-path={basePath}>
     <SiteHeader title="Física Experimental IV" />
     <main class="wrap main-shell">
       <PracticeMenu currentSlug={currentSlug} />
@@ -30,12 +31,24 @@ const { title, description, currentSlug } = Astro.props;
       </div>
     </main>
     <script>
+      const body = document.body;
+      const projectBasePath = body.dataset.projectBasePath ?? "/";
       const links = document.querySelectorAll("a[href]");
 
       links.forEach((link) => {
         const href = link.getAttribute("href");
 
         if (!href || href.startsWith("#")) {
+          return;
+        }
+
+        const url = new URL(href, window.location.href);
+        const isSameOrigin = url.origin === window.location.origin;
+        const isInternalProjectLink = isSameOrigin && url.pathname.startsWith(projectBasePath);
+
+        if (isInternalProjectLink) {
+          link.removeAttribute("target");
+          link.removeAttribute("rel");
           return;
         }
 
