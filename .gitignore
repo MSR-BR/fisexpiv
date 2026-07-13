@@ -3,4 +3,9 @@ dist/
 .astro/
 coverage/
 playwright-report/
-
+.tmp/
+.DS_Store
+*.aux
+*.log
+*.toc
+missfont.log

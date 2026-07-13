@@ -1,0 +1,321 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{longtable}
+\usepackage{array}
+
+\geometry{margin=2.5cm}
+\newcommand{\instituicao}{Universidade Federal Fluminense}
+\newcommand{\unidade}{Instituto de Física}
+\newcommand{\disciplina}{Física Experimental IV}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  {\Large \unidade \par}
+  \vspace{0.4cm}
+  {\large \instituicao \par}
+  \vfill
+  {\LARGE\bfseries \disciplina \par}
+  \vspace{0.8cm}
+  {\Huge\bfseries Prática 1 -- Revisão \par}
+  \vspace{0.8cm}
+  {\large Roteiro em \LaTeX\ estruturado a partir do conteúdo do portal da disciplina.\par}
+  \vfill
+  {\large 13 de julho de 2026 \par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Objetivos de aprendizagem}
+
+\begin{itemize}
+  \item Rever o uso correto do multímetro digital em medidas de resistência, tensão e corrente.
+  \item Escrever a incerteza de uma medida direta usando a especificação do aparelho.
+  \item Calcular a resistência equivalente de resistores em série e propagar as incertezas por dois procedimentos.
+  \item Comparar uma corrente calculada com uma corrente medida diretamente no circuito.
+  \item Reconhecer que a presença do LED exige cuidado na interpretação da queda de tensão total do circuito.
+\end{itemize}
+
+\section{Introdução teórica}
+
+Esta prática revisa dois pontos: uso do multímetro em medidas diretas e escrita correta de incertezas experimentais. Antes de medir,
+defina a grandeza de interesse, escolha a função correta, a escala adequada e o borne apropriado. Resistências e tensões são medidas
+em paralelo ao elemento de interesse. Correntes são medidas em série, com o circuito aberto no ponto de medição. Como o circuito
+contém três resistores em série com um LED, a tensão da fonte não deve ser identificada automaticamente com a soma das quedas de
+tensão apenas nos resistores.
+
+\section{Medidas diretas e incerteza do multímetro}
+
+A leitura do multímetro fornece o valor medido. A incerteza depende da faixa utilizada, da resolução e da especificação do aparelho
+no manual. Uma forma usual de estimá-la é:
+
+\begin{equation}
+\Delta = (\text{erro percentual}) \cdot (\text{valor lido}) + (\text{numero de digitos}) \cdot (\text{resolucao})
+\end{equation}
+
+O primeiro termo depende do valor lido. O segundo depende da resolução da faixa utilizada.
+
+Para usar essa expressão, identifique no manual:
+
+\begin{itemize}
+  \item a especificação percentual da faixa escolhida;
+  \item o número de dígitos que deve ser somado ao cálculo;
+  \item a resolução correspondente à menor variação exibida na tela.
+\end{itemize}
+
+Ao final, a medida deve ser escrita com:
+
+\begin{itemize}
+  \item no máximo dois algarismos significativos na incerteza;
+  \item o valor central e a incerteza com o mesmo número de casas decimais;
+  \item a unidade fora do parêntese.
+\end{itemize}
+
+\section{Propagação de incertezas}
+
+Quando uma grandeza é calculada a partir de outras medidas, sua incerteza deve ser obtida a partir das incertezas das variáveis
+medidas.
+
+A forma linear soma os módulos das contribuições individuais e fornece uma estimativa conservadora:
+
+\begin{equation}
+\Delta f =
+\left| \frac{\partial f}{\partial x} \right| \Delta x +
+\left| \frac{\partial f}{\partial y} \right| \Delta y +
+\left| \frac{\partial f}{\partial z} \right| \Delta z + \cdots
+\end{equation}
+
+A forma em quadratura combina as contribuições de modo estatístico:
+
+\begin{equation}
+\Delta f =
+\sqrt{
+\left( \frac{\partial f}{\partial x} \right)^2 (\Delta x)^2 +
+\left( \frac{\partial f}{\partial y} \right)^2 (\Delta y)^2 +
+\left( \frac{\partial f}{\partial z} \right)^2 (\Delta z)^2 + \cdots
+}
+\end{equation}
+
+Nesta prática, as duas expressões serão aplicadas à resistência equivalente e à corrente calculada.
+
+\section{Descrição do experimento}
+
+O experimento usa uma fonte DC ajustável e um circuito com três resistores em série com um LED. Medem-se as resistências, as quedas
+de tensão nos resistores e a corrente do circuito. Depois, calcula-se a resistência equivalente e compara-se a corrente calculada com
+a corrente medida.
+
+\section{Materiais e montagem}
+
+\begin{itemize}
+  \item 01 fonte de tensão DC ajustável;
+  \item 01 kit de circuito com três resistores e 1 LED;
+  \item 01 multímetro digital com manual;
+  \item 02 pontas de prova;
+  \item 02 fios com terminais banana.
+\end{itemize}
+
+A montagem principal é um circuito em série contendo três resistores e um LED, alimentado por uma fonte DC ajustada para 10 V.
+
+\section{Procedimento experimental}
+
+\begin{enumerate}
+  \item Antes de qualquer conexão, identifique se a próxima medida será de resistência, tensão ou corrente.
+  \item Selecione a função apropriada no multímetro e, sempre que necessário, comece na maior escala.
+  \item Conecte uma ponta de prova ao borne comum e a outra ao borne adequado para a grandeza escolhida.
+  \item Meça separadamente as três resistências do kit e registre cada valor com sua incerteza.
+  \item Monte o circuito com os três resistores em série com o LED e ajuste a fonte para 10 V.
+  \item Meça a tensão em cada resistor, sempre em paralelo ao elemento observado, e registre o resultado com a incerteza.
+  \item Calcule a resistência equivalente dos três resistores e propague a incerteza pelos dois métodos do roteiro.
+  \item Estime a corrente do circuito e propague sua incerteza pelos dois métodos.
+  \item Meça diretamente a corrente no circuito, agora com o multímetro em série, e compare com o valor calculado.
+  \item Discuta a compatibilidade entre os resultados e o papel do LED na interpretação do circuito.
+\end{enumerate}
+
+\paragraph{Cuidado operacional.}
+Medidas de resistência devem ser feitas sem o circuito alimentado. Medidas de corrente exigem abrir o circuito e inserir o multímetro
+em série. Além disso, não aplique a tensão da fonte diretamente aos terminais do LED sem resistor em série: a tensão direta
+admissível do LED é limitada e, nessa condição, a corrente pode crescer rapidamente e danificar o componente.
+
+\section{Aquisição de dados}
+
+Registre cada medida com os dados necessários para justificar a incerteza escrita.
+
+\subsection{Resistências medidas diretamente}
+
+\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{1.7cm} >{\raggedright\arraybackslash}p{2cm} >{\raggedright\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{2.3cm}}
+\hline
+Grandeza & Valor lido & Faixa usada & Resolução & Especificação do manual & Incerteza & Resultado final \\
+\hline
+\endfirsthead
+\hline
+Grandeza & Valor lido & Faixa usada & Resolução & Especificação do manual & Incerteza & Resultado final \\
+\hline
+\endhead
+R0 &  &  &  &  &  &  \\
+\hline
+R1 &  &  &  &  &  &  \\
+\hline
+R2 &  &  &  &  &  &  \\
+\hline
+\end{longtable}
+\normalsize
+
+\subsection{Tensões medidas sobre os resistores}
+
+\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{1.7cm} >{\raggedright\arraybackslash}p{2cm} >{\raggedright\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{2.3cm}}
+\hline
+Grandeza & Valor lido & Faixa usada & Resolução & Especificação do manual & Incerteza & Resultado final \\
+\hline
+\endfirsthead
+\hline
+Grandeza & Valor lido & Faixa usada & Resolução & Especificação do manual & Incerteza & Resultado final \\
+\hline
+\endhead
+V0 &  &  &  &  &  &  \\
+\hline
+V1 &  &  &  &  &  &  \\
+\hline
+V2 &  &  &  &  &  &  \\
+\hline
+\end{longtable}
+\normalsize
+
+\subsection{Corrente medida diretamente}
+
+\small
+\begin{tabular}{p{1.9cm} p{1.9cm} p{1.9cm} p{1.9cm} p{3.1cm} p{1.8cm} p{2.2cm}}
+\hline
+Grandeza & Valor lido & Faixa usada & Resolução & Especificação do manual & Incerteza & Resultado final \\
+\hline
+I\_medida &  &  &  &  &  &  \\
+\hline
+\end{tabular}
+\normalsize
+
+\section{Análise e interpretação dos dados}
+
+Para três resistores em série:
+
+\begin{equation}
+R_{\mathrm{eq}} = R_0 + R_1 + R_2
+\end{equation}
+
+As duas formas de propagação ficam:
+
+\begin{itemize}
+  \item pela equação linear,
+  \begin{equation}
+  \Delta R_{\mathrm{eq}} = \Delta R_0 + \Delta R_1 + \Delta R_2
+  \end{equation}
+  \item pela equação em quadratura,
+  \begin{equation}
+  \Delta R_{\mathrm{eq}} = \sqrt{(\Delta R_0)^2 + (\Delta R_1)^2 + (\Delta R_2)^2}
+  \end{equation}
+\end{itemize}
+
+Para estimar a corrente na parte resistiva do circuito:
+
+\begin{equation}
+I_{\mathrm{calc}} = \frac{V_0 + V_1 + V_2}{R_{\mathrm{eq}}}
+\end{equation}
+
+Usa-se a soma das quedas de tensão nos resistores, e não diretamente a tensão da fonte, porque o LED também participa da
+distribuição de tensão.
+
+Definindo a tensão total sobre a parte resistiva por
+
+\begin{equation}
+V_R = V_0 + V_1 + V_2
+\end{equation}
+
+as duas formas de propagação para a corrente podem ser escritas como:
+
+\begin{itemize}
+  \item forma linear,
+  \begin{equation}
+  \Delta I_{\mathrm{lin}} =
+  \left| \frac{\partial I}{\partial V_R} \right| \Delta V_R +
+  \left| \frac{\partial I}{\partial R_{\mathrm{eq}}} \right| \Delta R_{\mathrm{eq}}
+  =
+  \frac{\Delta V_R}{R_{\mathrm{eq}}} + \frac{V_R}{R_{\mathrm{eq}}^2}\Delta R_{\mathrm{eq}}
+  \end{equation}
+  \item forma em quadratura,
+  \begin{equation}
+  \Delta I_{\mathrm{quad}} =
+  \sqrt{
+  \left(\frac{\Delta V_R}{R_{\mathrm{eq}}}\right)^2 +
+  \left(\frac{V_R}{R_{\mathrm{eq}}^2}\Delta R_{\mathrm{eq}}\right)^2
+  }
+  \end{equation}
+\end{itemize}
+
+Compare a corrente calculada com a corrente medida e verifique se a diferença é compatível com as incertezas experimentais.
+
+\section{Perguntas conceituais e aplicadas}
+
+\begin{enumerate}
+  \item Por que uma medida de resistência não deve ser feita com o circuito energizado?
+  \item Qual é a diferença prática entre ligar o multímetro em paralelo para medir tensão e em série para medir corrente?
+  \item O que muda na interpretação do circuito quando há um LED em série com os resistores?
+  \item Em que sentido a propagação linear é mais conservadora do que a propagação em quadratura?
+  \item Se a corrente calculada e a corrente medida diferirem além das incertezas, quais causas experimentais podem explicar isso?
+  \item Por que é importante registrar a faixa usada, a resolução e a especificação do manual junto com cada medida?
+\end{enumerate}
+
+\section{Simulador}
+
+Para apoio ao relatório, você pode reconstruir o circuito no Tinkercad Circuits, disponível em
+https://www.tinkercad.com/circuits, usando os mesmos elementos da prática: fonte, três resistores em série e LED.
+
+O simulador não substitui a bancada na parte de incertezas instrumentais, porque não reproduz a especificação real do multímetro
+usado no laboratório. Ainda assim, ele é útil para verificar qualitativamente as quedas de tensão nos resistores e comparar a
+distribuição de tensão observada no circuito.
+
+\section{Como organizar o relatório}
+
+O relatório deve mostrar os resultados e como eles foram obtidos. Uma estrutura simples é suficiente:
+
+\begin{enumerate}
+  \item objetivo da prática;
+  \item descrição curta do circuito e dos instrumentos usados;
+  \item tabelas com as medidas de resistência, tensão e corrente;
+  \item explicação de como a incerteza de cada medida direta foi obtida a partir do manual do multímetro;
+  \item cálculo da resistência equivalente com propagação de incertezas pelos dois métodos;
+  \item cálculo da corrente e comparação com a corrente medida diretamente;
+  \item reconstrução do circuito no Tinkercad, para verificar qualitativamente as quedas de tensão nos resistores;
+  \item discussão do papel do LED na interpretação do circuito;
+  \item conclusão final, indicando o que foi aprendido e quais limitações apareceram.
+\end{enumerate}
+
+\paragraph{Dica prática.}
+O aluno deve registrar o desenvolvimento das contas, ao menos uma vez de forma completa, e não apenas preencher a última linha com
+o valor final.
+
+\section{Discussão e conclusão}
+
+Organize a discussão em torno das perguntas abaixo:
+
+\begin{enumerate}
+  \item As resistências medidas são consistentes entre si e com a escrita correta das incertezas?
+  \item A resistência equivalente calculada é coerente com uma associação em série?
+  \item A corrente calculada é compatível com a corrente medida diretamente?
+  \item Que papel o LED desempenha na interpretação das quedas de tensão e dos limites da lei de Ohm neste circuito?
+\end{enumerate}
+
+Na conclusão, relacione técnica de medida, qualidade do registro experimental e interpretação física do circuito.
+
+\section{Referências}
+
+\begin{itemize}
+  \item Material do portal da disciplina de Física Experimental IV.
+\end{itemize}
+
+\end{document}
