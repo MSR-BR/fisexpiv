@@ -60,14 +60,14 @@ const pdfDownloadPath = practiceMeta?.pdfDownloadPath
 
       {sectionLinks.length > 0 ? (
         <nav class="practice-outline" aria-label="Seções da prática">
-          {pdfDownloadPath ? (
-            <a class="practice-outline__link practice-outline__link--download" href={pdfDownloadPath} download>
-              Baixar PDF
-            </a>
-          ) : null}
           {sectionLinks.map((section) => (
             <a class="practice-outline__link" href={`#${section.id}`}>{section.label}</a>
           ))}
+          {pdfDownloadPath ? (
+            <a class="practice-outline__link" href={pdfDownloadPath} download>
+              PDF
+            </a>
+          ) : null}
         </nav>
       ) : null}
     </header>

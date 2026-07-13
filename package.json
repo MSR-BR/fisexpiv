@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:practice-pdfs": "npm run build && node scripts/generate-practice-pdfs.mjs && npm run build",
     "preview": "astro preview",
     "test": "vitest run",
     "test:watch": "vitest",

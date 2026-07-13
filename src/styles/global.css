@@ -744,12 +744,6 @@ img {
   font-weight: 700;
 }
 
-.practice-outline__link--download {
-  background: rgba(13, 76, 125, 0.12);
-  border-color: rgba(13, 76, 125, 0.18);
-  font-weight: 800;
-}
-
 .practice-section {
   margin-top: 24px;
   border-top: 1px solid var(--line);
