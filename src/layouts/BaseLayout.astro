@@ -29,5 +29,19 @@ const { title, description, currentSlug } = Astro.props;
         <slot />
       </div>
     </main>
+    <script>
+      const links = document.querySelectorAll("a[href]");
+
+      links.forEach((link) => {
+        const href = link.getAttribute("href");
+
+        if (!href || href.startsWith("#")) {
+          return;
+        }
+
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      });
+    </script>
   </body>
 </html>
