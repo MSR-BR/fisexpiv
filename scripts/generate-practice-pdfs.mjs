@@ -18,6 +18,7 @@ const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 const practicePdfs = [
   { slug: "revisao", output: "revisao.pdf" },
   { slug: "carga-massa", output: "carga-massa.pdf" },
+  { slug: "radiacao-termica", output: "radiacao-termica.pdf" },
 ];
 
 const contentTypes = {

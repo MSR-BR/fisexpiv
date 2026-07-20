@@ -42,6 +42,14 @@ export const trackedLinks: TrackedLinkItem[] = [
     label: "Simulador UFC da prática de carga-massa",
     openInNewTab: true,
   },
+  {
+    kind: "simulador",
+    practiceSlug: "radiacao-termica",
+    resourceSlug: "phet-blackbody",
+    destination: "https://phet.colorado.edu/pt_BR/simulations/blackbody-spectrum",
+    label: "Simulador PhET de espectro de corpo negro para a prática de radiação térmica",
+    openInNewTab: true,
+  },
 ];
 
 export function getTrackedLink(kind: TrackedLinkKind, practiceSlug: string, resourceSlug: string) {

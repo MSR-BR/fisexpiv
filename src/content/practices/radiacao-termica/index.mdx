@@ -1,0 +1,342 @@
+---
+title: "Radiação térmica"
+practiceSlug: "radiacao-termica"
+order: 3
+summary: "Estudo experimental da emissão, transmissão e reflexão de radiação térmica com cubo de Leslie, sensor termopar e materiais de diferentes superfícies."
+status: "available"
+estimatedTime: "1 encontro de laboratório"
+learningFocus:
+  - "Relacionar a radiação térmica com a temperatura e com a natureza da superfície emissora"
+  - "Comparar emissividade entre faces distintas do cubo de Leslie"
+  - "Medir transmissão e reflexão de radiação térmica em diferentes materiais"
+  - "Interpretar qualitativamente resultados à luz das ideias de Planck, Stefan-Boltzmann e corpo negro"
+  - "Organizar tabelas, cálculos e discussão física em um relatório experimental"
+materialsStatus: "Roteiro reestruturado e pronto para uso em aula"
+sourcesStatus: "Apostila da disciplina, folhas de laboratório e bibliografia introdutória"
+---
+
+import PracticeSection from "../../../components/practice/PracticeSection.astro";
+import LatexBlock from "../../../components/ui/LatexBlock.astro";
+
+<PracticeSection id="objetivos-de-aprendizagem" title="Objetivos de aprendizagem">
+  <ul>
+    <li>Compreender o que caracteriza a radiação térmica e por que ela depende da temperatura do emissor.</li>
+    <li>Comparar a emissão de radiação térmica entre superfícies preta, branca, polida e áspera de um cubo de Leslie.</li>
+    <li>Usar a resistência do termístor para estimar a temperatura de equilíbrio do cubo.</li>
+    <li>Medir transmissão e reflexão de radiação em tecidos, espumas, plásticos e vidro.</li>
+    <li>Discutir os resultados em termos de emissividade, absorção, reflexão, transmissão e efeito estufa.</li>
+  </ul>
+</PracticeSection>
+
+<PracticeSection id="introducao-teorica" title="Introdução teórica">
+  <p>
+    Calor pode ser transferido por condução, convecção e radiação. Nesta prática, o foco é a radiação térmica: energia
+    eletromagnética emitida por corpos devido à sua temperatura. Diferentemente da condução e da convecção, a radiação não exige
+    contato material direto entre fonte e detector.
+  </p>
+  <p>
+    A distribuição espectral dessa radiação foi um problema central da física no fim do século XIX. A teoria clássica não conseguia
+    reproduzir corretamente o comportamento observado em comprimentos de onda pequenos, o que ficou conhecido como catástrofe do
+    ultravioleta. A solução proposta por Planck, ao assumir quantização da energia trocada entre matéria e radiação, teve papel
+    decisivo no nascimento da física quântica.
+  </p>
+  <p>
+    Para a prática de hoje, esse contexto histórico é importante porque o experimento não se limita a medir uma tensão no sensor. Ele
+    permite discutir como a potência irradiada cresce com a temperatura, como a natureza da superfície altera a emissão e por que um
+    material pode transmitir bem certos comprimentos de onda e bloquear outros.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="modelo-fisico" title="Modelo físico">
+  <p>
+    Para um corpo negro ideal, a radiância espectral é descrita pela lei de Planck:
+  </p>
+  <LatexBlock expression={String.raw`R(\lambda,T)=\frac{2\pi hc^2}{\lambda^5}\frac{1}{e^{hc/(\lambda k_B T)}-1}`} />
+  <p>
+    A intensidade total irradiada por unidade de área é obtida integrando a distribuição espectral em comprimento de onda. O
+    resultado é a lei de Stefan-Boltzmann:
+  </p>
+  <LatexBlock expression={String.raw`I = \sigma T^4`} />
+  <p>
+    Para superfícies reais, usa-se a emissividade <code>\(\varepsilon\)</code>, com <code>\(\varepsilon &lt; 1\)</code>:
+  </p>
+  <LatexBlock expression={String.raw`I = \varepsilon \sigma T^4`} />
+  <p>
+    Essa expressão é especialmente útil quando a temperatura do emissor é bem maior que a do ambiente, de modo que a reabsorção da
+    radiação externa pode ser tratada como correção menor na análise qualitativa.
+  </p>
+  <p>
+    Outro resultado importante é a lei de deslocamento de Wien, que ajuda a interpretar o simulador e a radiação emitida por
+    lâmpadas e superfícies aquecidas:
+  </p>
+  <LatexBlock expression={String.raw`\lambda_{\max}T = b`} />
+  <p>
+    No aparato do laboratório, a temperatura do cubo é inferida a partir da resistência do termístor. Se <code>R</code> for medida em
+    <code>k\Omega</code>, a temperatura pode ser estimada por:
+  </p>
+  <LatexBlock expression={String.raw`T = -129.23 + \frac{1487.14}{(1 + 145.90\,R)^{0.137}}`} />
+  <p>
+    Para as medidas de transmissão e reflexão, a ideia central é a conservação de energia:
+  </p>
+  <LatexBlock expression={String.raw`E_{\mathrm{incidente}} = E_{\mathrm{refletida}} + E_{\mathrm{absorvida}} + E_{\mathrm{transmitida}}`} />
+  <p>
+    Como o sensor fornece uma tensão proporcional à radiação recebida, as razões entre leituras podem ser usadas para comparar
+    qualitativamente emissividade, transmissão e reflexão.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
+  <p>
+    O experimento usa um cubo de Leslie aquecido eletricamente, um sensor de radiação baseado em termopar, um milivoltímetro e um
+    ohmímetro ligado ao termístor do aparato. As quatro faces laterais do cubo têm acabamentos distintos: preta, branca, polida e
+    áspera. Como todas atingem aproximadamente a mesma temperatura de equilíbrio, a comparação entre as leituras do sensor destaca o
+    efeito da superfície sobre a emissão térmica.
+  </p>
+  <p>
+    Na segunda parte da prática, o mesmo sensor é usado para comparar transmissão e reflexão em materiais colocados entre a fonte e o
+    detector. Isso permite discutir por que materiais diferentes respondem de modo diferente à radiação incidente e por que o vidro,
+    por exemplo, pode transmitir melhor radiação de uma lâmpada do que radiação térmica emitida por superfícies já aquecidas.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
+  <ul>
+    <li>cubo de Leslie do kit térmico PASCO;</li>
+    <li>sensor térmico / sensor de radiação;</li>
+    <li>milivoltímetro com fundo de escala compatível com o sensor;</li>
+    <li>multímetro operando como ohmímetro para o termístor;</li>
+    <li>placas e materiais para transmissão: tecidos, espumas, plásticos e vidro;</li>
+    <li>cabos e fonte de alimentação do cubo.</li>
+  </ul>
+  <p>
+    Na etapa de emissão, o sensor é aproximado de cada face do cubo apenas no instante de leitura. Na etapa de transmissão, o sensor
+    é mantido a cerca de <code>5 cm</code> da face emissora escolhida e os materiais são posicionados entre a fonte e o detector.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="procedimento-experimental" title="Procedimento experimental">
+  <ol>
+    <li>Conecte o ohmímetro ao termístor e o milivoltímetro ao sensor de radiação conforme a montagem da bancada.</li>
+    <li>Ligue o cubo e coloque inicialmente a chave de potência na posição <code>High</code>.</li>
+    <li>Acompanhe a leitura do termístor; quando ela atingir aproximadamente <code>40 k\Omega</code>, reduza a chave para a posição <code>5,0</code>.</li>
+    <li>Espere o sistema atingir equilíbrio térmico, identificado por flutuação pequena da resistência em torno de um valor quase fixo.</li>
+    <li>Meça rapidamente a radiação emitida por cada face: preta, branca, polida e áspera.</li>
+    <li>Registre também a resistência do termístor e estime a temperatura correspondente.</li>
+    <li>Repita o procedimento para as posições <code>6,5</code> e <code>8,0</code>.</li>
+    <li>Não desligue o cubo ao final dessa primeira parte, porque ele será usado na etapa de transmissão.</li>
+    <li>Escolha a face de maior emissividade e posicione o sensor a cerca de <code>5 cm</code> dela.</li>
+    <li>Meça a leitura incidente sem obstáculo e, em seguida, com cada material entre a fonte e o sensor.</li>
+    <li>Para a placa de vidro, faça também a medida de reflexão usando a placa a <code>45^\circ</code>, orientando a radiação refletida para o sensor.</li>
+    <li>Na medida de reflexão, desconte o sinal que chegaria diretamente ao sensor sem a reflexão útil da placa.</li>
+    <li>Por fim, retire a tampa do cubo, direcione o sensor para a lâmpada interna e meça a transmissão da radiação direta pela placa de vidro.</li>
+  </ol>
+  <div class="callout">
+    <strong>Cuidado operacional.</strong> O cubo pode atingir temperaturas elevadas. Não mantenha o sensor encostado na face quente por
+    mais tempo do que o necessário para cada leitura. Após a medida, afaste o sensor da fonte quente. Evite tocar diretamente nas
+    superfícies metálicas aquecidas e confirme sempre a estabilidade da leitura antes de registrar os dados.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
+  <p>
+    Inclua a incerteza em todas as leituras de resistência e de tensão do sensor. Na etapa de emissão, use as posições
+    <code>5,0</code>, <code>6,5</code> e <code>8,0</code> exatamente como indicadas no equipamento.
+  </p>
+
+  <h3>Emissão de radiação térmica - potência 5,0</h3>
+
+  | Grandeza | Valor |
+  | --- | --- |
+  | Termístor `R` |  |
+  | Incerteza em `R` |  |
+  | Temperatura `T` |  |
+  | Incerteza em `T` |  |
+
+  | Superfície | Sensor (mV) | Incerteza (mV) | Emissividade relativa `S/S_preta` |
+  | --- | --- | --- | --- |
+  | Preta |  |  | 1,00 |
+  | Branca |  |  |  |
+  | Polida |  |  |  |
+  | Áspera |  |  |  |
+
+  <h3>Emissão de radiação térmica - potência 6,5</h3>
+
+  | Grandeza | Valor |
+  | --- | --- |
+  | Termístor `R` |  |
+  | Incerteza em `R` |  |
+  | Temperatura `T` |  |
+  | Incerteza em `T` |  |
+
+  | Superfície | Sensor (mV) | Incerteza (mV) | Emissividade relativa `S/S_preta` |
+  | --- | --- | --- | --- |
+  | Preta |  |  | 1,00 |
+  | Branca |  |  |  |
+  | Polida |  |  |  |
+  | Áspera |  |  |  |
+
+  <h3>Emissão de radiação térmica - potência 8,0</h3>
+
+  | Grandeza | Valor |
+  | --- | --- |
+  | Termístor `R` |  |
+  | Incerteza em `R` |  |
+  | Temperatura `T` |  |
+  | Incerteza em `T` |  |
+
+  | Superfície | Sensor (mV) | Incerteza (mV) | Emissividade relativa `S/S_preta` |
+  | --- | --- | --- | --- |
+  | Preta |  |  | 1,00 |
+  | Branca |  |  |  |
+  | Polida |  |  |  |
+  | Áspera |  |  |  |
+
+  <h3>Transmissão de radiação térmica</h3>
+
+  | Material | Valor incidente (mV) | Incerteza (mV) | Valor transmitido (mV) | Incerteza (mV) | Transmissão (%) |
+  | --- | --- | --- | --- | --- | --- |
+  | Tecido vermelho |  |  |  |  |  |
+  | Tecido azul |  |  |  |  |  |
+  | Espuma face branca |  |  |  |  |  |
+  | Espuma face prateada |  |  |  |  |  |
+  | Plástico fosco |  |  |  |  |  |
+  | Plástico listrado |  |  |  |  |  |
+  | Vidro |  |  |  |  |  |
+
+  <h3>Reflexão na placa de vidro</h3>
+
+  | Material | Valor incidente (mV) | Incerteza (mV) | Valor refletido corrigido (mV) | Incerteza (mV) | Reflexão (%) |
+  | --- | --- | --- | --- | --- | --- |
+  | Vidro |  |  |  |  |  |
+
+  <h3>Transmissão da radiação direta da lâmpada pela placa de vidro</h3>
+
+  | Material | Valor incidente (mV) | Incerteza (mV) | Valor transmitido (mV) | Incerteza (mV) | Transmissão (%) |
+  | --- | --- | --- | --- | --- | --- |
+  | Vidro |  |  |  |  |  |
+</PracticeSection>
+
+<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+  <p>
+    A temperatura do cubo é obtida a partir do termístor usando a relação já apresentada. Para estimar a incerteza em
+    <code>T</code>, uma estratégia simples é calcular:
+  </p>
+  <LatexBlock expression={String.raw`\Delta T \approx \frac{|T(R+\Delta R)-T(R-\Delta R)|}{2}`} />
+  <p>
+    Na comparação entre superfícies, use as leituras do sensor na mesma temperatura. Como a tensão do sensor é proporcional à
+    intensidade recebida, uma estimativa de emissividade relativa pode ser feita por:
+  </p>
+  <LatexBlock expression={String.raw`\varepsilon_{\mathrm{rel},i} \approx \frac{S_i}{S_{\mathrm{preta}}}`} />
+  <p>
+    onde <code>S_i</code> é a leitura da superfície de interesse e <code>S_preta</code> é a leitura da face preta na mesma condição.
+  </p>
+  <p>
+    Para transmissão e reflexão, use:
+  </p>
+  <LatexBlock expression={String.raw`\tau = \frac{S_{\mathrm{transmitido}}}{S_{\mathrm{incidente}}}\times 100\%`} />
+  <LatexBlock expression={String.raw`\rho = \frac{S_{\mathrm{refletido}}}{S_{\mathrm{incidente}}}\times 100\%`} />
+  <p>
+    Na placa de vidro, o valor refletido deve ser corrigido subtraindo o sinal que chega diretamente ao sensor sem a contribuição
+    útil da reflexão:
+  </p>
+  <LatexBlock expression={String.raw`S_{\mathrm{refletido}} = S_{\mathrm{medido}} - S_{\mathrm{direto}}`} />
+  <p>
+    Se desejar estimar a fração absorvida pelo material, use:
+  </p>
+  <LatexBlock expression={String.raw`\alpha \approx 100\% - \tau - \rho`} />
+  <p>
+    Discuta especialmente os seguintes pontos:
+  </p>
+  <ol>
+    <li>a ordem das superfícies por emissão permanece a mesma ao mudar a potência?</li>
+    <li>os resultados são coerentes com a regra de que bons absorvedores tendem a ser bons emissores?</li>
+    <li>o vidro transmite de forma semelhante a radiação do cubo e a radiação direta da lâmpada?</li>
+    <li>os dados ajudam a explicar qualitativamente o funcionamento de uma estufa?</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
+  <ol>
+    <li>Liste as superfícies do cubo em ordem de intensidade de radiação emitida. Essa ordem muda com a temperatura? Comente.</li>
+    <li>Suas medidas são consistentes com a ideia de que bons absorvedores também são bons emissores? Explique.</li>
+    <li>As duas faces da espuma se comportam de modo semelhante ou diferente? O que isso sugere sobre o papel do acabamento superficial?</li>
+    <li>Os dois plásticos e os dois tecidos apresentam resultados próximos dentro de cada categoria ou diferenças claras? Comente.</li>
+    <li>Por que a face polida tende a emitir menos radiação térmica do que a face preta?</li>
+    <li>Com base nos resultados do vidro, como você explicaria qualitativamente o funcionamento de uma estufa de plantas?</li>
+    <li>Imagine um ambiente interno revestido por alumínio em um dia quente. Que acabamento interno ajudaria a reduzir o aquecimento? Justifique usando os resultados do cubo de Leslie.</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="simulador" title="Simulador">
+  <p>
+    Como apoio conceitual, use o simulador do PhET:
+    <a href="../../acessos/simulador/radiacao-termica/phet-blackbody/" data-force-new-tab="true">Espectro de Corpo Negro</a>.
+  </p>
+  <p>
+    Ele não reproduz o cubo de Leslie nem as medidas de transmissão da bancada, mas ajuda a visualizar duas ideias centrais desta
+    prática: o aumento da intensidade irradiada quando a temperatura cresce e o deslocamento do pico espectral para comprimentos de
+    onda menores.
+  </p>
+  <p>
+    Se usar o simulador no relatório, mantenha essa análise separada dos dados experimentais reais. Uma tabela exploratória simples
+    pode registrar temperatura, posição aproximada do pico espectral e observações qualitativas sobre a forma da curva.
+  </p>
+  <p>
+    Como apoio visual ao aparato experimental, vale também assistir ao vídeo
+    <a href="https://www.youtube.com/watch?v=KGVUB1Ut0rs" data-force-new-tab="true">O que é o Cubo de Leslie?</a>, do canal
+    Fisica Babel. Ele ajuda a reconhecer o equipamento e a função das diferentes faces antes da aula ou na hora de escrever o
+    relatório.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
+  <p>
+    Uma organização simples e suficiente para o relatório é:
+  </p>
+  <ol>
+    <li>objetivo da prática;</li>
+    <li>introdução curta sobre radiação térmica, corpo negro, emissividade e transmissão;</li>
+    <li>descrição resumida do cubo de Leslie, do sensor e dos materiais utilizados;</li>
+    <li>tabelas completas de emissão, transmissão e reflexão, sempre com unidades e incertezas;</li>
+    <li>cálculo da temperatura do cubo a partir do termístor;</li>
+    <li>ordenação das superfícies por emissão e comentário sobre emissividade relativa;</li>
+    <li>cálculo das porcentagens de transmissão e reflexão para os materiais estudados;</li>
+    <li>discussão específica do vidro e da relação com o efeito estufa;</li>
+    <li>seção opcional separada para o simulador, usada apenas como apoio conceitual;</li>
+    <li>conclusão final com os principais resultados físicos do experimento.</li>
+  </ol>
+  <div class="callout">
+    <strong>Dica prática.</strong> Não entregue apenas as porcentagens finais. Mostre pelo menos uma vez a substituição numérica
+    completa usada para obter temperatura, transmissão e reflexão. Para tabelas, cálculos repetitivos e gráficos simples, pode usar,
+    por exemplo, o Excel ou outra planilha equivalente.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
+  <p>
+    Na discussão, procure relacionar as medidas aos conceitos físicos centrais:
+  </p>
+  <ol>
+    <li>como a superfície altera a emissão térmica mesmo quando a temperatura do cubo é aproximadamente a mesma;</li>
+    <li>por que a face preta costuma emitir mais e a polida menos;</li>
+    <li>como a transmissão depende do material e, no caso do vidro, também do tipo de radiação incidente;</li>
+    <li>de que modo os resultados ajudam a interpretar sistemas reais, como revestimentos térmicos e estufas.</li>
+  </ol>
+  <p>
+    Na conclusão, conecte o experimento à ideia central da prática: radiação térmica não depende apenas da temperatura, mas também
+    das propriedades de emissão, absorção, reflexão e transmissão associadas a cada superfície e a cada material.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="referencias" title="Referências Gerais">
+  <ul>
+    <li>Reis, M. <em>Quantum Mechanics: Theory and Applications</em>. Elsevier, 2026.</li>
+    <li>Halliday, D.; Resnick, R.; Walker, J. <em>Fundamentos de Física</em>.</li>
+    <li>Young, H. D.; Freedman, R. A. <em>Física Universitária com Física Moderna</em>.</li>
+    <li>Serway, R. A.; Jewett, J. W. <em>Física para Cientistas e Engenheiros</em>.</li>
+    <li>Tipler, P. A.; Mosca, G. <em>Física para Cientistas e Engenheiros</em>.</li>
+    <li>Nussenzveig, H. M. <em>Curso de Física Básica</em>.</li>
+    <li>PhET Interactive Simulations. <em>Espectro de Corpo Negro</em>. Disponível em: <a href="../../acessos/simulador/radiacao-termica/phet-blackbody/" data-force-new-tab="true">https://phet.colorado.edu/pt_BR/simulations/blackbody-spectrum</a>.</li>
+    <li>Fisica Babel. <em>O que é o Cubo de Leslie?</em>. YouTube. Disponível em: <a href="https://www.youtube.com/watch?v=KGVUB1Ut0rs" data-force-new-tab="true">https://www.youtube.com/watch?v=KGVUB1Ut0rs</a>.</li>
+  </ul>
+</PracticeSection>
