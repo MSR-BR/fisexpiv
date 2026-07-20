@@ -49,34 +49,38 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
 <PracticeSection id="modelo-fisico" title="Modelo físico">
   <p>
-    Para um corpo negro ideal, a radiância espectral é descrita pela lei de Planck:
+    A radiância espectral é a quantidade de potência irradiada por unidade de área e por unidade de comprimento de onda em torno de
+    um valor <strong>λ</strong>. Em outras palavras, ela descreve como a energia emitida se distribui ao longo do espectro.
+    Para um corpo negro ideal, essa distribuição é descrita pela lei de Planck:
   </p>
   <LatexBlock expression={String.raw`R(\lambda,T)=\frac{2\pi hc^2}{\lambda^5}\frac{1}{e^{hc/(\lambda k_B T)}-1}`} />
   <p>
     A intensidade total irradiada por unidade de área é obtida integrando a distribuição espectral em comprimento de onda. O
     resultado é a lei de Stefan-Boltzmann:
   </p>
-  <LatexBlock expression={String.raw`I = \sigma T^4`} />
+  <LatexBlock expression={String.raw`I=\int R(\lambda,T)\,d\lambda = \sigma T^4`} />
   <p>
     Para superfícies reais, usa-se a emissividade <strong>ε</strong>, com <strong>ε &lt; 1</strong>:
   </p>
   <LatexBlock expression={String.raw`I = \varepsilon \sigma T^4`} />
   <p>
-    Essa expressão é especialmente útil quando a temperatura do emissor é bem maior que a do ambiente, de modo que a reabsorção da
-    radiação externa pode ser tratada como correção menor na análise qualitativa.
-  </p>
-  <p>
     Outro resultado importante é a lei de deslocamento de Wien, que ajuda a interpretar o simulador e a radiação emitida por
-    lâmpadas e superfícies aquecidas:
+    lâmpadas e superfícies aquecidas. Nessa expressão, <strong>λ<sub>max</sub></strong> representa o comprimento de onda no qual a
+    emissão é máxima para uma dada temperatura:
   </p>
   <LatexBlock expression={String.raw`\lambda_{\max}T = b`} />
   <p>
-    No aparato do laboratório, a temperatura do cubo é inferida a partir da resistência do termístor. Se <code>R</code> for medida em
-    <strong>kΩ</strong>, a temperatura pode ser estimada por:
+    No simulador de corpo negro, vale a pena observar justamente como o pico da curva se desloca quando a temperatura aumenta. Isso
+    ajuda a dar significado físico a <strong>λ<sub>max</sub></strong> e a distinguir entre aumento da intensidade total e mudança na
+    forma da distribuição espectral.
   </p>
-  <LatexBlock expression={String.raw`T = -129.23 + \frac{1487.14}{(1 + 145.90\,R)^{0.137}}`} />
   <p>
-    Para as medidas de transmissão e reflexão, a ideia central é a conservação de energia:
+    Na parte de transmissão e reflexão, não medimos diretamente potência absorvida, mas comparamos leituras incidentes,
+    transmitidas e refletidas. A base física dessa comparação é a conservação de energia: a radiação que chega ao material precisa
+    ser repartida entre parte refletida, parte absorvida e parte transmitida.
+  </p>
+  <p>
+    Por isso, usamos a relação:
   </p>
   <LatexBlock expression={String.raw`E_{\mathrm{incidente}} = E_{\mathrm{refletida}} + E_{\mathrm{absorvida}} + E_{\mathrm{transmitida}}`} />
   <p>
@@ -96,6 +100,15 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     Na segunda parte da prática, o mesmo sensor é usado para comparar transmissão e reflexão em materiais colocados entre a fonte e o
     detector. Isso permite discutir por que materiais diferentes respondem de modo diferente à radiação incidente e por que o vidro,
     por exemplo, pode transmitir melhor radiação de uma lâmpada do que radiação térmica emitida por superfícies já aquecidas.
+  </p>
+  <p>
+    A temperatura do cubo não é lida diretamente em um termômetro convencional. Ela é inferida a partir da resistência do termístor
+    do aparato. Se <code>R</code> for medida em <strong>kΩ</strong>, a temperatura estimada pode ser obtida por:
+  </p>
+  <LatexBlock expression={String.raw`T = -129.23 + \frac{1487.14}{(1 + 145.90\,R)^{0.137}}`} />
+  <p>
+    Essa etapa é importante porque permite comparar as diferentes faces do cubo em condições térmicas equivalentes, em vez de
+    comparar apenas leituras do sensor sem referência de temperatura.
   </p>
 </PracticeSection>
 
