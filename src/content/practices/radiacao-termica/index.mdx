@@ -74,19 +74,6 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     ajuda a dar significado físico a <strong>λ<sub>max</sub></strong> e a distinguir entre aumento da intensidade total e mudança na
     forma da distribuição espectral.
   </p>
-  <p>
-    Na parte de transmissão e reflexão, não medimos diretamente potência absorvida, mas comparamos leituras incidentes,
-    transmitidas e refletidas. A base física dessa comparação é a conservação de energia: a radiação que chega ao material precisa
-    ser repartida entre parte refletida, parte absorvida e parte transmitida.
-  </p>
-  <p>
-    Por isso, usamos a relação:
-  </p>
-  <LatexBlock expression={String.raw`E_{\mathrm{incidente}} = E_{\mathrm{refletida}} + E_{\mathrm{absorvida}} + E_{\mathrm{transmitida}}`} />
-  <p>
-    Como o sensor fornece uma tensão proporcional à radiação recebida, as razões entre leituras podem ser usadas para comparar
-    qualitativamente emissividade, transmissão e reflexão.
-  </p>
 </PracticeSection>
 
 <PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
@@ -100,6 +87,16 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     Na segunda parte da prática, o mesmo sensor é usado para comparar transmissão e reflexão em materiais colocados entre a fonte e o
     detector. Isso permite discutir por que materiais diferentes respondem de modo diferente à radiação incidente e por que o vidro,
     por exemplo, pode transmitir melhor radiação de uma lâmpada do que radiação térmica emitida por superfícies já aquecidas.
+  </p>
+  <p>
+    Nesse contexto experimental, a conservação de energia fornece a justificativa física para o tratamento dos dados. A radiação que
+    chega ao material não desaparece: ela precisa ser repartida entre uma parcela refletida, outra absorvida e outra transmitida.
+    Por isso, ao comparar as leituras do sensor antes e depois da colocação de cada material, usamos a relação:
+  </p>
+  <LatexBlock expression={String.raw`E_{\mathrm{incidente}} = E_{\mathrm{refletida}} + E_{\mathrm{absorvida}} + E_{\mathrm{transmitida}}`} />
+  <p>
+    Como o sensor fornece uma tensão proporcional à radiação recebida, as razões entre leituras incidentes, transmitidas e
+    refletidas podem ser usadas para comparar qualitativamente transmissão, reflexão e absorção no próprio contexto da bancada.
   </p>
   <p>
     A temperatura do cubo não é lida diretamente em um termômetro convencional. Ela é inferida a partir da resistência do termístor
