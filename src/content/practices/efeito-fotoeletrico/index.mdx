@@ -22,7 +22,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   <ul>
     <li>Compreender por que o efeito fotoelétrico foi decisivo para a consolidação da hipótese quântica da luz.</li>
     <li>Relacionar frequência da radiação incidente, função trabalho e energia cinética máxima dos fotoelétrons.</li>
-    <li>Explicar por que a intensidade da luz altera principalmente a taxa de emissão, mas não o potencial de corte ideal.</li>
+    <li>Explicar por que a intensidade da luz altera a taxa de emissão, mas não o potencial de corte.</li>
     <li>Reconhecer a diferença entre a medida didática do simulador e a leitura real do aparato via capacitor.</li>
     <li>Construir gráficos de <code>V_c</code> em função de <code>f</code> e usar o ajuste linear para estimar <code>h</code>.</li>
   </ul>
@@ -36,15 +36,21 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     aumentar indefinidamente a energia dos elétrons emitidos.
   </p>
   <p>
-    A dificuldade principal era esta: abaixo de uma certa frequência, não havia emissão, por mais intensa que fosse a luz. Além
-    disso, quando havia emissão, a energia máxima dos elétrons dependia da frequência da radiação incidente, e não da intensidade.
-    Em 1905, Einstein interpretou esses resultados supondo que a luz troca energia em pacotes discretos, os fótons, cada um com
-    energia proporcional à frequência.
+    As observações experimentais principais podem ser apresentadas de forma categórica em três pontos. Primeiro: existe uma
+    frequência de corte; abaixo dela não há emissão, por mais intensa que seja a luz. Segundo: a intensidade da luz afeta a taxa de
+    emissão, isto é, a quantidade de elétrons emitidos por unidade de tempo. Terceiro: a energia máxima dos elétrons emitidos depende
+    da frequência da luz incidente, e não da intensidade.
+  </p>
+  <p>
+    A explicação teórica proposta por Einstein em 1905 foi tratar a luz como composta por fótons, cada um com energia <code>E = hf</code>.
+    Nessa interpretação, um elétron absorve a energia de um único fóton. Parte dessa energia é usada para vencer a função trabalho do
+    material e o restante aparece como energia cinética máxima do fotoelétron. Essa ideia explica ao mesmo tempo a frequência de corte,
+    a dependência com a frequência e o fato de que aumentar a intensidade não aumenta automaticamente a energia máxima dos elétrons.
   </p>
   <p>
     Essa interpretação não foi apenas uma correção técnica. Ela ajudou a estabelecer a ideia de quantização da radiação e teve papel
     importante na transição entre a física clássica e a física quântica. Mais tarde, experimentos de Millikan confirmaram com grande
-    precisão a relação proposta por Einstein, mesmo quando o próprio Millikan inicialmente era cético quanto ao modelo.
+    precisão a relação proposta por Einstein.
   </p>
   <p>
     Nesta prática, a bancada real e o simulador têm papéis complementares. A bancada mostra como o efeito fotoelétrico é medido em
@@ -60,27 +66,27 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   <LatexBlock expression={String.raw`E = hf`} />
   <p>
     Parte dessa energia é usada para retirar o elétron do material. Essa energia mínima é chamada função trabalho e será representada
-    por <strong>Φ</strong>. O restante aparece como energia cinética máxima do fotoelétron:
+    por <strong>W</strong>. O restante aparece como energia cinética máxima do fotoelétron:
   </p>
-  <LatexBlock expression={String.raw`hf = \Phi + K_{\max}`} />
+  <LatexBlock expression={String.raw`hf = W + T_{\max}`} />
   <p>
     Se aplicamos um potencial de retardo suficiente para impedir a chegada dos elétrons mais energéticos ao anodo, obtemos o
     potencial de corte <code>V_c</code>, definido por:
   </p>
-  <LatexBlock expression={String.raw`K_{\max} = eV_c`} />
+  <LatexBlock expression={String.raw`T_{\max} = eV_c`} />
   <p>
     Combinando as duas expressões:
   </p>
-  <LatexBlock expression={String.raw`eV_c = hf - \Phi`} />
-  <LatexBlock expression={String.raw`V_c = \frac{h}{e}f - \frac{\Phi}{e}`} />
+  <LatexBlock expression={String.raw`eV_c = hf - W`} />
+  <LatexBlock expression={String.raw`V_c = \frac{h}{e}f - \frac{W}{e}`} />
   <p>
     Essa equação mostra por que o gráfico de <code>V_c</code> em função de <code>f</code> deve ser aproximadamente linear. O coeficiente
-    angular é <code>h/e</code> e o intercepto está ligado à função trabalho do material.
+    angular é <code>h/e</code> e o coeficiente linear está ligado à função trabalho do material.
   </p>
   <p>
     A frequência mínima necessária para haver emissão é a frequência de corte <code>f_0</code>. Ela satisfaz:
   </p>
-  <LatexBlock expression={String.raw`hf_0 = \Phi`} />
+  <LatexBlock expression={String.raw`hf_0 = W`} />
   <p>
     Portanto, se <code>f &lt; f_0</code>, não há fotoemissão. Se <code>f &gt; f_0</code>, a emissão ocorre e o aumento da intensidade da luz
     tende a aumentar principalmente o número de elétrons emitidos, não o valor ideal de <code>V_c</code>.
@@ -116,9 +122,8 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   <ul>
     <li>voltímetro digital;</li>
     <li>aparato <code>h/e</code> PASCO <code>AP-9368</code>;</li>
-    <li>kit acessório do aparato <code>AP-9369</code>, com filtros verde, amarelo e filtro de transmissão variável;</li>
+    <li>kit acessório do aparato <code>AP-9369</code>, com filtros verde e amarelo;</li>
     <li>fonte de luz de vapor de mercúrio;</li>
-    <li>cronômetro para estimar o tempo de recarga após a descarga;</li>
     <li>cabos e base de alinhamento do conjunto óptico.</li>
   </ul>
   <p>
@@ -132,15 +137,13 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Ligue a lâmpada de vapor de mercúrio com antecedência de aproximadamente <code>30 min</code>.</li>
     <li>Confira o alinhamento óptico e ajuste o conjunto para que apenas uma linha espectral atinja a janela do fotocatodo.</li>
     <li>Conecte o voltímetro digital aos terminais de saída do aparato, respeitando a polaridade indicada.</li>
-    <li>Escolha inicialmente a linha azul para a etapa de intensidade.</li>
-    <li>Coloque o filtro de transmissão variável na posição <code>100%</code>. Pressione o botão de descarga, solte e aguarde a leitura estabilizar.</li>
-    <li>Registre a tensão estabilizada e o tempo aproximado necessário para a leitura voltar ao valor final após a descarga.</li>
-    <li>Repita a medida para <code>80%</code>, <code>60%</code>, <code>40%</code> e <code>20%</code> de transmissão, mantendo a mesma cor.</li>
-    <li>Retire o filtro variável e passe para a etapa de frequência.</li>
-    <li>Meça a tensão estabilizada para as linhas ultravioleta, violeta, azul, verde e amarela.</li>
+    <li>Selecione uma das linhas espectrais do mercúrio e ajuste o sistema para que apenas essa linha incida sobre o fotocatodo.</li>
+    <li>Pressione o botão de descarga, solte e aguarde a leitura do voltímetro estabilizar.</li>
+    <li>Registre o valor estabilizado de <code>V_c</code>.</li>
+    <li>Repita o procedimento para as linhas ultravioleta, violeta, azul, verde e amarela.</li>
     <li>Use o filtro verde quando medir a linha verde e o filtro amarelo quando medir a linha amarela.</li>
-    <li>Para cada cor, pressione o botão de descarga antes da nova medida e espere a leitura se estabilizar antes de registrar o valor.</li>
-    <li>Ao final, use os valores de comprimento de onda e frequência fornecidos no roteiro para montar o gráfico <code>V_c x f</code>.</li>
+    <li>Depois de obter os valores de <code>V_c</code> para as diferentes cores, monte o gráfico de <code>V_c</code> em função de <code>f</code>.</li>
+    <li>Use o ajuste linear desse gráfico para determinar <code>h/e</code> e discutir a função trabalho <code>W</code>.</li>
   </ol>
   <div class="callout">
     <strong>Cuidado operacional.</strong> Não ligue o aparato <code>h/e</code> antes de conferir o alinhamento da luz sobre o fotocatodo.
@@ -152,23 +155,13 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
 <PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
   <p>
-    Registre a incerteza do voltímetro em todas as leituras. Na etapa de intensidade, a cor deve permanecer fixa; na etapa de
-    frequência, a intensidade não precisa ser comparada numericamente entre cores, porque o foco está no potencial de corte final.
+    Registre a incerteza do voltímetro em todas as leituras. O conjunto de dados principal da prática é a tabela com cor, frequência
+    e potencial de corte.
   </p>
 
-  <h3>Parte A - intensidade da luz em uma única cor</h3>
+  <h3>Linhas espectrais do mercúrio</h3>
 
-  | Cor escolhida | Transmissão (%) | Potencial de corte `V_c` (V) | Incerteza (V) | Tempo de recarga (s) | Observações |
-  | --- | --- | --- | --- | --- | --- |
-  | Azul | 100 |  |  |  |  |
-  | Azul | 80 |  |  |  |  |
-  | Azul | 60 |  |  |  |  |
-  | Azul | 40 |  |  |  |  |
-  | Azul | 20 |  |  |  |  |
-
-  <h3>Parte B - frequência da luz</h3>
-
-  | Cor | `\lambda` (nm) | `f` (10^14 Hz) | Potencial de corte `V_c` (V) | Incerteza (V) |
+  | Cor | lambda (nm) | `f` (10^14 Hz) | Potencial de corte `V_c` (V) | Incerteza (V) |
   | --- | --- | --- | --- | --- |
   | Ultravioleta | 365,483 | 8,203 |  |  |
   | Violeta | 404,656 | 7,409 |  |  |
@@ -177,36 +170,26 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   | Amarela | 578,000 | 5,187 |  |  |
 </PracticeSection>
 
-<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados experimentais">
   <p>
-    Na parte A, a expectativa quântica é que a redução da intensidade da luz diminua principalmente a taxa de emissão e, portanto, o
-    tempo de recarga do aparato, sem alterar de forma importante o valor ideal de <code>V_c</code> para uma mesma frequência. Pequenas
-    variações experimentais podem aparecer por vazamento de carga, alinhamento e limites da eletrônica do aparato.
+    Use o modelo de Einstein:
   </p>
-  <p>
-    Na parte B, use o modelo de Einstein:
-  </p>
-  <LatexBlock expression={String.raw`V_c = \frac{h}{e}f - \frac{\Phi}{e}`} />
+  <LatexBlock expression={String.raw`V_c = \frac{h}{e}f - \frac{W}{e}`} />
   <p>
     Faça um gráfico de <code>V_c</code> em função de <code>f</code> e ajuste uma reta do tipo:
   </p>
   <LatexBlock expression={String.raw`V_c = af + b`} />
   <p>
-    A partir do ajuste:
+    O objetivo da análise é determinar <code>h</code> e <code>W</code> a partir dos coeficientes angular e linear desse ajuste.
   </p>
-  <LatexBlock expression={String.raw`\frac{h}{e} = a`} />
-  <LatexBlock expression={String.raw`h = ea`} />
   <p>
-    Se o intercepto for <code>b</code> em volts, então:
-  </p>
-  <LatexBlock expression={String.raw`\Phi = -eb`} />
-  <p>
-    Numericamente, se você quiser expressar a função trabalho em <strong>eV</strong>, o valor em elétron-volts é aproximadamente
-    igual ao módulo do intercepto em volts.
+    Atenção às unidades ao escrever o resultado final. Se <code>e</code> for usado em coulombs, o valor de <code>h</code> deve sair em
+    <code>J.s</code>. Já a função trabalho <code>W</code> pode ser apresentada em <code>J</code> ou em <code>eV</code>, desde que isso seja
+    informado explicitamente no relatório.
   </p>
   <p>
     Ao discutir os resultados, destaque que o material do catodo do aparato real não precisa coincidir com o material escolhido no
-    simulador. Por isso, os interceptos podem diferir, enquanto a inclinação relacionada a <code>h/e</code> deve permanecer como a
+    simulador. Por isso, os coeficientes lineares podem diferir, enquanto a inclinação relacionada a <code>h/e</code> deve permanecer como a
     grandeza mais comparável entre os dois conjuntos de dados.
   </p>
   <p>
@@ -217,8 +200,8 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
 <PracticeSection id="simulador" title="Simulador">
   <p>
-    Use primeiro o roteiro guiado em
-    <a href="../../acessos/simulador/efeito-fotoeletrico/genially/" data-force-new-tab="true">Genially</a> para revisar os conceitos
+    Use primeiro o
+    <a href="../../acessos/simulador/efeito-fotoeletrico/genially/" data-force-new-tab="true">roteiro guiado</a> para revisar os conceitos
     centrais do efeito fotoelétrico. Em seguida, use o
     <a href="../../acessos/simulador/efeito-fotoeletrico/kcvs/" data-force-new-tab="true">simulador KCVS</a> para coletar dados
     quantitativos.
@@ -228,24 +211,19 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     comprimento de onda, e ajuste a tensão de retardo até que a corrente fotoelétrica vá a zero. Esse valor pode ser lido como
     potencial de corte do caso simulado.
   </p>
-  <p>
-    Se o simulador permitir, use preferencialmente os comprimentos de onda próximos às linhas do mercúrio usadas na bancada real:
-    <code>365,483 nm</code>, <code>404,656 nm</code>, <code>435,835 nm</code>, <code>546,074 nm</code> e <code>578,000 nm</code>.
-  </p>
-
   <h3>Tabela exploratória do simulador - frequência</h3>
 
-  | Metal escolhido | `\lambda` (nm) | `f` (10^14 Hz) | Potencial de corte `V_c` (V) | Observações |
+  | Metal escolhido | `f` (10^14 Hz) | Potencial de corte `V_c` (V) | Observações |
   | --- | --- | --- | --- | --- |
-  |  | 365,483 | 8,203 |  |  |
-  |  | 404,656 | 7,409 |  |  |
-  |  | 435,835 | 6,879 |  |  |
-  |  | 546,074 | 5,490 |  |  |
-  |  | 578,000 | 5,187 |  |  |
+  |  |  |  |  |
+  |  |  |  |  |
+  |  |  |  |  |
+  |  |  |  |  |
+  |  |  |  |  |
 
   <h3>Tabela exploratória do simulador - intensidade</h3>
 
-  | Metal escolhido | Cor ou `\lambda` fixa | Intensidade relativa | Potencial de corte `V_c` (V) | Corrente fotoelétrica | Observações |
+  | Metal escolhido | Frequência fixa | Intensidade relativa | Potencial de corte `V_c` (V) | Corrente fotoelétrica | Observações |
   | --- | --- | --- | --- | --- | --- |
   |  |  | Baixa |  |  |  |
   |  |  | Média |  |  |  |
@@ -260,13 +238,10 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 <PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
   <ol>
     <li>Por que o efeito fotoelétrico foi um problema para a interpretação puramente clássica da luz?</li>
-    <li>O que muda quando aumentamos a intensidade da luz mantendo fixa a frequência?</li>
     <li>Por que pode haver emissão para luz fraca de alta frequência, mas não para luz intensa de frequência abaixo da frequência de corte?</li>
     <li>O que representa fisicamente a função trabalho do material?</li>
     <li>Por que, neste aparato, o potencial de corte não é medido simplesmente ajustando uma fonte de tensão reversa externa?</li>
-    <li>Por que os filtros verde e amarelo são necessários quando essas linhas espectrais são selecionadas?</li>
-    <li>Que vantagens o simulador oferece para a compreensão conceitual da tensão de corte?</li>
-    <li>Que limitações experimentais da bancada real podem afetar mais fortemente os dados obtidos?</li>
+    <li>Quais limitações experimentais podem afetar os dados obtidos?</li>
   </ol>
 </PracticeSection>
 
@@ -279,10 +254,9 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>breve contextualização histórica do efeito fotoelétrico e da interpretação de Einstein;</li>
     <li>modelo teórico com as equações de Einstein, do potencial de corte e da reta <code>V_c x f</code>;</li>
     <li>descrição objetiva do aparato real, explicando que a leitura do potencial de corte ocorre via carregamento capacitivo;</li>
-    <li>tabela da etapa de intensidade, com comentário sobre tempo de recarga e variação de <code>V_c</code>;</li>
     <li>tabela da etapa de frequência na bancada real;</li>
     <li>gráfico experimental de <code>V_c</code> em função de <code>f</code>, com ajuste linear;</li>
-    <li>estimativa de <code>h</code> e da função trabalho a partir da reta ajustada;</li>
+    <li>determinação de <code>h</code> e <code>W</code> a partir da reta ajustada;</li>
     <li>tabelas e gráfico do simulador, analisados separadamente;</li>
     <li>comparação entre bancada real, simulador e previsões do modelo quântico;</li>
     <li>discussão final sobre intensidade, frequência de corte, limitações experimentais e qualidade dos resultados.</li>
@@ -296,8 +270,8 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 <PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
   <p>
     Ao concluir a prática, o ponto central não é apenas obter um valor para <code>h</code>, mas compreender por que o efeito
-    fotoelétrico favorece o modelo quântico da luz. A etapa de intensidade ajuda a separar o papel da intensidade do papel da
-    frequência. A etapa espectral mostra que a energia máxima dos elétrons cresce com a frequência da radiação incidente. Já o
+    fotoelétrico favorece o modelo quântico da luz. A etapa espectral mostra que a energia máxima dos elétrons cresce com a
+    frequência da radiação incidente. Já o
     simulador permite ver de forma mais direta aquilo que, na bancada real, aparece mediado pela eletrônica do aparato.
   </p>
   <p>
@@ -315,7 +289,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Serway e Jewett. <em>Princípios de Física</em>. Volume com tópicos de física moderna.</li>
     <li>Eisberg e Resnick. <em>Física Quântica</em>.</li>
     <li>Reis. <em>Quantum Mechanics</em>. Capítulo introdutório sobre a base experimental da física quântica.</li>
-    <li>Genially. <em>Roteiro do simulador para o efeito fotoelétrico</em>. Disponível em: <a href="../../acessos/simulador/efeito-fotoeletrico/genially/" data-force-new-tab="true">https://view.genially.com/5f16fe9e1134690d06ce7a74</a>.</li>
+    <li>Genially. <em>Roteiro guiado para o efeito fotoelétrico</em>. Disponível em: <a href="../../acessos/simulador/efeito-fotoeletrico/genially/" data-force-new-tab="true">https://view.genially.com/5f16fe9e1134690d06ce7a74</a>.</li>
     <li>KCVS. <em>Photoelectric Effect</em>. Disponível em: <a href="../../acessos/simulador/efeito-fotoeletrico/kcvs/" data-force-new-tab="true">https://www.kcvs.ca/details.html?key=photoelectricEffect</a>.</li>
   </ul>
 </PracticeSection>
