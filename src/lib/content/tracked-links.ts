@@ -50,6 +50,30 @@ export const trackedLinks: TrackedLinkItem[] = [
     label: "Simulador PhET de espectro de corpo negro para a prática de radiação térmica",
     openInNewTab: true,
   },
+  {
+    kind: "pdf",
+    practiceSlug: "efeito-fotoeletrico",
+    resourceSlug: "principal",
+    destination: "/downloads/praticas/efeito-fotoeletrico.pdf",
+    label: "PDF da prática de efeito fotoelétrico",
+    openInNewTab: false,
+  },
+  {
+    kind: "simulador",
+    practiceSlug: "efeito-fotoeletrico",
+    resourceSlug: "genially",
+    destination: "https://view.genially.com/5f16fe9e1134690d06ce7a74",
+    label: "Roteiro guiado em Genially para a prática de efeito fotoelétrico",
+    openInNewTab: true,
+  },
+  {
+    kind: "simulador",
+    practiceSlug: "efeito-fotoeletrico",
+    resourceSlug: "kcvs",
+    destination: "https://www.kcvs.ca/details.html?key=photoelectricEffect",
+    label: "Simulador KCVS para a prática de efeito fotoelétrico",
+    openInNewTab: true,
+  },
 ];
 
 export function getTrackedLink(kind: TrackedLinkKind, practiceSlug: string, resourceSlug: string) {
