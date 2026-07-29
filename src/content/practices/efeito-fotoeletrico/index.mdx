@@ -183,13 +183,6 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     O objetivo da análise é determinar <code>h</code> e <code>W</code> a partir dos coeficientes angular e linear desse ajuste.
   </p>
   <p>
-    Atenção à análise dimensional. Na equação <code>V_c = af + b</code>, o coeficiente angular <code>a</code> tem unidade
-    <code>V/Hz = V.s</code>. Como <code>1 V = 1 J/C</code>, segue que <code>a</code> tem unidade <code>J.s/C</code>. Portanto,
-    multiplicando por <code>e</code> em coulombs, obtém-se <code>h = ea</code> em <code>J.s</code>. Já o coeficiente linear
-    <code>b</code> tem unidade de volts, isto é, <code>J/C</code>. Assim, <code>W = -eb</code> sai em <code>J</code>. Se a função
-    trabalho for apresentada em <code>eV</code>, isso também deve ser informado explicitamente no relatório.
-  </p>
-  <p>
     Ao discutir os resultados, destaque que o material do catodo do aparato real não precisa coincidir com o material escolhido no
     simulador. Por isso, os coeficientes lineares podem diferir, enquanto a inclinação relacionada a <code>h/e</code> deve permanecer como a
     grandeza mais comparável entre os dois conjuntos de dados.
