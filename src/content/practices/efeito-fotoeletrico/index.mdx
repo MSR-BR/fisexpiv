@@ -183,9 +183,11 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     O objetivo da análise é determinar <code>h</code> e <code>W</code> a partir dos coeficientes angular e linear desse ajuste.
   </p>
   <p>
-    Atenção às unidades ao escrever o resultado final. Se <code>e</code> for usado em coulombs, o valor de <code>h</code> deve sair em
-    <code>J.s</code>. Já a função trabalho <code>W</code> pode ser apresentada em <code>J</code> ou em <code>eV</code>, desde que isso seja
-    informado explicitamente no relatório.
+    Atenção à análise dimensional. Na equação <code>V_c = af + b</code>, o coeficiente angular <code>a</code> tem unidade
+    <code>V/Hz = V.s</code>. Como <code>1 V = 1 J/C</code>, segue que <code>a</code> tem unidade <code>J.s/C</code>. Portanto,
+    multiplicando por <code>e</code> em coulombs, obtém-se <code>h = ea</code> em <code>J.s</code>. Já o coeficiente linear
+    <code>b</code> tem unidade de volts, isto é, <code>J/C</code>. Assim, <code>W = -eb</code> sai em <code>J</code>. Se a função
+    trabalho for apresentada em <code>eV</code>, isso também deve ser informado explicitamente no relatório.
   </p>
   <p>
     Ao discutir os resultados, destaque que o material do catodo do aparato real não precisa coincidir com o material escolhido no
@@ -214,7 +216,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   <h3>Tabela exploratória do simulador - frequência</h3>
 
   | Metal escolhido | `f` (10^14 Hz) | Potencial de corte `V_c` (V) | Observações |
-  | --- | --- | --- | --- | --- |
+  | --- | --- | --- | --- |
   |  |  |  |  |
   |  |  |  |  |
   |  |  |  |  |
@@ -289,7 +291,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Serway e Jewett. <em>Princípios de Física</em>. Volume com tópicos de física moderna.</li>
     <li>Eisberg e Resnick. <em>Física Quântica</em>.</li>
     <li>Reis. <em>Quantum Mechanics</em>. Capítulo introdutório sobre a base experimental da física quântica.</li>
-    <li>Genially. <em>Roteiro guiado para o efeito fotoelétrico</em>. Disponível em: <a href="../../acessos/simulador/efeito-fotoeletrico/genially/" data-force-new-tab="true">https://view.genially.com/5f16fe9e1134690d06ce7a74</a>.</li>
+    <li>Mario Reis. <em>Roteiro guiado para o efeito fotoelétrico</em>. Disponível em: <a href="../../acessos/simulador/efeito-fotoeletrico/genially/" data-force-new-tab="true">https://view.genially.com/5f16fe9e1134690d06ce7a74</a>.</li>
     <li>KCVS. <em>Photoelectric Effect</em>. Disponível em: <a href="../../acessos/simulador/efeito-fotoeletrico/kcvs/" data-force-new-tab="true">https://www.kcvs.ca/details.html?key=photoelectricEffect</a>.</li>
   </ul>
 </PracticeSection>
