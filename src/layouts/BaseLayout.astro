@@ -14,6 +14,8 @@ const { title, description, currentSlug } = Astro.props;
 const basePath = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const cloudflareWebAnalyticsToken =
   import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN ?? "e1d22de83aaf4bf99a92805085d39ec2";
+const googleAnalyticsMeasurementId =
+  import.meta.env.PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID ?? "G-B644H969Q5";
 ---
 
 <!doctype html>
@@ -29,6 +31,22 @@ const cloudflareWebAnalyticsToken =
         src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon={JSON.stringify({ token: cloudflareWebAnalyticsToken })}
       ></script>
+    ) : null}
+    {googleAnalyticsMeasurementId ? (
+      <>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsMeasurementId}`}
+        ></script>
+        <script is:inline>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${googleAnalyticsMeasurementId}');
+          `}
+        </script>
+      </>
     ) : null}
   </head>
   <body data-project-base-path={basePath}>

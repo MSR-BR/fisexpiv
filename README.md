@@ -26,6 +26,7 @@ npm run test
 ## Analytics
 
 - O portal aceita Cloudflare Web Analytics por meio da variável `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN`.
+- O portal aceita Google Analytics 4 por meio da variável `PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID`.
 - Use `.env.example` como referência para criar sua configuração local.
 - O acesso a cada prática aparece naturalmente no painel da Cloudflare pelas rotas do portal, por exemplo:
   - `/praticas/revisao/`
