@@ -16,6 +16,14 @@ const cloudflareWebAnalyticsToken =
   import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN ?? "e1d22de83aaf4bf99a92805085d39ec2";
 const googleAnalyticsMeasurementId =
   import.meta.env.PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID ?? "G-B644H969Q5";
+const googleAnalyticsInlineScript = googleAnalyticsMeasurementId
+  ? [
+      "window.dataLayer = window.dataLayer || [];",
+      "function gtag(){dataLayer.push(arguments);}",
+      "gtag('js', new Date());",
+      `gtag('config', '${googleAnalyticsMeasurementId}');`,
+    ].join("\n")
+  : "";
 ---
 
 <!doctype html>
@@ -38,14 +46,7 @@ const googleAnalyticsMeasurementId =
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsMeasurementId}`}
         ></script>
-        <script is:inline>
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${googleAnalyticsMeasurementId}');
-          `}
-        </script>
+        <script is:inline set:html={googleAnalyticsInlineScript}></script>
       </>
     ) : null}
   </head>
