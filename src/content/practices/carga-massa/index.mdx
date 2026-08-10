@@ -122,7 +122,6 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Se necessário, use o capuz do aparato para reduzir a interferência da luz ambiente.</li>
     <li>Coloque a chave do equipamento na posição de medida do experimento <code>e/m</code>.</li>
     <li>Deixe inicialmente o controle de corrente das bobinas em <code>OFF</code>.</li>
-    <li>Conecte as fontes e os medidores conforme a montagem do laboratório.</li>
     <li>Ajuste a alimentação do aquecedor para <code>6,3 V</code>, ou para o valor indicado no tubo.</li>
     <li>Ajuste a tensão de aceleração na faixa indicada pelo professor e não ultrapasse o limite operacional do aparato.</li>
     <li>Aumente lentamente a corrente nas bobinas, monitorando o amperímetro para que ela não ultrapasse <code>2,0 A</code>.</li>
@@ -147,19 +146,9 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     metros antes dos cálculos.
   </p>
 
-  <h3>Medida individual</h3>
-
-  | Grandeza | Valor lido | Incerteza | Unidade | Observações |
-  | --- | --- | --- | --- | --- |
-  | Tensão de aceleração `V` |  |  | V |  |
-  | Corrente nas bobinas `I` |  |  | A |  |
-  | Raio à esquerda |  |  | cm |  |
-  | Raio à direita |  |  | cm |  |
-  | Raio médio `r` |  |  | m | já convertido para SI |
-
   <h3>Tabela para a análise gráfica da turma</h3>
 
-  | Medida | `V` (V) | `\Delta V` (V) | `I` (A) | `\Delta I` (A) | `r` (m) | `\Delta r` (m) | `r^2` (m²) | `V/I^2` (V/A²) |
+  | Medida | `V` (V) | ΔV (V) | `I` (A) | ΔI (A) | `r` (m) | Δr (m) | `r^2` (m²) | `V/I^2` (V/A²) |
   | --- | --- | --- | --- | --- | --- | --- | --- | --- |
   | 1 |  |  |  |  |  |  |  |  |
   | 2 |  |  |  |  |  |  |  |  |
@@ -170,17 +159,13 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
   <p>
-    Para o método direto, calcule:
+    Utilizando um conjunto de dados, calcule:
   </p>
   <LatexBlock expression={String.raw`\frac{q}{m} = 3{,}287\times 10^6 \,\frac{V}{(rI)^2}`} />
   <p>
     Tratando a constante do aparato como fixa, a propagação linear da incerteza pode ser escrita como:
   </p>
-  <LatexBlock expression={String.raw`\Delta\!\left(\frac{q}{m}\right)_{\mathrm{lin}} = \frac{q}{m}\left(\frac{\Delta V}{V} + 2\frac{\Delta r}{r} + 2\frac{\Delta I}{I}\right)`} />
-  <p>
-    Já a propagação em quadratura fica:
-  </p>
-  <LatexBlock expression={String.raw`\Delta\!\left(\frac{q}{m}\right)_{\mathrm{quad}} = \frac{q}{m}\sqrt{\left(\frac{\Delta V}{V}\right)^2 + \left(2\frac{\Delta r}{r}\right)^2 + \left(2\frac{\Delta I}{I}\right)^2}`} />
+  <LatexBlock expression={String.raw`\Delta\!\left(\frac{q}{m}\right) = \frac{q}{m}\left(\frac{\Delta V}{V} + 2\frac{\Delta r}{r} + 2\frac{\Delta I}{I}\right)`} />
   <p>
     Compare o valor obtido com o valor de referência do elétron,
   </p>
@@ -221,7 +206,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Se a tensão de aceleração aumentar e a corrente nas bobinas permanecer fixa, o que deve acontecer com o raio da órbita?</li>
     <li>Se a corrente nas bobinas aumentar e a tensão permanecer fixa, o que deve acontecer com o raio da órbita?</li>
     <li>Por que a conversão do raio para unidades do SI é indispensável antes de usar a fórmula numérica do aparato?</li>
-    <li>Que vantagens o método gráfico oferece em relação ao uso de uma única medida?</li>
+    <li>O que o método gráfico permite observar sobre a relação entre <code>r^2</code> e <code>V/I^2</code>?</li>
     <li>Quais erros experimentais podem afetar mais fortemente a medida do raio?</li>
   </ol>
 </PracticeSection>
@@ -241,6 +226,11 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     Use o simulador como apoio conceitual e, se a interface disponibilizar leituras numéricas, monte uma tabela exploratória separada
     do relatório principal. Não misture automaticamente esses dados com as medidas reais do laboratório, porque as incertezas
     instrumentais da bancada não são reproduzidas pelo ambiente virtual.
+  </p>
+  <p>
+    Com os dados do simulador, faça também a análise gráfica de <code>r^2</code> em função de <code>V/I^2</code> e obtenha uma estimativa
+    de <code>q/m</code> pelo método gráfico. Compare esse resultado separadamente com o valor experimental da turma e com o valor de
+    referência do elétron.
   </p>
 </PracticeSection>
 
