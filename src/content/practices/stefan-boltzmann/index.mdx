@@ -72,23 +72,15 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <p>
     Em seguida, calcula-se a razão adimensional:
   </p>
-  <LatexBlock expression={String.raw`x = \frac{R}{R_{\mathrm{ref}}}`} />
+  <LatexBlock expression={String.raw`\frac{R}{R_{\mathrm{ref}}}`} />
   <p>
     No manual da PASCO, para grandes variações de temperatura, não se recomenda usar um coeficiente de temperatura constante para o
     tungstênio. O procedimento indicado é usar a tabela ou o gráfico de resistividade relativa do tungstênio. Essa tabela é referida a
-    <LatexInline expression={String.raw`300\ \mathrm{K}`} />, de modo que a razão tabulada é:
-  </p>
-  <LatexBlock expression={String.raw`y=\frac{R_T}{R_{300\mathrm{K}}}`} />
-  <p>
-    Se a temperatura ambiente estiver muito próxima de <LatexInline expression={String.raw`300\ \mathrm{K}`} />, podemos usar
-    <LatexInline expression={String.raw`x \approx y`} /> como aproximação. Para uma correção mais consistente, use:
-  </p>
-  <LatexBlock expression={String.raw`y_T = \frac{R_T}{R_{\mathrm{ref}}}\,\frac{R_{\mathrm{ref}}}{R_{300\mathrm{K}}}=x\,y_a`} />
-  <p>
-    onde <LatexInline expression={String.raw`y_a`} /> é obtido na tabela para a temperatura ambiente
-    <LatexInline expression={String.raw`T_a`} />. Depois, a temperatura do filamento é encontrada por interpolação na mesma tabela.
-    Assim, quando <LatexInline expression={String.raw`R_T=R_{\mathrm{ref}}`} />, o procedimento retorna a própria temperatura ambiente,
-    como esperado fisicamente.
+    <LatexInline expression={String.raw`300\ \mathrm{K}`} />. Nesta prática, vamos usar diretamente
+    <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} /> como a razão
+    <LatexInline expression={String.raw`R_T/R_{300\mathrm{K}}`} /> da tabela, considerando que a temperatura ambiente seja
+    aproximadamente <LatexInline expression={String.raw`300\ \mathrm{K}`} />. Depois, a temperatura do filamento é encontrada por
+    interpolação na mesma tabela.
   </p>
   <div class="callout">
     <strong>Observação importante.</strong> A equação polinomial usada em alguns roteiros antigos é uma aproximação prática para a
