@@ -23,7 +23,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <ul>
     <li>Compreender a lei de Stefan-Boltzmann como relação entre intensidade irradiada e temperatura absoluta.</li>
     <li>Usar medidas de tensão e corrente para determinar a resistência elétrica do filamento aquecido.</li>
-    <li>Converter a razão <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} /> em temperatura do filamento usando a relação empírica do tungstênio.</li>
+    <li>Converter a razão <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} /> em temperatura do filamento usando a tabela de resistividade relativa do tungstênio.</li>
     <li>Construir o gráfico <LatexInline expression={String.raw`\ln(S)`} /> em função de <LatexInline expression={String.raw`\ln(T)`} /> e obter o coeficiente angular por ajuste linear.</li>
     <li>Comparar o expoente experimental com o valor esperado para a lei de Stefan-Boltzmann.</li>
   </ul>
@@ -32,12 +32,14 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 <PracticeSection id="introducao-teorica" title="Introdução teórica">
   <p>
     Todo corpo a uma temperatura diferente de zero absoluto emite radiação eletromagnética. Para um corpo negro ideal, que absorve
-    toda a radiação incidente, a potência emitida por unidade de área cresce com a quarta potência da temperatura absoluta:
+    toda a radiação incidente, a intensidade total irradiada é obtida integrando a radiância espectral em todos os comprimentos de
+    onda. Essa integral conduz à lei de Stefan-Boltzmann:
   </p>
-  <LatexBlock expression={String.raw`I = \sigma T^4`} />
+  <LatexBlock expression={String.raw`I=\int_0^\infty R(\lambda,T)\,d\lambda=\sigma T^4`} />
   <p>
-    Nessa expressão, <code>I</code> é a intensidade total irradiada, <code>T</code> é a temperatura absoluta e <code>σ</code> é a
-    constante de Stefan-Boltzmann:
+    Nessa expressão, <LatexInline expression={String.raw`I`} /> é a intensidade total irradiada, isto é, a potência emitida por
+    unidade de área; <LatexInline expression={String.raw`R(\lambda,T)`} /> é a radiância espectral; <LatexInline expression={String.raw`T`} /> é a temperatura absoluta; e
+    <LatexInline expression={String.raw`\sigma`} /> é a constante de Stefan-Boltzmann:
   </p>
   <LatexBlock expression={String.raw`\sigma = 5{,}67\times 10^{-8}\ \mathrm{W\,m^{-2}\,K^{-4}}`} />
   <p>
@@ -72,9 +74,44 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   </p>
   <LatexBlock expression={String.raw`x = \frac{R}{R_{\mathrm{ref}}}`} />
   <p>
-    Para o filamento de tungstênio usado nesta montagem, a temperatura em kelvin é estimada por:
+    No manual da PASCO, para grandes variações de temperatura, não se recomenda usar um coeficiente de temperatura constante para o
+    tungstênio. O procedimento indicado é usar a tabela ou o gráfico de resistividade relativa do tungstênio. Essa tabela é referida a
+    <LatexInline expression={String.raw`300\ \mathrm{K}`} />, de modo que a razão tabulada é:
   </p>
-  <LatexBlock expression={String.raw`T = 102{,}97 + 215{,}46x - 3{,}0629x^2 + 0{,}0457x^3`} />
+  <LatexBlock expression={String.raw`y=\frac{R_T}{R_{300\mathrm{K}}}`} />
+  <p>
+    Se a temperatura ambiente estiver muito próxima de <LatexInline expression={String.raw`300\ \mathrm{K}`} />, podemos usar
+    <LatexInline expression={String.raw`x \approx y`} /> como aproximação. Para uma correção mais consistente, use:
+  </p>
+  <LatexBlock expression={String.raw`y_T = \frac{R_T}{R_{\mathrm{ref}}}\,\frac{R_{\mathrm{ref}}}{R_{300\mathrm{K}}}=x\,y_a`} />
+  <p>
+    onde <LatexInline expression={String.raw`y_a`} /> é obtido na tabela para a temperatura ambiente
+    <LatexInline expression={String.raw`T_a`} />. Depois, a temperatura do filamento é encontrada por interpolação na mesma tabela.
+    Assim, quando <LatexInline expression={String.raw`R_T=R_{\mathrm{ref}}`} />, o procedimento retorna a própria temperatura ambiente,
+    como esperado fisicamente.
+  </p>
+  <div class="callout">
+    <strong>Observação importante.</strong> A equação polinomial usada em alguns roteiros antigos é uma aproximação prática para a
+    tabela de tungstênio, mas ela não aparece como fórmula principal no manual da PASCO. Neste roteiro, a referência conceitual deve
+    ser a tabela/gráfico de resistividade relativa.
+  </div>
+
+  <h3>Tabela de referência para o tungstênio</h3>
+
+  | `R_T/R_300K` | `T` (K) | `R_T/R_300K` | `T` (K) | `R_T/R_300K` | `T` (K) |
+  | --- | --- | --- | --- | --- | --- |
+  | 1,00 | 300 | 5,48 | 1200 | 10,63 | 2100 |
+  | 1,43 | 400 | 6,03 | 1300 | 11,24 | 2200 |
+  | 1,87 | 500 | 6,58 | 1400 | 11,84 | 2300 |
+  | 2,34 | 600 | 7,14 | 1500 | 12,46 | 2400 |
+  | 2,85 | 700 | 7,71 | 1600 | 13,08 | 2500 |
+  | 3,36 | 800 | 8,28 | 1700 | 13,72 | 2600 |
+  | 3,88 | 900 | 8,86 | 1800 | 14,34 | 2700 |
+  | 4,41 | 1000 | 9,44 | 1900 | 14,99 | 2800 |
+  | 4,95 | 1100 | 10,03 | 2000 | 15,63 | 2900 |
+  | 16,29 | 3000 | 16,95 | 3100 | 17,62 | 3200 |
+  | 18,28 | 3300 | 18,97 | 3400 | 19,66 | 3500 |
+
   <p>
     O sinal do sensor de radiação, medido em milivolts, deve ser convertido para unidade de intensidade usando:
   </p>
@@ -204,7 +241,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   </p>
   <LatexBlock expression={String.raw`\Delta R = R\left(\frac{\Delta V}{V}+\frac{\Delta I}{I}\right)`} />
   <p>
-    Depois calcule a razão <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} />, a temperatura <LatexInline expression={String.raw`T`} /> pela relação empírica do tungstênio e o sinal convertido
+    Depois calcule a razão <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} />, a temperatura <LatexInline expression={String.raw`T`} /> por interpolação na tabela de resistividade relativa do tungstênio e o sinal convertido
     <code>S</code> em <code>W/m²</code>. Para o sinal convertido:
   </p>
   <LatexBlock expression={String.raw`\Delta S(\mathrm{W/m^2}) = 11{,}36\,\Delta S(\mathrm{mV})`} />
