@@ -155,9 +155,9 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>Registre a temperatura ambiente e converta para kelvin, usando <code>T(K) = T(°C) + 273</code>.</li>
     <li>Monte o circuito da lâmpada com a fonte DC e os medidores de tensão e corrente.</li>
     <li>Posicione o sensor de radiação na geometria indicada pelo professor e mantenha essa posição durante toda a série.</li>
-    <li>Ligue a fonte e ajuste a tensão para <code>1,0 V</code>.</li>
+    <li>Ligue a fonte e ajuste a tensão para um valor escolhido pelo grupo, de modo que, até <code>12 V</code>, sejam obtidos cerca de seis pontos.</li>
     <li>Aguarde alguns segundos até a leitura do sensor estabilizar e registre tensão, corrente e sinal do sensor.</li>
-    <li>Repita o procedimento para <code>2,0 V</code>, <code>3,0 V</code>, ..., até <code>12,0 V</code>.</li>
+    <li>Repita o procedimento para novos valores de tensão escolhidos pelo grupo, até no máximo <code>12 V</code>.</li>
     <li>Não ultrapasse <code>13 V</code> na lâmpada.</li>
     <li>Enquanto não estiver medindo, desligue a fonte ou reduza a tensão para evitar aquecimento excessivo do bulbo.</li>
   </ol>
@@ -182,57 +182,21 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   | Temperatura ambiente `T_a` |  |  | °C | converter para K |
   | Temperatura ambiente `T_a` |  |  | K | `T(K)=T(°C)+273` |
 
-  <h3>Leituras experimentais</h3>
+  <h3>Coleta de dados</h3>
 
-  | Tensão ajustada (V) | Tensão medida `V` (V) | Corrente `I` (A) | Sinal do sensor (mV) | Incerteza do sinal (mV) |
-  | --- | --- | --- | --- | --- |
-  | 1,0 |  |  |  |  |
-  | 2,0 |  |  |  |  |
-  | 3,0 |  |  |  |  |
-  | 4,0 |  |  |  |  |
-  | 5,0 |  |  |  |  |
-  | 6,0 |  |  |  |  |
-  | 7,0 |  |  |  |  |
-  | 8,0 |  |  |  |  |
-  | 9,0 |  |  |  |  |
-  | 10,0 |  |  |  |  |
-  | 11,0 |  |  |  |  |
-  | 12,0 |  |  |  |  |
-
-  <h3>Cálculos para o ajuste</h3>
-
-  | Tensão ajustada (V) | `R = V/I` (Ω) | `r = R/R_ref` | `T` (K) | `S` (W/m²) | `ln(T)` | `ln(S)` |
-  | --- | --- | --- | --- | --- | --- | --- |
-  | 1,0 |  |  |  |  |  |  |
-  | 2,0 |  |  |  |  |  |  |
-  | 3,0 |  |  |  |  |  |  |
-  | 4,0 |  |  |  |  |  |  |
-  | 5,0 |  |  |  |  |  |  |
-  | 6,0 |  |  |  |  |  |  |
-  | 7,0 |  |  |  |  |  |  |
-  | 8,0 |  |  |  |  |  |  |
-  | 9,0 |  |  |  |  |  |  |
-  | 10,0 |  |  |  |  |  |  |
-  | 11,0 |  |  |  |  |  |  |
-  | 12,0 |  |  |  |  |  |  |
+  | Ponto | Tensão medida `V` (V) | Corrente `I` (A) | Sinal do sensor (mV) | Incerteza do sensor (mV) | `R = V/I` (Ω) | `r = R/R_ref` | `T` (K) | `S` (W/m²) | `ln(T)` | `ln(S)` |
+  | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+  | 1 |  |  |  |  |  |  |  |  |  |  |
+  | 2 |  |  |  |  |  |  |  |  |  |  |
+  | 3 |  |  |  |  |  |  |  |  |  |  |
+  | 4 |  |  |  |  |  |  |  |  |  |  |
+  | 5 |  |  |  |  |  |  |  |  |  |  |
+  | 6 |  |  |  |  |  |  |  |  |  |  |
 </PracticeSection>
 
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
   <p>
-    Para cada linha da tabela, calcule a resistência do filamento:
-  </p>
-  <LatexBlock expression={String.raw`R = \frac{V}{I}`} />
-  <p>
-    Usando propagação linear, a incerteza pode ser estimada por:
-  </p>
-  <LatexBlock expression={String.raw`\Delta R = R\left(\frac{\Delta V}{V}+\frac{\Delta I}{I}\right)`} />
-  <p>
-    Depois calcule a razão <LatexInline expression={String.raw`r=R/R_{\mathrm{ref}}`} />, a temperatura <LatexInline expression={String.raw`T`} /> por interpolação na tabela de resistividade relativa do tungstênio e o sinal convertido
-    <code>S</code> em <code>W/m²</code>. Para o sinal convertido:
-  </p>
-  <LatexBlock expression={String.raw`\Delta S(\mathrm{W/m^2}) = 11{,}36\,\Delta S(\mathrm{mV})`} />
-  <p>
-    Em seguida, construa o gráfico:
+    Construa o gráfico:
   </p>
   <LatexBlock expression={String.raw`y = \ln(S) \qquad \text{em função de} \qquad x = \ln(T)`} />
   <p>
@@ -244,17 +208,11 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     linear <code>a</code> representa <code>ln(C)</code>, não a constante de Stefan-Boltzmann isolada.
   </p>
   <p>
-    Faça dois ajustes:
+    Antes de construir o gráfico, complete a tabela calculando <LatexInline expression={String.raw`R=V/I`} />,
+    <LatexInline expression={String.raw`r=R/R_{\mathrm{ref}}`} />, <LatexInline expression={String.raw`T`} /> por interpolação na
+    tabela do tungstênio e <LatexInline expression={String.raw`S`} /> em <code>W/m²</code>. Para o sinal convertido, use:
   </p>
-  <ol>
-    <li>um ajuste usando todos os pontos experimentais;</li>
-    <li>um ajuste retirando os cinco primeiros pontos.</li>
-  </ol>
-  <p>
-    Compare os dois resultados para <code>b</code>. Os primeiros pontos podem ser mais sensíveis a ruído, radiação ambiente,
-    aquecimento do bulbo, baixa razão sinal-ruído e limitações do sensor. Por isso, retirar esses pontos pode aproximar o ajuste do
-    regime em que a emissão térmica do filamento domina a medida.
-  </p>
+  <LatexBlock expression={String.raw`S(\mathrm{W/m^2}) = 11{,}36\,S(\mathrm{mV})`} />
   <div class="callout">
     <strong>Dica de análise.</strong> A planilha de mínimos quadrados pode ser usada colocando <LatexInline expression={String.raw`X=\ln(T)`} /> e
     <LatexInline expression={String.raw`Y=\ln(S)`} />. Também é possível fazer o ajuste no Excel ou em outra planilha equivalente, desde que o relatório mostre
@@ -268,7 +226,6 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>Por que usamos um gráfico log-log em vez de ajustar diretamente <LatexInline expression={String.raw`S`} /> em função de <LatexInline expression={String.raw`T`} />?</li>
     <li>O que representa o coeficiente angular da reta <LatexInline expression={String.raw`\ln(S)=a+b\ln(T)`} />?</li>
     <li>O que representa o coeficiente linear e por que ele não deve ser identificado diretamente com <LatexInline expression={String.raw`\ln(\sigma)`} />?</li>
-    <li>Por que os primeiros pontos experimentais podem prejudicar o ajuste?</li>
     <li>A lâmpada de tungstênio pode ser tratada como um corpo negro ideal? Justifique.</li>
     <li>Quais fontes de incerteza ou erro sistemático podem afetar mais fortemente o valor obtido para o expoente experimental?</li>
   </ol>
@@ -284,10 +241,22 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     Stefan-Boltzmann: quando a temperatura aumenta, a área total sob a curva espectral cresce rapidamente.
   </p>
   <p>
-    No relatório, o simulador deve aparecer como apoio conceitual separado dos dados reais. Uma tabela exploratória pode registrar
-    algumas temperaturas escolhidas, a posição aproximada do pico espectral e uma observação qualitativa sobre o aumento da
-    intensidade total.
+    Clique na opção de intensidade e colete valores de <LatexInline expression={String.raw`I`} /> em função da temperatura
+    <LatexInline expression={String.raw`T`} />. Em seguida, construa o gráfico <LatexInline expression={String.raw`\ln(I)`} /> versus
+    <LatexInline expression={String.raw`\ln(T)`} /> e ajuste uma reta. Verifique se o coeficiente angular é compatível com
+    <code>4</code> e se o coeficiente linear é compatível com <LatexInline expression={String.raw`\ln(\sigma)`} />, considerando as
+    unidades usadas pelo simulador.
   </p>
+  <h3>Tabela exploratória do simulador</h3>
+
+  | Ponto | `T` (K) | Intensidade `I` | Unidade de `I` | `ln(T)` | `ln(I)` |
+  | --- | --- | --- | --- | --- | --- |
+  | 1 |  |  |  |  |  |
+  | 2 |  |  |  |  |  |
+  | 3 |  |  |  |  |  |
+  | 4 |  |  |  |  |  |
+  | 5 |  |  |  |  |  |
+  | 6 |  |  |  |  |  |
 </PracticeSection>
 
 <PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
@@ -301,8 +270,9 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>tabelas de tensão, corrente, sinal do sensor e cálculos intermediários;</li>
     <li>cálculo de <LatexInline expression={String.raw`R`} />, <LatexInline expression={String.raw`r=R/R_{\mathrm{ref}}`} />, <LatexInline expression={String.raw`T`} />, <LatexInline expression={String.raw`S`} />, <LatexInline expression={String.raw`\ln(T)`} /> e <LatexInline expression={String.raw`\ln(S)`} />;</li>
     <li>gráfico <LatexInline expression={String.raw`\ln(S)`} /> versus <LatexInline expression={String.raw`\ln(T)`} /> usando todos os pontos;</li>
-    <li>novo gráfico ou novo ajuste retirando os cinco primeiros pontos;</li>
+    <li>tabela e gráfico do simulador: <LatexInline expression={String.raw`\ln(I)`} /> versus <LatexInline expression={String.raw`\ln(T)`} />;</li>
     <li>comparação dos coeficientes angulares com o valor esperado <code>4</code>;</li>
+    <li>comparação entre os dados reais da bancada e os dados obtidos no simulador;</li>
     <li>discussão das limitações experimentais e do fato de a lâmpada não ser um corpo negro ideal;</li>
     <li>conclusão final sobre a validade experimental da relação de Stefan-Boltzmann.</li>
   </ol>
@@ -319,12 +289,9 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     na radiação recebida pelo sensor e o ambiente também contribui para o sinal medido.
   </p>
   <p>
-    Comente também se o ajuste sem os cinco primeiros pontos ficou mais próximo do comportamento esperado. Se isso ocorrer, explique
-    fisicamente por que os pontos de baixa temperatura podem ser menos confiáveis para testar a lei de potência.
-  </p>
-  <p>
     Na conclusão, retome a ideia central: a prática procura verificar se a radiação térmica emitida cresce aproximadamente como
-    <code>T^4</code>. O resultado deve ser apresentado junto com as limitações do aparato e com uma avaliação crítica do ajuste.
+    <code>T^4</code>. O resultado deve ser apresentado junto com as limitações do aparato, com uma avaliação crítica do ajuste e com
+    uma conclusão separada sobre o comportamento observado no simulador.
   </p>
 </PracticeSection>
 
