@@ -863,6 +863,10 @@ img {
   font-size: 1.08em;
 }
 
+.practice-section__body .latex-inline {
+  white-space: nowrap;
+}
+
 .practice-section__body figure {
   display: grid;
   gap: 10px;

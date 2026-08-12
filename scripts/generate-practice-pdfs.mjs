@@ -19,6 +19,7 @@ const practicePdfs = [
   { slug: "revisao", output: "revisao.pdf" },
   { slug: "carga-massa", output: "carga-massa.pdf" },
   { slug: "radiacao-termica", output: "radiacao-termica.pdf" },
+  { slug: "stefan-boltzmann", output: "stefan-boltzmann.pdf" },
   { slug: "efeito-fotoeletrico", output: "efeito-fotoeletrico.pdf" },
 ];
 

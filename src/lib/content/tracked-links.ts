@@ -52,6 +52,22 @@ export const trackedLinks: TrackedLinkItem[] = [
   },
   {
     kind: "pdf",
+    practiceSlug: "stefan-boltzmann",
+    resourceSlug: "principal",
+    destination: "/downloads/praticas/stefan-boltzmann.pdf",
+    label: "PDF da prática de Stefan-Boltzmann",
+    openInNewTab: false,
+  },
+  {
+    kind: "simulador",
+    practiceSlug: "stefan-boltzmann",
+    resourceSlug: "phet-blackbody",
+    destination: "https://phet.colorado.edu/pt_BR/simulations/blackbody-spectrum",
+    label: "Simulador PhET de espectro de corpo negro para a prática de Stefan-Boltzmann",
+    openInNewTab: true,
+  },
+  {
+    kind: "pdf",
     practiceSlug: "efeito-fotoeletrico",
     resourceSlug: "principal",
     destination: "/downloads/praticas/efeito-fotoeletrico.pdf",

@@ -1,0 +1,318 @@
+---
+title: "Stefan-Boltzmann"
+practiceSlug: "stefan-boltzmann"
+order: 4
+summary: "Verificação experimental da dependência entre radiação térmica emitida por uma lâmpada incandescente e temperatura do filamento."
+status: "available"
+estimatedTime: "1 encontro de laboratório"
+learningFocus:
+  - "Relacionar a lei de Stefan-Boltzmann com a potência irradiada por unidade de área"
+  - "Determinar a temperatura do filamento a partir da resistência elétrica do tungstênio"
+  - "Construir o gráfico log-log entre sinal de radiação e temperatura"
+  - "Usar ajuste linear por mínimos quadrados para estimar o expoente experimental"
+  - "Discutir por que uma lâmpada real não é um corpo negro ideal"
+materialsStatus: "Roteiro reestruturado e pronto para uso em aula"
+sourcesStatus: "Material da disciplina, folha de manipulação, planilha de ajuste e bibliografia introdutória"
+---
+
+import PracticeSection from "../../../components/practice/PracticeSection.astro";
+import LatexBlock from "../../../components/ui/LatexBlock.astro";
+import LatexInline from "../../../components/ui/LatexInline.astro";
+
+<PracticeSection id="objetivos-de-aprendizagem" title="Objetivos de aprendizagem">
+  <ul>
+    <li>Compreender a lei de Stefan-Boltzmann como relação entre intensidade irradiada e temperatura absoluta.</li>
+    <li>Usar medidas de tensão e corrente para determinar a resistência elétrica do filamento aquecido.</li>
+    <li>Converter a razão <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} /> em temperatura do filamento usando a relação empírica do tungstênio.</li>
+    <li>Construir o gráfico <LatexInline expression={String.raw`\ln(S)`} /> em função de <LatexInline expression={String.raw`\ln(T)`} /> e obter o coeficiente angular por ajuste linear.</li>
+    <li>Comparar o expoente experimental com o valor esperado para a lei de Stefan-Boltzmann.</li>
+  </ul>
+</PracticeSection>
+
+<PracticeSection id="introducao-teorica" title="Introdução teórica">
+  <p>
+    Todo corpo a uma temperatura diferente de zero absoluto emite radiação eletromagnética. Para um corpo negro ideal, que absorve
+    toda a radiação incidente, a potência emitida por unidade de área cresce com a quarta potência da temperatura absoluta:
+  </p>
+  <LatexBlock expression={String.raw`I = \sigma T^4`} />
+  <p>
+    Nessa expressão, <code>I</code> é a intensidade total irradiada, <code>T</code> é a temperatura absoluta e <code>σ</code> é a
+    constante de Stefan-Boltzmann:
+  </p>
+  <LatexBlock expression={String.raw`\sigma = 5{,}67\times 10^{-8}\ \mathrm{W\,m^{-2}\,K^{-4}}`} />
+  <p>
+    Superfícies reais não se comportam como corpos negros perfeitos. Por isso, costuma-se escrever:
+  </p>
+  <LatexBlock expression={String.raw`I = \varepsilon\sigma T^4`} />
+  <p>
+    onde <LatexInline expression={String.raw`\varepsilon`} /> é a emissividade da superfície. Nesta prática, o emissor será o filamento de tungstênio de uma lâmpada
+    incandescente. Ele não é um corpo negro ideal, mas permite testar experimentalmente se a radiação medida cresce aproximadamente
+    como uma potência da temperatura.
+  </p>
+  <p>
+    Como a geometria da montagem e o sensor permanecem fixos durante a série de medidas, podemos escrever a leitura convertida do
+    sensor de forma aproximada como:
+  </p>
+  <LatexBlock expression={String.raw`S \approx C T^n`} />
+  <p>
+    O objetivo experimental é determinar o expoente <code>n</code>. Se a lâmpada se comportasse como um emissor ideal, e se as
+    correções instrumentais fossem desprezíveis, esperaríamos <code>n</code> próximo de <code>4</code>.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="modelo-fisico" title="Modelo físico">
+  <p>
+    A temperatura do filamento não é medida diretamente. Ela é estimada a partir da resistência elétrica do tungstênio. Primeiro,
+    mede-se a resistência do filamento à temperatura ambiente, chamada <LatexInline expression={String.raw`R_{\mathrm{ref}}`} />. Durante o experimento, para cada tensão de
+    alimentação da lâmpada, calcula-se a resistência do filamento por:
+  </p>
+  <LatexBlock expression={String.raw`R = \frac{V}{I}`} />
+  <p>
+    Em seguida, calcula-se a razão adimensional:
+  </p>
+  <LatexBlock expression={String.raw`x = \frac{R}{R_{\mathrm{ref}}}`} />
+  <p>
+    Para o filamento de tungstênio usado nesta montagem, a temperatura em kelvin é estimada por:
+  </p>
+  <LatexBlock expression={String.raw`T = 102{,}97 + 215{,}46x - 3{,}0629x^2 + 0{,}0457x^3`} />
+  <p>
+    O sinal do sensor de radiação, medido em milivolts, deve ser convertido para unidade de intensidade usando:
+  </p>
+  <LatexBlock expression={String.raw`S(\mathrm{W/m^2}) = 11{,}36\,S(\mathrm{mV})`} />
+  <p>
+    Para transformar a relação de potência em uma reta, tomamos o logaritmo natural dos dois lados de <code>S = C T^n</code>:
+  </p>
+  <LatexBlock expression={String.raw`\ln S = \ln C + n\ln T`} />
+  <p>
+    Assim, no gráfico <LatexInline expression={String.raw`y=\ln(S)`} /> em função de <LatexInline expression={String.raw`x=\ln(T)`} />, o coeficiente angular da reta ajustada é o expoente
+    experimental <code>n</code>. O coeficiente linear representa <code>ln(C)</code>, que contém fatores de geometria, calibração do
+    sensor, emissividade efetiva e características da lâmpada. Ele não deve ser identificado diretamente com <code>ln(σ)</code>.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
+  <p>
+    A montagem usa uma lâmpada de Stefan-Boltzmann, uma fonte DC de até <code>13 V</code>, um sensor de radiação, um milivoltímetro e
+    medidores de tensão e corrente. A fonte aquece o filamento de tungstênio. Para cada valor de tensão, registra-se a corrente no
+    filamento e a leitura do sensor de radiação.
+  </p>
+  <p>
+    A resistência do filamento aumenta com a temperatura. Por isso, a combinação das medidas elétricas <code>V</code> e <code>I</code>
+    permite estimar <LatexInline expression={String.raw`R`} />, depois <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} /> e finalmente a temperatura <LatexInline expression={String.raw`T`} />. A leitura do sensor fornece
+    uma grandeza proporcional à radiação recebida.
+  </p>
+  <p>
+    A análise central da prática não é comparar diretamente <code>S</code> com <code>T^4</code>, mas verificar se os dados seguem uma
+    lei de potência. Para isso, constrói-se o gráfico <LatexInline expression={String.raw`\ln(S)`} /> versus <LatexInline expression={String.raw`\ln(T)`} /> e ajusta-se uma reta por mínimos
+    quadrados.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
+  <ul>
+    <li>lâmpada de Stefan-Boltzmann com filamento de tungstênio;</li>
+    <li>sensor térmico / sensor de radiação;</li>
+    <li>fonte DC de até <code>13 V</code> e corrente compatível com a lâmpada;</li>
+    <li>voltímetro para medir a tensão no filamento, se a fonte não tiver mostrador confiável;</li>
+    <li>amperímetro para medir a corrente no filamento, se a fonte não tiver mostrador confiável;</li>
+    <li>milivoltímetro para medir o sinal do sensor de radiação;</li>
+    <li>ohmímetro para medir a resistência do filamento à temperatura ambiente;</li>
+    <li>termômetro para registrar a temperatura ambiente.</li>
+  </ul>
+  <p>
+    Durante toda a série de medidas, mantenha a distância e a orientação entre lâmpada e sensor fixas. Alterar a geometria da
+    montagem muda o fator de proporcionalidade <code>C</code> e prejudica o ajuste.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="procedimento-experimental" title="Procedimento experimental">
+  <ol>
+    <li>Desligue conexões elétricas anteriores e confira se a fonte está com a tensão ajustada para zero.</li>
+    <li>Antes de alimentar a lâmpada, meça cuidadosamente a resistência do filamento à temperatura ambiente, <LatexInline expression={String.raw`R_{\mathrm{ref}}`} />.</li>
+    <li>Registre a temperatura ambiente e converta para kelvin, usando <code>T(K) = T(°C) + 273</code>.</li>
+    <li>Monte o circuito da lâmpada com a fonte DC e os medidores de tensão e corrente.</li>
+    <li>Posicione o sensor de radiação na geometria indicada pelo professor e mantenha essa posição durante toda a série.</li>
+    <li>Ligue a fonte e ajuste a tensão para <code>1,0 V</code>.</li>
+    <li>Aguarde alguns segundos até a leitura do sensor estabilizar e registre tensão, corrente e sinal do sensor.</li>
+    <li>Repita o procedimento para <code>2,0 V</code>, <code>3,0 V</code>, ..., até <code>12,0 V</code>.</li>
+    <li>Não ultrapasse <code>13 V</code> na lâmpada.</li>
+    <li>Enquanto não estiver medindo, desligue a fonte ou reduza a tensão para evitar aquecimento excessivo do bulbo.</li>
+  </ol>
+  <div class="callout">
+    <strong>Cuidado operacional.</strong> A lâmpada aquece rapidamente. Mantenha a fonte ligada apenas durante o tempo necessário para
+    estabilizar e registrar cada medida. O aquecimento do bulbo e do ambiente ao redor pode alterar a leitura do sensor, especialmente
+    nos pontos de menor tensão.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
+  <p>
+    Registre todas as leituras com unidades e incertezas. As incertezas devem ser obtidas a partir da resolução e da especificação dos
+    instrumentos usados na bancada.
+  </p>
+
+  <h3>Condições iniciais</h3>
+
+  | Grandeza | Valor | Incerteza | Unidade | Observações |
+  | --- | --- | --- | --- | --- |
+  | Resistência de referência `R_ref` |  |  | Ω | filamento à temperatura ambiente |
+  | Temperatura ambiente `T_a` |  |  | °C | converter para K |
+  | Temperatura ambiente `T_a` |  |  | K | `T(K)=T(°C)+273` |
+
+  <h3>Leituras experimentais</h3>
+
+  | Tensão ajustada (V) | Tensão medida `V` (V) | Corrente `I` (A) | Sinal do sensor (mV) | Incerteza do sinal (mV) |
+  | --- | --- | --- | --- | --- |
+  | 1,0 |  |  |  |  |
+  | 2,0 |  |  |  |  |
+  | 3,0 |  |  |  |  |
+  | 4,0 |  |  |  |  |
+  | 5,0 |  |  |  |  |
+  | 6,0 |  |  |  |  |
+  | 7,0 |  |  |  |  |
+  | 8,0 |  |  |  |  |
+  | 9,0 |  |  |  |  |
+  | 10,0 |  |  |  |  |
+  | 11,0 |  |  |  |  |
+  | 12,0 |  |  |  |  |
+
+  <h3>Cálculos para o ajuste</h3>
+
+  | Tensão ajustada (V) | `R = V/I` (Ω) | `R/R_ref` | `T` (K) | `S` (W/m²) | `ln(T)` | `ln(S)` |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | 1,0 |  |  |  |  |  |  |
+  | 2,0 |  |  |  |  |  |  |
+  | 3,0 |  |  |  |  |  |  |
+  | 4,0 |  |  |  |  |  |  |
+  | 5,0 |  |  |  |  |  |  |
+  | 6,0 |  |  |  |  |  |  |
+  | 7,0 |  |  |  |  |  |  |
+  | 8,0 |  |  |  |  |  |  |
+  | 9,0 |  |  |  |  |  |  |
+  | 10,0 |  |  |  |  |  |  |
+  | 11,0 |  |  |  |  |  |  |
+  | 12,0 |  |  |  |  |  |  |
+</PracticeSection>
+
+<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+  <p>
+    Para cada linha da tabela, calcule a resistência do filamento:
+  </p>
+  <LatexBlock expression={String.raw`R = \frac{V}{I}`} />
+  <p>
+    Usando propagação linear, a incerteza pode ser estimada por:
+  </p>
+  <LatexBlock expression={String.raw`\Delta R = R\left(\frac{\Delta V}{V}+\frac{\Delta I}{I}\right)`} />
+  <p>
+    Depois calcule a razão <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} />, a temperatura <LatexInline expression={String.raw`T`} /> pela relação empírica do tungstênio e o sinal convertido
+    <code>S</code> em <code>W/m²</code>. Para o sinal convertido:
+  </p>
+  <LatexBlock expression={String.raw`\Delta S(\mathrm{W/m^2}) = 11{,}36\,\Delta S(\mathrm{mV})`} />
+  <p>
+    Em seguida, construa o gráfico:
+  </p>
+  <LatexBlock expression={String.raw`y = \ln(S) \qquad \text{em função de} \qquad x = \ln(T)`} />
+  <p>
+    Ajuste uma reta do tipo:
+  </p>
+  <LatexBlock expression={String.raw`y = a + bx`} />
+  <p>
+    Nessa notação, <code>b</code> é o coeficiente angular e deve ser comparado com o valor esperado <code>4</code>. O coeficiente
+    linear <code>a</code> representa <code>ln(C)</code>, não a constante de Stefan-Boltzmann isolada.
+  </p>
+  <p>
+    Faça dois ajustes:
+  </p>
+  <ol>
+    <li>um ajuste usando todos os pontos experimentais;</li>
+    <li>um ajuste retirando os cinco primeiros pontos.</li>
+  </ol>
+  <p>
+    Compare os dois resultados para <code>b</code>. Os primeiros pontos podem ser mais sensíveis a ruído, radiação ambiente,
+    aquecimento do bulbo, baixa razão sinal-ruído e limitações do sensor. Por isso, retirar esses pontos pode aproximar o ajuste do
+    regime em que a emissão térmica do filamento domina a medida.
+  </p>
+  <div class="callout">
+    <strong>Dica de análise.</strong> A planilha de mínimos quadrados pode ser usada colocando <LatexInline expression={String.raw`X=\ln(T)`} /> e
+    <LatexInline expression={String.raw`Y=\ln(S)`} />. Também é possível fazer o ajuste no Excel ou em outra planilha equivalente, desde que o relatório mostre
+    o gráfico, a equação da reta, o coeficiente angular e sua incerteza.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
+  <ol>
+    <li>Por que a temperatura deve ser escrita em kelvin antes de aplicar a lei de Stefan-Boltzmann?</li>
+    <li>Por que usamos um gráfico log-log em vez de ajustar diretamente <LatexInline expression={String.raw`S`} /> em função de <LatexInline expression={String.raw`T`} />?</li>
+    <li>O que representa o coeficiente angular da reta <LatexInline expression={String.raw`\ln(S)=a+b\ln(T)`} />?</li>
+    <li>O que representa o coeficiente linear e por que ele não deve ser identificado diretamente com <LatexInline expression={String.raw`\ln(\sigma)`} />?</li>
+    <li>Por que os primeiros pontos experimentais podem prejudicar o ajuste?</li>
+    <li>A lâmpada de tungstênio pode ser tratada como um corpo negro ideal? Justifique.</li>
+    <li>Quais fontes de incerteza ou erro sistemático podem afetar mais fortemente o valor obtido para o expoente experimental?</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="simulador" title="Simulador">
+  <p>
+    Como apoio conceitual, use o simulador do PhET:
+    <a href="../../acessos/simulador/stefan-boltzmann/phet-blackbody/" data-force-new-tab="true">Espectro de Corpo Negro</a>.
+  </p>
+  <p>
+    O simulador não reproduz a lâmpada real nem o sensor usado na bancada, mas ajuda a visualizar a ideia central por trás da lei de
+    Stefan-Boltzmann: quando a temperatura aumenta, a área total sob a curva espectral cresce rapidamente.
+  </p>
+  <p>
+    No relatório, o simulador deve aparecer como apoio conceitual separado dos dados reais. Uma tabela exploratória pode registrar
+    algumas temperaturas escolhidas, a posição aproximada do pico espectral e uma observação qualitativa sobre o aumento da
+    intensidade total.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
+  <p>
+    Uma organização simples e suficiente para o relatório é:
+  </p>
+  <ol>
+    <li>objetivo da prática;</li>
+    <li>introdução curta sobre radiação térmica, corpo negro e lei de Stefan-Boltzmann;</li>
+    <li>descrição resumida da lâmpada, do sensor e da montagem elétrica;</li>
+    <li>tabelas de tensão, corrente, sinal do sensor e cálculos intermediários;</li>
+    <li>cálculo de <LatexInline expression={String.raw`R`} />, <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} />, <LatexInline expression={String.raw`T`} />, <LatexInline expression={String.raw`S`} />, <LatexInline expression={String.raw`\ln(T)`} /> e <LatexInline expression={String.raw`\ln(S)`} />;</li>
+    <li>gráfico <LatexInline expression={String.raw`\ln(S)`} /> versus <LatexInline expression={String.raw`\ln(T)`} /> usando todos os pontos;</li>
+    <li>novo gráfico ou novo ajuste retirando os cinco primeiros pontos;</li>
+    <li>comparação dos coeficientes angulares com o valor esperado <code>4</code>;</li>
+    <li>discussão das limitações experimentais e do fato de a lâmpada não ser um corpo negro ideal;</li>
+    <li>conclusão final sobre a validade experimental da relação de Stefan-Boltzmann.</li>
+  </ol>
+  <div class="callout">
+    <strong>Dica prática.</strong> Para o tratamento dos dados e a construção dos gráficos, pode usar, por exemplo, o Excel. O relatório
+    deve mostrar a equação da reta ajustada, as incertezas dos coeficientes e uma interpretação física dos resultados.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
+  <p>
+    Na discussão, compare o coeficiente angular obtido com o valor esperado pela lei de Stefan-Boltzmann. A concordância não precisa
+    ser perfeita: o filamento não é um corpo negro ideal, sua emissividade pode variar com a temperatura, o vidro da lâmpada interfere
+    na radiação recebida pelo sensor e o ambiente também contribui para o sinal medido.
+  </p>
+  <p>
+    Comente também se o ajuste sem os cinco primeiros pontos ficou mais próximo do comportamento esperado. Se isso ocorrer, explique
+    fisicamente por que os pontos de baixa temperatura podem ser menos confiáveis para testar a lei de potência.
+  </p>
+  <p>
+    Na conclusão, retome a ideia central: a prática procura verificar se a radiação térmica emitida cresce aproximadamente como
+    <code>T^4</code>. O resultado deve ser apresentado junto com as limitações do aparato e com uma avaliação crítica do ajuste.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="referencias" title="Referências Gerais">
+  <ul>
+    <li>Halliday, D.; Resnick, R.; Walker, J. <em>Fundamentos de Física</em>.</li>
+    <li>Young, H. D.; Freedman, R. A. <em>Física Universitária com Física Moderna</em>.</li>
+    <li>Serway, R. A.; Jewett, J. W. <em>Física para Cientistas e Engenheiros</em>.</li>
+    <li>Tipler, P. A.; Mosca, G. <em>Física para Cientistas e Engenheiros</em>.</li>
+    <li>Nussenzveig, H. M. <em>Curso de Física Básica</em>.</li>
+    <li>PASCO Scientific. <em>Thermal Radiation System</em>, materiais técnicos dos sensores e lâmpadas de radiação térmica.</li>
+    <li>PhET Interactive Simulations. <em>Espectro de Corpo Negro</em>. Disponível em: <a href="../../acessos/simulador/stefan-boltzmann/phet-blackbody/" data-force-new-tab="true">abrir simulador</a>.</li>
+  </ul>
+</PracticeSection>
