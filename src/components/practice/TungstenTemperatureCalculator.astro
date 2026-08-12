@@ -1,0 +1,212 @@
+<div class="temperature-calculator" data-temperature-calculator>
+  <div class="temperature-calculator__header">
+    <p class="eyebrow">Interpolação</p>
+    <h3>Calculadora de temperatura</h3>
+    <p>
+      Digite a razão <code>r = R/R_ref</code> ou calcule a razão a partir de <code>V</code>, <code>I</code> e
+      <code>R_ref</code>. O resultado usa interpolação linear na tabela do tungstênio.
+    </p>
+  </div>
+
+  <div class="temperature-calculator__body">
+    <label class="temperature-calculator__field">
+      <span>Razão <code>r = R/R_ref</code></span>
+      <input data-ratio type="text" inputmode="decimal" placeholder="ex.: 4,95" />
+    </label>
+
+    <div class="temperature-calculator__divider" aria-hidden="true">ou</div>
+
+    <div class="temperature-calculator__fields">
+      <label class="temperature-calculator__field">
+        <span>Tensão <code>V</code> (V)</span>
+        <input data-voltage type="text" inputmode="decimal" placeholder="ex.: 6,0" />
+      </label>
+      <label class="temperature-calculator__field">
+        <span>Corrente <code>I</code> (A)</span>
+        <input data-current type="text" inputmode="decimal" placeholder="ex.: 1,20" />
+      </label>
+      <label class="temperature-calculator__field">
+        <span><code>R_ref</code> (Ω)</span>
+        <input data-reference type="text" inputmode="decimal" placeholder="ex.: 0,30" />
+      </label>
+    </div>
+  </div>
+
+  <div class="temperature-calculator__result" aria-live="polite">
+    <strong data-output>Digite uma razão entre 1,00 e 19,66.</strong>
+    <span data-detail>A temperatura será estimada dentro do intervalo tabulado.</span>
+  </div>
+
+  <button class="temperature-calculator__clear" type="button" data-clear>Limpar</button>
+</div>
+
+<script>
+  const tungstenTable = [
+    [1.0, 300],
+    [1.43, 400],
+    [1.87, 500],
+    [2.34, 600],
+    [2.85, 700],
+    [3.36, 800],
+    [3.88, 900],
+    [4.41, 1000],
+    [4.95, 1100],
+    [5.48, 1200],
+    [6.03, 1300],
+    [6.58, 1400],
+    [7.14, 1500],
+    [7.71, 1600],
+    [8.28, 1700],
+    [8.86, 1800],
+    [9.44, 1900],
+    [10.03, 2000],
+    [10.63, 2100],
+    [11.24, 2200],
+    [11.84, 2300],
+    [12.46, 2400],
+    [13.08, 2500],
+    [13.72, 2600],
+    [14.34, 2700],
+    [14.99, 2800],
+    [15.63, 2900],
+    [16.29, 3000],
+    [16.95, 3100],
+    [17.62, 3200],
+    [18.28, 3300],
+    [18.97, 3400],
+    [19.66, 3500],
+  ];
+
+  const parseDecimal = (value) => {
+    const normalized = String(value).trim().replace(",", ".");
+    const parsed = Number(normalized);
+    return Number.isFinite(parsed) ? parsed : NaN;
+  };
+
+  const formatRatio = (value) =>
+    value.toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+  const formatTemperature = (value) =>
+    value.toLocaleString("pt-BR", {
+      maximumFractionDigits: 0,
+    });
+
+  const interpolateTemperature = (ratio) => {
+    const first = tungstenTable[0];
+    const last = tungstenTable[tungstenTable.length - 1];
+
+    if (ratio < first[0] || ratio > last[0]) {
+      return null;
+    }
+
+    for (let index = 0; index < tungstenTable.length - 1; index += 1) {
+      const lower = tungstenTable[index];
+      const upper = tungstenTable[index + 1];
+
+      if (ratio === lower[0]) {
+        return { temperature: lower[1], lower, upper: lower };
+      }
+
+      if (ratio >= lower[0] && ratio <= upper[0]) {
+        const fraction = (ratio - lower[0]) / (upper[0] - lower[0]);
+        const temperature = lower[1] + fraction * (upper[1] - lower[1]);
+        return { temperature, lower, upper };
+      }
+    }
+
+    return { temperature: last[1], lower: last, upper: last };
+  };
+
+  document.querySelectorAll("[data-temperature-calculator]").forEach((calculator) => {
+    const ratioInput = calculator.querySelector("[data-ratio]");
+    const voltageInput = calculator.querySelector("[data-voltage]");
+    const currentInput = calculator.querySelector("[data-current]");
+    const referenceInput = calculator.querySelector("[data-reference]");
+    const output = calculator.querySelector("[data-output]");
+    const detail = calculator.querySelector("[data-detail]");
+    const clearButton = calculator.querySelector("[data-clear]");
+
+    if (
+      !(ratioInput instanceof HTMLInputElement) ||
+      !(voltageInput instanceof HTMLInputElement) ||
+      !(currentInput instanceof HTMLInputElement) ||
+      !(referenceInput instanceof HTMLInputElement) ||
+      !(output instanceof HTMLElement) ||
+      !(detail instanceof HTMLElement) ||
+      !(clearButton instanceof HTMLButtonElement)
+    ) {
+      return;
+    }
+
+    const showRatio = (ratio, source) => {
+      const result = interpolateTemperature(ratio);
+
+      if (!result) {
+        output.textContent = "Valor fora da tabela.";
+        detail.textContent = "Use apenas razões entre 1,00 e 19,66. Não extrapole a temperatura.";
+        return;
+      }
+
+      output.textContent = `T ≈ ${formatTemperature(result.temperature)} K`;
+
+      if (result.lower[0] === result.upper[0]) {
+        detail.textContent = `r = ${formatRatio(ratio)} corresponde diretamente a ${formatTemperature(result.temperature)} K na tabela.`;
+        return;
+      }
+
+      detail.textContent = `${source}: r = ${formatRatio(ratio)}, interpolado entre ${formatRatio(result.lower[0])} (${formatTemperature(result.lower[1])} K) e ${formatRatio(result.upper[0])} (${formatTemperature(result.upper[1])} K).`;
+    };
+
+    const updateFromRatio = () => {
+      const ratio = parseDecimal(ratioInput.value);
+
+      if (!Number.isFinite(ratio)) {
+        output.textContent = "Digite uma razão entre 1,00 e 19,66.";
+        detail.textContent = "A temperatura será estimada dentro do intervalo tabulado.";
+        return;
+      }
+
+      showRatio(ratio, "entrada direta");
+    };
+
+    const updateFromElectricalData = () => {
+      const voltage = parseDecimal(voltageInput.value);
+      const current = parseDecimal(currentInput.value);
+      const reference = parseDecimal(referenceInput.value);
+
+      if (!Number.isFinite(voltage) || !Number.isFinite(current) || !Number.isFinite(reference)) {
+        updateFromRatio();
+        return;
+      }
+
+      if (current <= 0 || reference <= 0) {
+        output.textContent = "Confira os valores digitados.";
+        detail.textContent = "A corrente e R_ref devem ser maiores que zero.";
+        return;
+      }
+
+      const resistance = voltage / current;
+      const ratio = resistance / reference;
+      ratioInput.value = formatRatio(ratio);
+      showRatio(ratio, `R = ${formatRatio(resistance)} Ω`);
+    };
+
+    ratioInput.addEventListener("input", updateFromRatio);
+    voltageInput.addEventListener("input", updateFromElectricalData);
+    currentInput.addEventListener("input", updateFromElectricalData);
+    referenceInput.addEventListener("input", updateFromElectricalData);
+
+    clearButton.addEventListener("click", () => {
+      ratioInput.value = "";
+      voltageInput.value = "";
+      currentInput.value = "";
+      referenceInput.value = "";
+      output.textContent = "Digite uma razão entre 1,00 e 19,66.";
+      detail.textContent = "A temperatura será estimada dentro do intervalo tabulado.";
+      ratioInput.focus();
+    });
+  });
+</script>

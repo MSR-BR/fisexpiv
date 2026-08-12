@@ -16,6 +16,7 @@ sourcesStatus: "Material da disciplina, folha de manipulação, planilha de ajus
 ---
 
 import PracticeSection from "../../../components/practice/PracticeSection.astro";
+import TungstenTemperatureCalculator from "../../../components/practice/TungstenTemperatureCalculator.astro";
 import LatexBlock from "../../../components/ui/LatexBlock.astro";
 import LatexInline from "../../../components/ui/LatexInline.astro";
 
@@ -23,7 +24,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <ul>
     <li>Compreender a lei de Stefan-Boltzmann como relação entre intensidade irradiada e temperatura absoluta.</li>
     <li>Usar medidas de tensão e corrente para determinar a resistência elétrica do filamento aquecido.</li>
-    <li>Converter a razão <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} /> em temperatura do filamento usando a tabela de resistividade relativa do tungstênio.</li>
+    <li>Converter a razão <LatexInline expression={String.raw`r=R/R_{\mathrm{ref}}`} /> em temperatura do filamento usando a tabela de resistividade relativa do tungstênio.</li>
     <li>Construir o gráfico <LatexInline expression={String.raw`\ln(S)`} /> em função de <LatexInline expression={String.raw`\ln(T)`} /> e obter o coeficiente angular por ajuste linear.</li>
     <li>Comparar o expoente experimental com o valor esperado para a lei de Stefan-Boltzmann.</li>
   </ul>
@@ -72,25 +73,16 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <p>
     Em seguida, calcula-se a razão adimensional:
   </p>
-  <LatexBlock expression={String.raw`\frac{R}{R_{\mathrm{ref}}}`} />
+  <LatexBlock expression={String.raw`r=\frac{R}{R_{\mathrm{ref}}}`} />
   <p>
-    No manual da PASCO, para grandes variações de temperatura, não se recomenda usar um coeficiente de temperatura constante para o
-    tungstênio. O procedimento indicado é usar a tabela ou o gráfico de resistividade relativa do tungstênio. Essa tabela é referida a
-    <LatexInline expression={String.raw`300\ \mathrm{K}`} />. Nesta prática, vamos usar diretamente
-    <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} /> como a razão
-    <LatexInline expression={String.raw`R_T/R_{300\mathrm{K}}`} /> da tabela, considerando que a temperatura ambiente seja
-    aproximadamente <LatexInline expression={String.raw`300\ \mathrm{K}`} />. Depois, a temperatura do filamento é encontrada por
-    interpolação na mesma tabela.
+    A tabela do tungstênio relaciona essa razão com a temperatura do filamento. Nesta prática, usamos
+    <LatexInline expression={String.raw`r=R/R_{\mathrm{ref}}`} /> diretamente na tabela, considerando que a temperatura ambiente seja
+    próxima de <LatexInline expression={String.raw`300\ \mathrm{K}`} />.
   </p>
-  <div class="callout">
-    <strong>Observação importante.</strong> A equação polinomial usada em alguns roteiros antigos é uma aproximação prática para a
-    tabela de tungstênio, mas ela não aparece como fórmula principal no manual da PASCO. Neste roteiro, a referência conceitual deve
-    ser a tabela/gráfico de resistividade relativa.
-  </div>
 
   <h3>Tabela de referência para o tungstênio</h3>
 
-  | `R_T/R_300K` | `T` (K) | `R_T/R_300K` | `T` (K) | `R_T/R_300K` | `T` (K) |
+  | `r = R/R_ref` | `T` (K) | `r = R/R_ref` | `T` (K) | `r = R/R_ref` | `T` (K) |
   | --- | --- | --- | --- | --- | --- |
   | 1,00 | 300 | 5,48 | 1200 | 10,63 | 2100 |
   | 1,43 | 400 | 6,03 | 1300 | 11,24 | 2200 |
@@ -104,30 +96,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   | 16,29 | 3000 | 16,95 | 3100 | 17,62 | 3200 |
   | 18,28 | 3300 | 18,97 | 3400 | 19,66 | 3500 |
 
-  <figure>
-    <img
-      src="../../images/practices/stefan-boltzmann/tungsten-temperature-fit.svg"
-      alt="Gráfico da temperatura do filamento de tungstênio em função da razão R_T/R_300K, com pontos da tabela e ajuste polinomial."
-      loading="lazy"
-    />
-    <figcaption>
-      Tabela de referência do tungstênio representada graficamente. O ajuste polinomial serve apenas como interpolação numérica no
-      intervalo tabulado.
-    </figcaption>
-  </figure>
-
-  <p>
-    Para facilitar a interpolação, pode-se usar o ajuste polinomial de quarta ordem abaixo, com
-    <LatexInline expression={String.raw`y=R_T/R_{300\mathrm{K}}`} />:
-  </p>
-  <LatexBlock
-    expression={String.raw`T(y)\approx 85{,}62+228{,}62y-5{,}718y^2+0{,}2398y^3-0{,}004651y^4`}
-  />
-  <p>
-    Essa expressão não deve ser extrapolada: use-a apenas para valores de <LatexInline expression={String.raw`y`} /> dentro do
-    intervalo da tabela, aproximadamente de <LatexInline expression={String.raw`1{,}00`} /> a
-    <LatexInline expression={String.raw`19{,}66`} />.
-  </p>
+  <TungstenTemperatureCalculator />
 
   <p>
     O sinal do sensor de radiação, medido em milivolts, deve ser convertido para unidade de intensidade usando:
@@ -152,7 +121,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   </p>
   <p>
     A resistência do filamento aumenta com a temperatura. Por isso, a combinação das medidas elétricas <code>V</code> e <code>I</code>
-    permite estimar <LatexInline expression={String.raw`R`} />, depois <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} /> e finalmente a temperatura <LatexInline expression={String.raw`T`} />. A leitura do sensor fornece
+    permite estimar <LatexInline expression={String.raw`R`} />, depois <LatexInline expression={String.raw`r=R/R_{\mathrm{ref}}`} /> e finalmente a temperatura <LatexInline expression={String.raw`T`} />. A leitura do sensor fornece
     uma grandeza proporcional à radiação recebida.
   </p>
   <p>
@@ -232,7 +201,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
   <h3>Cálculos para o ajuste</h3>
 
-  | Tensão ajustada (V) | `R = V/I` (Ω) | `R/R_ref` | `T` (K) | `S` (W/m²) | `ln(T)` | `ln(S)` |
+  | Tensão ajustada (V) | `R = V/I` (Ω) | `r = R/R_ref` | `T` (K) | `S` (W/m²) | `ln(T)` | `ln(S)` |
   | --- | --- | --- | --- | --- | --- | --- |
   | 1,0 |  |  |  |  |  |  |
   | 2,0 |  |  |  |  |  |  |
@@ -258,7 +227,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   </p>
   <LatexBlock expression={String.raw`\Delta R = R\left(\frac{\Delta V}{V}+\frac{\Delta I}{I}\right)`} />
   <p>
-    Depois calcule a razão <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} />, a temperatura <LatexInline expression={String.raw`T`} /> por interpolação na tabela de resistividade relativa do tungstênio e o sinal convertido
+    Depois calcule a razão <LatexInline expression={String.raw`r=R/R_{\mathrm{ref}}`} />, a temperatura <LatexInline expression={String.raw`T`} /> por interpolação na tabela de resistividade relativa do tungstênio e o sinal convertido
     <code>S</code> em <code>W/m²</code>. Para o sinal convertido:
   </p>
   <LatexBlock expression={String.raw`\Delta S(\mathrm{W/m^2}) = 11{,}36\,\Delta S(\mathrm{mV})`} />
@@ -330,7 +299,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>introdução curta sobre radiação térmica, corpo negro e lei de Stefan-Boltzmann;</li>
     <li>descrição resumida da lâmpada, do sensor e da montagem elétrica;</li>
     <li>tabelas de tensão, corrente, sinal do sensor e cálculos intermediários;</li>
-    <li>cálculo de <LatexInline expression={String.raw`R`} />, <LatexInline expression={String.raw`R/R_{\mathrm{ref}}`} />, <LatexInline expression={String.raw`T`} />, <LatexInline expression={String.raw`S`} />, <LatexInline expression={String.raw`\ln(T)`} /> e <LatexInline expression={String.raw`\ln(S)`} />;</li>
+    <li>cálculo de <LatexInline expression={String.raw`R`} />, <LatexInline expression={String.raw`r=R/R_{\mathrm{ref}}`} />, <LatexInline expression={String.raw`T`} />, <LatexInline expression={String.raw`S`} />, <LatexInline expression={String.raw`\ln(T)`} /> e <LatexInline expression={String.raw`\ln(S)`} />;</li>
     <li>gráfico <LatexInline expression={String.raw`\ln(S)`} /> versus <LatexInline expression={String.raw`\ln(T)`} /> usando todos os pontos;</li>
     <li>novo gráfico ou novo ajuste retirando os cinco primeiros pontos;</li>
     <li>comparação dos coeficientes angulares com o valor esperado <code>4</code>;</li>

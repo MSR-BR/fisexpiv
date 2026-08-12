@@ -888,6 +888,119 @@ img {
   line-height: 1.5;
 }
 
+.temperature-calculator {
+  display: grid;
+  gap: 16px;
+  margin: 18px 0;
+  border: 1px solid rgba(13, 76, 125, 0.16);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(13, 76, 125, 0.06), rgba(255, 255, 255, 0.92));
+  box-shadow: 0 14px 30px rgba(15, 42, 67, 0.07);
+}
+
+.temperature-calculator__header {
+  display: grid;
+  gap: 6px;
+}
+
+.temperature-calculator__header h3,
+.temperature-calculator__header p {
+  margin: 0;
+}
+
+.temperature-calculator__body,
+.temperature-calculator__fields {
+  display: grid;
+  gap: 12px;
+}
+
+.temperature-calculator__fields {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.temperature-calculator__field {
+  display: grid;
+  gap: 7px;
+  color: var(--brand-deep);
+  font-weight: 800;
+}
+
+.temperature-calculator__field span {
+  font-size: 0.94rem;
+}
+
+.temperature-calculator__field input {
+  width: 100%;
+  border: 1px solid rgba(13, 76, 125, 0.2);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.temperature-calculator__field input:focus {
+  outline: 3px solid rgba(13, 76, 125, 0.16);
+  border-color: var(--brand);
+}
+
+.temperature-calculator__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.temperature-calculator__divider::before,
+.temperature-calculator__divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: rgba(13, 76, 125, 0.16);
+}
+
+.temperature-calculator__result {
+  display: grid;
+  gap: 5px;
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: #fff;
+  color: var(--muted);
+}
+
+.temperature-calculator__result strong {
+  color: var(--brand-deep);
+  font-size: clamp(1.25rem, 4vw, 1.8rem);
+}
+
+.temperature-calculator__result span {
+  line-height: 1.55;
+}
+
+.temperature-calculator__clear {
+  justify-self: start;
+  border: 1px solid rgba(13, 76, 125, 0.18);
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: #fff;
+  color: var(--brand);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.temperature-calculator__clear:hover,
+.temperature-calculator__clear:focus-visible {
+  border-color: var(--brand);
+  outline: none;
+}
+
 .callout {
   margin: 16px 0;
   border-left: 4px solid var(--accent);
@@ -1047,6 +1160,14 @@ img {
 
   .practice-section__body .katex {
     font-size: 1em;
+  }
+
+  .temperature-calculator {
+    padding: 16px;
+  }
+
+  .temperature-calculator__fields {
+    grid-template-columns: 1fr;
   }
 
   .stats-grid,
