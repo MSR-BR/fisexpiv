@@ -112,6 +112,31 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   | 16,29 | 3000 | 16,95 | 3100 | 17,62 | 3200 |
   | 18,28 | 3300 | 18,97 | 3400 | 19,66 | 3500 |
 
+  <figure>
+    <img
+      src="../../images/practices/stefan-boltzmann/tungsten-temperature-fit.svg"
+      alt="Gráfico da temperatura do filamento de tungstênio em função da razão R_T/R_300K, com pontos da tabela e ajuste polinomial."
+      loading="lazy"
+    />
+    <figcaption>
+      Tabela de referência do tungstênio representada graficamente. O ajuste polinomial serve apenas como interpolação numérica no
+      intervalo tabulado.
+    </figcaption>
+  </figure>
+
+  <p>
+    Para facilitar a interpolação, pode-se usar o ajuste polinomial de quarta ordem abaixo, com
+    <LatexInline expression={String.raw`y=R_T/R_{300\mathrm{K}}`} />:
+  </p>
+  <LatexBlock
+    expression={String.raw`T(y)\approx 85{,}62+228{,}62y-5{,}718y^2+0{,}2398y^3-0{,}004651y^4`}
+  />
+  <p>
+    Essa expressão não deve ser extrapolada: use-a apenas para valores de <LatexInline expression={String.raw`y`} /> dentro do
+    intervalo da tabela, aproximadamente de <LatexInline expression={String.raw`1{,}00`} /> a
+    <LatexInline expression={String.raw`19{,}66`} />.
+  </p>
+
   <p>
     O sinal do sensor de radiação, medido em milivolts, deve ser convertido para unidade de intensidade usando:
   </p>
