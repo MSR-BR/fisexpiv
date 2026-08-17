@@ -74,6 +74,15 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     ajuda a dar significado físico a <strong>λ<sub>max</sub></strong> e a distinguir entre aumento da intensidade total e mudança na
     forma da distribuição espectral.
   </p>
+  <p>
+    A temperatura do cubo é estimada a partir da resistência elétrica <code>R</code> do termístor. Nesta prática, use <code>R</code>
+    em <strong>Ω</strong> na expressão:
+  </p>
+  <LatexBlock expression={String.raw`T(R)=-129{,}23+\frac{1487{,}14}{\left(1+0{,}14590R\right)^{0{,}137}}`} />
+  <p>
+    Por exemplo, se o multímetro indicar <strong>10 kΩ</strong>, registre e utilize <code>R=10\,000\,Ω</code>, e não <code>R=10</code>.
+    O resultado da expressão é a temperatura aproximada do cubo em kelvin.
+  </p>
 </PracticeSection>
 
 <PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
@@ -241,7 +250,6 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Os dois plásticos e os dois tecidos apresentam resultados próximos dentro de cada categoria ou diferenças claras? Comente.</li>
     <li>Por que a face polida tende a emitir menos radiação térmica do que a face preta?</li>
     <li>Compare as leituras incidente e transmitida pelo vidro. O que a diferença entre elas indica?</li>
-    <li>Na medida de reflexão, por que a placa de vidro é colocada a 45° e por que a leitura sem material não deve ser subtraída da leitura refletida?</li>
     <li>Com base nos resultados do vidro, como você explicaria qualitativamente o funcionamento de uma estufa de plantas?</li>
     <li>Imagine um ambiente interno revestido por alumínio em um dia quente. Que acabamento interno ajudaria a reduzir o aquecimento? Justifique usando os resultados do cubo de Leslie.</li>
   </ol>
