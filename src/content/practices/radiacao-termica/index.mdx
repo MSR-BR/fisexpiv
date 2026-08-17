@@ -99,15 +99,8 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   <p>
     Para o vidro, faça uma medida adicional com a placa inclinada a 45°, orientando o sensor para a direção do feixe refletido. Essa
     leitura é <code>S_refletido</code>. Ela é a leitura obtida nessa geometria de reflexão; não se deve subtrair dela a leitura
-    direta, pois a leitura direta corresponde a outra posição do sensor e será usada apenas como referência para calcular a fração
-    refletida.
-  </p>
-
-  <h3>Parte 3 - Transmissão da radiação direta da lâmpada pelo vidro</h3>
-  <p>
-    Retire a tampa do cubo e direcione o sensor para a lâmpada interna. Primeiro meça a radiação direta sem o vidro e depois coloque o
-    vidro entre a lâmpada e o sensor, sem alterar a geometria. Essas duas leituras respondem se o vidro transmite a radiação direta da
-    lâmpada de modo diferente da radiação emitida pelo cubo aquecido.
+    sem material, pois as duas leituras correspondem a geometrias diferentes. A leitura sem material é a referência para calcular a
+    fração refletida.
   </p>
   <p>
     A conservação de energia orienta a interpretação: a radiação incidente sobre um material pode ser repartida entre parcelas
@@ -145,8 +138,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Não desligue o cubo ao final dessa primeira parte, porque ele será usado na etapa de transmissão.</li>
     <li>Escolha a face de maior emissão e posicione o sensor a cerca de <code>5 cm</code> dela.</li>
     <li>Para cada material, faça uma leitura sem material e registre-a como <code>S_incidente</code>. Em seguida, coloque o material no mesmo ponto e registre a leitura atrás dele como <code>S_transmitido</code>.</li>
-    <li>Para o vidro, incline a placa a <strong>45°</strong>, oriente o sensor para o feixe refletido e registre essa leitura como <code>S_refletido</code>. Não subtraia dela a leitura direta.</li>
-    <li>Retire a tampa do cubo, direcione o sensor para a lâmpada interna e meça <code>S_incidente,lâmpada</code> sem vidro e <code>S_transmitido,lâmpada</code> com o vidro, sem alterar a geometria.</li>
+    <li>Para o vidro, incline a placa a <strong>45°</strong>, oriente o sensor para o feixe refletido e registre essa leitura como <code>S_refletido</code>. Não subtraia dela a leitura sem material.</li>
   </ol>
   <div class="callout">
     <strong>Cuidado operacional.</strong> O cubo pode atingir temperaturas elevadas. Não mantenha o sensor encostado na face quente por
@@ -200,11 +192,6 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   | --- | --- | --- | --- | --- | --- |
   | Vidro |  |  |  |  |  |
 
-  <h3>Transmissão da radiação direta da lâmpada pela placa de vidro</h3>
-
-  | Material | Lâmpada sem vidro (mV) | Incerteza (mV) | Lâmpada com vidro (mV) | Incerteza (mV) | Transmissão (%) |
-  | --- | --- | --- | --- | --- | --- |
-  | Vidro |  |  |  |  |  |
 </PracticeSection>
 
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
@@ -228,7 +215,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   <LatexBlock expression={String.raw`\rho = \frac{S_{\mathrm{refletido}}}{S_{\mathrm{incidente}}}\times 100\%`} />
   <p>
     Para o vidro, use como <code>S_refletido</code> a leitura obtida com a placa a 45° e o sensor orientado para o feixe refletido. A
-    leitura direta sem vidro não é subtraída: ela foi feita em outra geometria e serve como referência da radiação incidente.
+    leitura sem material não é subtraída: ela foi feita em outra geometria e serve como referência da radiação incidente.
   </p>
   <p>
     Se desejar estimar a fração absorvida pelo material, use:
@@ -240,7 +227,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   <ol>
     <li>a ordem das superfícies por emissão permanece a mesma ao mudar a potência?</li>
     <li>os resultados são coerentes com a regra de que bons absorvedores tendem a ser bons emissores?</li>
-    <li>o vidro transmite a radiação do cubo e a radiação direta da lâmpada de modo semelhante ou diferente?</li>
+    <li>o vidro transmite, reflete e absorve a radiação do cubo de modo compatível com as medidas realizadas?</li>
     <li>os dados ajudam a explicar qualitativamente o funcionamento de uma estufa?</li>
   </ol>
 </PracticeSection>
@@ -252,8 +239,8 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>As duas faces da espuma se comportam de modo semelhante ou diferente? O que isso sugere sobre o papel do acabamento superficial?</li>
     <li>Os dois plásticos e os dois tecidos apresentam resultados próximos dentro de cada categoria ou diferenças claras? Comente.</li>
     <li>Por que a face polida tende a emitir menos radiação térmica do que a face preta?</li>
-    <li>Compare a transmissão pelo vidro da radiação do cubo com a transmissão da radiação direta da lâmpada. O que essa comparação indica sobre a dependência espectral da transmissão?</li>
-    <li>Na medida de reflexão, por que a placa de vidro é colocada a 45° e por que a leitura direta não deve ser subtraída da leitura refletida?</li>
+    <li>Compare as leituras incidente e transmitida pelo vidro. O que a diferença entre elas indica?</li>
+    <li>Na medida de reflexão, por que a placa de vidro é colocada a 45° e por que a leitura sem material não deve ser subtraída da leitura refletida?</li>
     <li>Com base nos resultados do vidro, como você explicaria qualitativamente o funcionamento de uma estufa de plantas?</li>
     <li>Imagine um ambiente interno revestido por alumínio em um dia quente. Que acabamento interno ajudaria a reduzir o aquecimento? Justifique usando os resultados do cubo de Leslie.</li>
   </ol>
@@ -294,8 +281,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>cálculo da temperatura do cubo a partir do termístor, usando <code>R</code> em Ω;</li>
     <li>ordenação das superfícies por emissão e comentário sobre emissividade relativa;</li>
     <li>cálculo das porcentagens de transmissão e reflexão, usando a leitura incidente como referência;</li>
-    <li>comparação separada entre o vidro diante do cubo aquecido e diante da lâmpada direta;</li>
-    <li>discussão específica do vidro e da relação com o efeito estufa;</li>
+    <li>discussão específica da transmissão, reflexão e absorção no vidro e da relação com o efeito estufa;</li>
     <li>seção opcional separada para o simulador, usada apenas como apoio conceitual;</li>
     <li>conclusão final com os principais resultados físicos do experimento.</li>
   </ol>
