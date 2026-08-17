@@ -77,6 +77,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 </PracticeSection>
 
 <PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
+  <h3>Parte 1 - Emissão pelas faces do cubo</h3>
   <p>
     O experimento usa um cubo de Leslie aquecido eletricamente, um sensor de radiação baseado em termopar, um milivoltímetro e um
     ohmímetro ligado ao termístor do aparato. As quatro faces laterais do cubo têm acabamentos distintos: preta, branca, polida e
@@ -84,29 +85,36 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     efeito da superfície sobre a emissão térmica.
   </p>
   <p>
-    Na segunda parte da prática, o mesmo sensor é usado para comparar transmissão e reflexão em materiais colocados entre a fonte e o
-    detector. Isso permite discutir por que materiais diferentes respondem de modo diferente à radiação incidente e por que o vidro,
-    por exemplo, pode transmitir melhor radiação de uma lâmpada do que radiação térmica emitida por superfícies já aquecidas.
+    Para cada condição de aquecimento, meça a resistência do termístor e a tensão do sensor para as quatro faces. A resistência será
+    convertida em temperatura e a tensão do sensor será usada como medida relativa da radiação recebida.
+  </p>
+
+  <h3>Parte 2 - Transmissão e reflexão da radiação do cubo</h3>
+  <p>
+    Escolha a face de maior emissão e mantenha fixas a distância, a orientação e a posição do sensor. Para cada material, faça uma
+    leitura sem o material, mantendo a posição reservada para ele. Essa é a leitura <strong>incidente</strong>,
+    <code>S_incidente</code>. Depois coloque o material no mesmo lugar e faça a leitura atrás dele. Essa é a leitura
+    <strong>transmitida</strong>, <code>S_transmitido</code>.
   </p>
   <p>
-    Nesse contexto experimental, a conservação de energia fornece a justificativa física para o tratamento dos dados. A radiação que
-    chega ao material não desaparece: ela precisa ser repartida entre uma parcela refletida, outra absorvida e outra transmitida.
-    Por isso, ao comparar as leituras do sensor antes e depois da colocação de cada material, usamos a relação:
+    Para o vidro, faça uma medida adicional com a placa inclinada a 45°, orientando o sensor para a direção do feixe refletido. Essa
+    leitura é <code>S_refletido</code>. Ela é a leitura obtida nessa geometria de reflexão; não se deve subtrair dela a leitura
+    direta, pois a leitura direta corresponde a outra posição do sensor e será usada apenas como referência para calcular a fração
+    refletida.
+  </p>
+
+  <h3>Parte 3 - Transmissão da radiação direta da lâmpada pelo vidro</h3>
+  <p>
+    Retire a tampa do cubo e direcione o sensor para a lâmpada interna. Primeiro meça a radiação direta sem o vidro e depois coloque o
+    vidro entre a lâmpada e o sensor, sem alterar a geometria. Essas duas leituras respondem se o vidro transmite a radiação direta da
+    lâmpada de modo diferente da radiação emitida pelo cubo aquecido.
+  </p>
+  <p>
+    A conservação de energia orienta a interpretação: a radiação incidente sobre um material pode ser repartida entre parcelas
+    refletida, absorvida e transmitida. Na prática, o sensor mede apenas a parcela que chega até ele. Portanto, as porcentagens obtidas
+    são comparações experimentais para a geometria e a fonte utilizadas, e não uma caracterização completa do material.
   </p>
   <LatexBlock expression={String.raw`E_{\mathrm{incidente}} = E_{\mathrm{refletida}} + E_{\mathrm{absorvida}} + E_{\mathrm{transmitida}}`} />
-  <p>
-    Como o sensor fornece uma tensão proporcional à radiação recebida, as razões entre leituras incidentes, transmitidas e
-    refletidas podem ser usadas para comparar qualitativamente transmissão, reflexão e absorção no próprio contexto da bancada.
-  </p>
-  <p>
-    A temperatura do cubo não é lida diretamente em um termômetro convencional. Ela é inferida a partir da resistência do termístor
-    do aparato. Se <code>R</code> for medida em <strong>kΩ</strong>, a temperatura estimada pode ser obtida por:
-  </p>
-  <LatexBlock expression={String.raw`T = -129.23 + \frac{1487.14}{(1 + 145.90\,R)^{0.137}}`} />
-  <p>
-    Essa etapa é importante porque permite comparar as diferentes faces do cubo em condições térmicas equivalentes, em vez de
-    comparar apenas leituras do sensor sem referência de temperatura.
-  </p>
 </PracticeSection>
 
 <PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
@@ -119,8 +127,9 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>cabos e fonte de alimentação do cubo.</li>
   </ul>
   <p>
-    Na etapa de emissão, o sensor é aproximado de cada face do cubo apenas no instante de leitura. Na etapa de transmissão, o sensor
-    é mantido a cerca de <code>5 cm</code> da face emissora escolhida e os materiais são posicionados entre a fonte e o detector.
+    Na etapa de emissão, o sensor é aproximado de cada face do cubo apenas no instante de leitura. Nas etapas de transmissão e
+    reflexão, mantenha o sensor a cerca de <code>5 cm</code> da face emissora escolhida e posicione cada material no mesmo ponto entre
+    a fonte e o detector.
   </p>
 </PracticeSection>
 
@@ -130,15 +139,14 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Ligue o cubo e coloque inicialmente a chave de potência na posição <code>High</code>.</li>
     <li>Acompanhe a leitura do termístor; quando ela atingir aproximadamente <strong>40 kΩ</strong>, reduza a chave para a posição <code>5,0</code>.</li>
     <li>Espere o sistema atingir equilíbrio térmico, identificado por flutuação pequena da resistência em torno de um valor quase fixo.</li>
-    <li>Meça rapidamente a radiação emitida por cada face: preta, branca, polida e áspera.</li>
-    <li>Registre também a resistência do termístor e estime a temperatura correspondente.</li>
+    <li>Meça rapidamente a radiação emitida por cada face: preta, branca, polida e áspera. Registre as quatro leituras na tabela da condição correspondente.</li>
+    <li>Registre a resistência do termístor uma vez em cada condição de aquecimento e estime a temperatura correspondente.</li>
     <li>Repita o procedimento para as posições <code>6,5</code> e <code>8,0</code>.</li>
     <li>Não desligue o cubo ao final dessa primeira parte, porque ele será usado na etapa de transmissão.</li>
-    <li>Escolha a face de maior emissividade e posicione o sensor a cerca de <code>5 cm</code> dela.</li>
-    <li>Meça a leitura incidente sem obstáculo e, em seguida, com cada material entre a fonte e o sensor.</li>
-    <li>Para a placa de vidro, faça também a medida de reflexão usando a placa a <strong>45°</strong>, orientando a radiação refletida para o sensor.</li>
-    <li>Na medida de reflexão, desconte o sinal que chegaria diretamente ao sensor sem a reflexão útil da placa.</li>
-    <li>Por fim, retire a tampa do cubo, direcione o sensor para a lâmpada interna e meça a transmissão da radiação direta pela placa de vidro.</li>
+    <li>Escolha a face de maior emissão e posicione o sensor a cerca de <code>5 cm</code> dela.</li>
+    <li>Para cada material, faça uma leitura sem material e registre-a como <code>S_incidente</code>. Em seguida, coloque o material no mesmo ponto e registre a leitura atrás dele como <code>S_transmitido</code>.</li>
+    <li>Para o vidro, incline a placa a <strong>45°</strong>, oriente o sensor para o feixe refletido e registre essa leitura como <code>S_refletido</code>. Não subtraia dela a leitura direta.</li>
+    <li>Retire a tampa do cubo, direcione o sensor para a lâmpada interna e meça <code>S_incidente,lâmpada</code> sem vidro e <code>S_transmitido,lâmpada</code> com o vidro, sem alterar a geometria.</li>
   </ol>
   <div class="callout">
     <strong>Cuidado operacional.</strong> O cubo pode atingir temperaturas elevadas. Não mantenha o sensor encostado na face quente por
@@ -153,57 +161,30 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <code>5,0</code>, <code>6,5</code> e <code>8,0</code> exatamente como indicadas no equipamento.
   </p>
 
-  <h3>Emissão de radiação térmica - potência 5,0</h3>
+  <p>
+    Na tabela abaixo, use <strong>Potência #1</strong>, <strong>Potência #2</strong> e <strong>Potência #3</strong> para identificar,
+    respectivamente, as posições <code>5,0</code>, <code>6,5</code> e <code>8,0</code> do equipamento. A coluna <code>R</code> deve ser
+    preenchida em <strong>Ω</strong>; se o aparelho indicar 10 kΩ, registre 10 000 Ω.
+  </p>
 
-  | Grandeza | Valor |
-  | --- | --- |
-  | Termístor `R` |  |
-  | Incerteza em `R` |  |
-  | Temperatura `T` |  |
-  | Incerteza em `T` |  |
-
-  | Superfície | Sensor (mV) | Incerteza (mV) | Emissividade relativa `S/S_preta` |
-  | --- | --- | --- | --- |
-  | Preta |  |  | 1,00 |
-  | Branca |  |  |  |
-  | Polida |  |  |  |
-  | Áspera |  |  |  |
-
-  <h3>Emissão de radiação térmica - potência 6,5</h3>
-
-  | Grandeza | Valor |
-  | --- | --- |
-  | Termístor `R` |  |
-  | Incerteza em `R` |  |
-  | Temperatura `T` |  |
-  | Incerteza em `T` |  |
-
-  | Superfície | Sensor (mV) | Incerteza (mV) | Emissividade relativa `S/S_preta` |
-  | --- | --- | --- | --- |
-  | Preta |  |  | 1,00 |
-  | Branca |  |  |  |
-  | Polida |  |  |  |
-  | Áspera |  |  |  |
-
-  <h3>Emissão de radiação térmica - potência 8,0</h3>
-
-  | Grandeza | Valor |
-  | --- | --- |
-  | Termístor `R` |  |
-  | Incerteza em `R` |  |
-  | Temperatura `T` |  |
-  | Incerteza em `T` |  |
-
-  | Superfície | Sensor (mV) | Incerteza (mV) | Emissividade relativa `S/S_preta` |
-  | --- | --- | --- | --- |
-  | Preta |  |  | 1,00 |
-  | Branca |  |  |  |
-  | Polida |  |  |  |
-  | Áspera |  |  |  |
+  | # | Face | `R` (Ω) | `T` (K) | Sensor (mV) | Incerteza (mV) | `S/S_preta` |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | 1 | Preta |  |  |  |  | 1,00 |
+  | 1 | Branca |  |  |  |  |  |
+  | 1 | Polida |  |  |  |  |  |
+  | 1 | Áspera |  |  |  |  |  |
+  | 2 | Preta |  |  |  |  | 1,00 |
+  | 2 | Branca |  |  |  |  |  |
+  | 2 | Polida |  |  |  |  |  |
+  | 2 | Áspera |  |  |  |  |  |
+  | 3 | Preta |  |  |  |  | 1,00 |
+  | 3 | Branca |  |  |  |  |  |
+  | 3 | Polida |  |  |  |  |  |
+  | 3 | Áspera |  |  |  |  |  |
 
   <h3>Transmissão de radiação térmica</h3>
 
-  | Material | Valor incidente (mV) | Incerteza (mV) | Valor transmitido (mV) | Incerteza (mV) | Transmissão (%) |
+  | Material | Sem material (mV) | Incerteza (mV) | Com material (mV) | Incerteza (mV) | Transmissão (%) |
   | --- | --- | --- | --- | --- | --- |
   | Tecido vermelho |  |  |  |  |  |
   | Tecido azul |  |  |  |  |  |
@@ -215,13 +196,13 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
   <h3>Reflexão na placa de vidro</h3>
 
-  | Material | Valor incidente (mV) | Incerteza (mV) | Valor refletido corrigido (mV) | Incerteza (mV) | Reflexão (%) |
+  | Material | Sem vidro (mV) | Incerteza (mV) | Vidro a 45° (mV) | Incerteza (mV) | Reflexão (%) |
   | --- | --- | --- | --- | --- | --- |
   | Vidro |  |  |  |  |  |
 
   <h3>Transmissão da radiação direta da lâmpada pela placa de vidro</h3>
 
-  | Material | Valor incidente (mV) | Incerteza (mV) | Valor transmitido (mV) | Incerteza (mV) | Transmissão (%) |
+  | Material | Lâmpada sem vidro (mV) | Incerteza (mV) | Lâmpada com vidro (mV) | Incerteza (mV) | Transmissão (%) |
   | --- | --- | --- | --- | --- | --- |
   | Vidro |  |  |  |  |  |
 </PracticeSection>
@@ -246,21 +227,20 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   <LatexBlock expression={String.raw`\tau = \frac{S_{\mathrm{transmitido}}}{S_{\mathrm{incidente}}}\times 100\%`} />
   <LatexBlock expression={String.raw`\rho = \frac{S_{\mathrm{refletido}}}{S_{\mathrm{incidente}}}\times 100\%`} />
   <p>
-    Na placa de vidro, o valor refletido deve ser corrigido subtraindo o sinal que chega diretamente ao sensor sem a contribuição
-    útil da reflexão:
+    Para o vidro, use como <code>S_refletido</code> a leitura obtida com a placa a 45° e o sensor orientado para o feixe refletido. A
+    leitura direta sem vidro não é subtraída: ela foi feita em outra geometria e serve como referência da radiação incidente.
   </p>
-  <LatexBlock expression={String.raw`S_{\mathrm{refletido}} = S_{\mathrm{medido}} - S_{\mathrm{direto}}`} />
   <p>
     Se desejar estimar a fração absorvida pelo material, use:
   </p>
   <LatexBlock expression={String.raw`\alpha \approx 100\% - \tau - \rho`} />
   <p>
-    Discuta especialmente os seguintes pontos:
+    Interprete os resultados considerando as seguintes comparações:
   </p>
   <ol>
     <li>a ordem das superfícies por emissão permanece a mesma ao mudar a potência?</li>
     <li>os resultados são coerentes com a regra de que bons absorvedores tendem a ser bons emissores?</li>
-    <li>o vidro transmite de forma semelhante a radiação do cubo e a radiação direta da lâmpada?</li>
+    <li>o vidro transmite a radiação do cubo e a radiação direta da lâmpada de modo semelhante ou diferente?</li>
     <li>os dados ajudam a explicar qualitativamente o funcionamento de uma estufa?</li>
   </ol>
 </PracticeSection>
@@ -272,6 +252,8 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>As duas faces da espuma se comportam de modo semelhante ou diferente? O que isso sugere sobre o papel do acabamento superficial?</li>
     <li>Os dois plásticos e os dois tecidos apresentam resultados próximos dentro de cada categoria ou diferenças claras? Comente.</li>
     <li>Por que a face polida tende a emitir menos radiação térmica do que a face preta?</li>
+    <li>Compare a transmissão pelo vidro da radiação do cubo com a transmissão da radiação direta da lâmpada. O que essa comparação indica sobre a dependência espectral da transmissão?</li>
+    <li>Na medida de reflexão, por que a placa de vidro é colocada a 45° e por que a leitura direta não deve ser subtraída da leitura refletida?</li>
     <li>Com base nos resultados do vidro, como você explicaria qualitativamente o funcionamento de uma estufa de plantas?</li>
     <li>Imagine um ambiente interno revestido por alumínio em um dia quente. Que acabamento interno ajudaria a reduzir o aquecimento? Justifique usando os resultados do cubo de Leslie.</li>
   </ol>
@@ -307,10 +289,12 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>objetivo da prática;</li>
     <li>introdução curta sobre radiação térmica, corpo negro, emissividade e transmissão;</li>
     <li>descrição resumida do cubo de Leslie, do sensor e dos materiais utilizados;</li>
-    <li>tabelas completas de emissão, transmissão e reflexão, sempre com unidades e incertezas;</li>
-    <li>cálculo da temperatura do cubo a partir do termístor;</li>
+    <li>tabela de emissão com Potência #, superfície, resistência <code>R</code> em Ω, temperatura <code>T</code>, leitura do sensor e incertezas;</li>
+    <li>tabelas de transmissão e reflexão, identificando claramente a leitura sem material e a leitura com material;</li>
+    <li>cálculo da temperatura do cubo a partir do termístor, usando <code>R</code> em Ω;</li>
     <li>ordenação das superfícies por emissão e comentário sobre emissividade relativa;</li>
-    <li>cálculo das porcentagens de transmissão e reflexão para os materiais estudados;</li>
+    <li>cálculo das porcentagens de transmissão e reflexão, usando a leitura incidente como referência;</li>
+    <li>comparação separada entre o vidro diante do cubo aquecido e diante da lâmpada direta;</li>
     <li>discussão específica do vidro e da relação com o efeito estufa;</li>
     <li>seção opcional separada para o simulador, usada apenas como apoio conceitual;</li>
     <li>conclusão final com os principais resultados físicos do experimento.</li>
