@@ -91,21 +91,21 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
   <h3>Parte 2 - Transmissão e reflexão da radiação do cubo</h3>
   <p>
-    Escolha a face de maior emissão e mantenha fixas a distância, a orientação e a posição do sensor. Para cada material, faça uma
-    leitura sem o material, mantendo a posição reservada para ele. Essa é a leitura <strong>incidente</strong>,
-    <code>S_incidente</code>. Depois coloque o material no mesmo lugar e faça a leitura atrás dele. Essa é a leitura
-    <strong>transmitida</strong>, <code>S_transmitido</code>.
+    Escolha a face de maior emissão. Para cada material, mantenha a mesma fonte, distância e orientação. Primeiro deixe o caminho
+    entre o cubo e o sensor livre e registre a leitura <strong>incidente</strong>, <code>S_incidente</code>. Depois coloque o material
+    no ponto reservado, entre o cubo e o sensor, e registre a leitura atrás dele. Essa é a leitura <strong>transmitida</strong>,
+    <code>S_transmitido</code>.
   </p>
   <p>
-    Para o vidro, faça uma medida adicional com a placa inclinada a 45°, orientando o sensor para a direção do feixe refletido. Essa
-    leitura é <code>S_refletido</code>. Ela é a leitura obtida nessa geometria de reflexão; não se deve subtrair dela a leitura
-    sem material, pois as duas leituras correspondem a geometrias diferentes. A leitura sem material é a referência para calcular a
-    fração refletida.
+    Para o vidro, faça uma medida adicional de reflexão. Incline a placa a <strong>45°</strong> em relação ao feixe que vem do cubo.
+    Nessa posição, parte da radiação é desviada para o lado pela superfície do vidro. Reposicione o sensor nessa direção, sem mover
+    o cubo nem alterar a posição da placa, e registre a leitura como <code>S_refletido</code>. Não subtraia a leitura sem material:
+    ela foi obtida com outra geometria e será usada apenas como referência para uma comparação relativa.
   </p>
   <p>
-    A conservação de energia orienta a interpretação: a radiação incidente sobre um material pode ser repartida entre parcelas
-    refletida, absorvida e transmitida. Na prática, o sensor mede apenas a parcela que chega até ele. Portanto, as porcentagens obtidas
-    são comparações experimentais para a geometria e a fonte utilizadas, e não uma caracterização completa do material.
+    A conservação de energia orienta a interpretação: a radiação que chega ao vidro pode ser repartida entre parcelas refletida,
+    absorvida e transmitida. O sensor mede apenas a parcela que alcança sua posição. Por isso, as porcentagens calculadas nesta etapa
+    são comparações relativas para a geometria usada, e não uma medida absoluta das propriedades ópticas do vidro.
   </p>
   <LatexBlock expression={String.raw`E_{\mathrm{incidente}} = E_{\mathrm{refletida}} + E_{\mathrm{absorvida}} + E_{\mathrm{transmitida}}`} />
 </PracticeSection>
@@ -138,7 +138,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Não desligue o cubo ao final dessa primeira parte, porque ele será usado na etapa de transmissão.</li>
     <li>Escolha a face de maior emissão e posicione o sensor a cerca de <code>5 cm</code> dela.</li>
     <li>Para cada material, faça uma leitura sem material e registre-a como <code>S_incidente</code>. Em seguida, coloque o material no mesmo ponto e registre a leitura atrás dele como <code>S_transmitido</code>.</li>
-    <li>Para o vidro, incline a placa a <strong>45°</strong>, oriente o sensor para o feixe refletido e registre essa leitura como <code>S_refletido</code>. Não subtraia dela a leitura sem material.</li>
+    <li>Para o vidro, incline a placa a <strong>45°</strong> em relação ao feixe do cubo. Reposicione o sensor na direção do feixe refletido e registre essa leitura como <code>S_refletido</code>. Não subtraia dela a leitura sem material.</li>
   </ol>
   <div class="callout">
     <strong>Cuidado operacional.</strong> O cubo pode atingir temperaturas elevadas. Não mantenha o sensor encostado na face quente por
@@ -188,7 +188,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
   <h3>Reflexão na placa de vidro</h3>
 
-  | Material | Sem vidro (mV) | Incerteza (mV) | Vidro a 45° (mV) | Incerteza (mV) | Reflexão (%) |
+  | Material | Sem vidro (mV) | Incerteza (mV) | Vidro a 45° (mV) | Incerteza (mV) | Fração refletida relativa (%) |
   | --- | --- | --- | --- | --- | --- |
   | Vidro |  |  |  |  |  |
 
@@ -212,15 +212,16 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     Para transmissão e reflexão, use:
   </p>
   <LatexBlock expression={String.raw`\tau = \frac{S_{\mathrm{transmitido}}}{S_{\mathrm{incidente}}}\times 100\%`} />
-  <LatexBlock expression={String.raw`\rho = \frac{S_{\mathrm{refletido}}}{S_{\mathrm{incidente}}}\times 100\%`} />
+  <LatexBlock expression={String.raw`\rho_{\mathrm{rel}} = \frac{S_{\mathrm{refletido}}}{S_{\mathrm{incidente}}}\times 100\%`} />
   <p>
-    Para o vidro, use como <code>S_refletido</code> a leitura obtida com a placa a 45° e o sensor orientado para o feixe refletido. A
-    leitura sem material não é subtraída: ela foi feita em outra geometria e serve como referência da radiação incidente.
+    Para o vidro, use como <code>S_refletido</code> a leitura obtida com a placa a 45° e o sensor orientado para o feixe refletido. O
+    índice <code>rel</code> indica que essa é uma fração relativa à leitura incidente da montagem, não a refletância absoluta do vidro.
+    A leitura sem material não é subtraída.
   </p>
   <p>
     Se desejar estimar a fração absorvida pelo material, use:
   </p>
-  <LatexBlock expression={String.raw`\alpha \approx 100\% - \tau - \rho`} />
+  <LatexBlock expression={String.raw`\alpha_{\mathrm{rel}} \approx 100\% - \tau - \rho_{\mathrm{rel}}`} />
   <p>
     Interprete os resultados considerando as seguintes comparações:
   </p>
