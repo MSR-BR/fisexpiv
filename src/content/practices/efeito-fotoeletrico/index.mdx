@@ -24,7 +24,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Relacionar frequência da radiação incidente, função trabalho e energia cinética máxima dos fotoelétrons.</li>
     <li>Explicar por que a intensidade da luz altera a taxa de emissão, mas não o potencial de corte.</li>
     <li>Reconhecer a diferença entre a medida didática do simulador e a leitura real do aparato via capacitor.</li>
-    <li>Construir gráficos de <code>V_c</code> em função de <code>f</code> e usar o ajuste linear para estimar <code>h</code>.</li>
+    <li>Construir gráficos de <code>V_c</code> em função de <code>f</code> e usar o ajuste linear para estimar <code>h/e</code>.</li>
   </ul>
 </PracticeSection>
 
@@ -36,10 +36,13 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     aumentar indefinidamente a energia dos elétrons emitidos.
   </p>
   <p>
-    As observações experimentais principais podem ser apresentadas de forma categórica em três pontos. Primeiro: existe uma
-    frequência de corte; abaixo dela não há emissão, por mais intensa que seja a luz. Segundo: a intensidade da luz afeta a taxa de
-    emissão, isto é, a quantidade de elétrons emitidos por unidade de tempo. Terceiro: a energia máxima dos elétrons emitidos depende
-    da frequência da luz incidente, e não da intensidade.
+    <strong>Primeiro:</strong> existe uma frequência de corte; abaixo dela não há emissão, por mais intensa que seja a luz.
+  </p>
+  <p>
+    <strong>Segundo:</strong> a intensidade da luz afeta a taxa de emissão, isto é, a quantidade de elétrons emitidos por unidade de tempo.
+  </p>
+  <p>
+    <strong>Terceiro:</strong> a energia máxima dos elétrons emitidos depende da frequência da luz incidente, e não da intensidade.
   </p>
   <p>
     A explicação teórica proposta por Einstein em 1905 foi tratar a luz como composta por fótons, cada um com energia <code>E = hf</code>.
@@ -49,8 +52,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   </p>
   <p>
     Essa interpretação não foi apenas uma correção técnica. Ela ajudou a estabelecer a ideia de quantização da radiação e teve papel
-    importante na transição entre a física clássica e a física quântica. Mais tarde, experimentos de Millikan confirmaram com grande
-    precisão a relação proposta por Einstein.
+    importante na transição entre a física clássica e a física quântica.
   </p>
   <p>
     Nesta prática, a bancada real e o simulador têm papéis complementares. A bancada mostra como o efeito fotoelétrico é medido em
@@ -68,12 +70,12 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     Parte dessa energia é usada para retirar o elétron do material. Essa energia mínima é chamada função trabalho e será representada
     por <strong>W</strong>. O restante aparece como energia cinética máxima do fotoelétron:
   </p>
-  <LatexBlock expression={String.raw`hf = W + T_{\max}`} />
+  <LatexBlock expression={String.raw`hf = W + T`} />
   <p>
     Se aplicamos um potencial de retardo suficiente para impedir a chegada dos elétrons mais energéticos ao anodo, obtemos o
     potencial de corte <code>V_c</code>, definido por:
   </p>
-  <LatexBlock expression={String.raw`T_{\max} = eV_c`} />
+  <LatexBlock expression={String.raw`T = eV_c`} />
   <p>
     Combinando as duas expressões:
   </p>
@@ -180,7 +182,7 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
   </p>
   <LatexBlock expression={String.raw`V_c = af + b`} />
   <p>
-    O objetivo da análise é determinar <code>h</code> e <code>W</code> a partir dos coeficientes angular e linear desse ajuste.
+    O objetivo da análise é determinar <code>h/e</code> e <code>W</code> a partir dos coeficientes angular e linear desse ajuste.
   </p>
   <p>
     Ao discutir os resultados, destaque que o material do catodo do aparato real não precisa coincidir com o material escolhido no
@@ -236,7 +238,6 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>Por que pode haver emissão para luz fraca de alta frequência, mas não para luz intensa de frequência abaixo da frequência de corte?</li>
     <li>O que representa fisicamente a função trabalho do material?</li>
     <li>Por que, neste aparato, o potencial de corte não é medido simplesmente ajustando uma fonte de tensão reversa externa?</li>
-    <li>Quais limitações experimentais podem afetar os dados obtidos?</li>
   </ol>
 </PracticeSection>
 
@@ -251,10 +252,10 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
     <li>descrição objetiva do aparato real, explicando que a leitura do potencial de corte ocorre via carregamento capacitivo;</li>
     <li>tabela da etapa de frequência na bancada real;</li>
     <li>gráfico experimental de <code>V_c</code> em função de <code>f</code>, com ajuste linear;</li>
-    <li>determinação de <code>h</code> e <code>W</code> a partir da reta ajustada;</li>
+    <li>determinação de <code>h/e</code> e <code>W</code> a partir da reta ajustada;</li>
     <li>tabelas e gráfico do simulador, analisados separadamente;</li>
     <li>comparação entre bancada real, simulador e previsões do modelo quântico;</li>
-    <li>discussão final sobre intensidade, frequência de corte, limitações experimentais e qualidade dos resultados.</li>
+    <li>discussão final sobre intensidade, frequência de corte e qualidade dos resultados.</li>
   </ol>
   <p>
     Para o ajuste linear e os gráficos, vocês podem usar, por exemplo, <strong>Excel</strong>, <strong>LibreOffice Calc</strong> ou
@@ -264,16 +265,17 @@ import LatexBlock from "../../../components/ui/LatexBlock.astro";
 
 <PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
   <p>
-    Ao concluir a prática, o ponto central não é apenas obter um valor para <code>h</code>, mas compreender por que o efeito
+    Ao concluir a prática, o ponto central não é apenas obter um valor para <code>h/e</code>, mas compreender por que o efeito
     fotoelétrico favorece o modelo quântico da luz. A etapa espectral mostra que a energia máxima dos elétrons cresce com a
     frequência da radiação incidente. Já o
     simulador permite ver de forma mais direta aquilo que, na bancada real, aparece mediado pela eletrônica do aparato.
   </p>
   <p>
     Uma boa conclusão deve comentar se os dados obtidos são coerentes com a relação linear entre <code>V_c</code> e <code>f</code>,
-    se o valor estimado de <code>h</code> ficou razoável e quais limitações do aparato real mais dificultaram a análise. Também vale
-    destacar que diferenças entre o simulador e a bancada não significam fracasso experimental: em muitos casos, elas apenas refletem
-    materiais distintos, ruído eletrônico, vazamento de carga e imperfeições no alinhamento óptico.
+    se o valor estimado de <code>h/e</code> ficou razoável, se a função trabalho <code>W</code> foi determinada de modo consistente e quais
+    limitações do aparato real mais dificultaram a análise. Também vale destacar que diferenças entre o simulador e a bancada não
+    significam fracasso experimental: em muitos casos, elas apenas refletem materiais distintos, ruído eletrônico, vazamento de carga e
+    imperfeições no alinhamento óptico.
   </p>
 </PracticeSection>
 

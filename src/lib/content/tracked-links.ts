@@ -79,7 +79,7 @@ export const trackedLinks: TrackedLinkItem[] = [
     practiceSlug: "efeito-fotoeletrico",
     resourceSlug: "genially",
     destination: "https://view.genially.com/5f16fe9e1134690d06ce7a74",
-    label: "Roteiro guiado em Genially para a prática de efeito fotoelétrico",
+    label: "Roteiro guiado por Mario Reis para a prática de efeito fotoelétrico",
     openInNewTab: true,
   },
   {
