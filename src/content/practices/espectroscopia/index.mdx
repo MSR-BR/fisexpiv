@@ -1,0 +1,318 @@
+---
+title: "Linhas espectrais e constante de Rydberg"
+practiceSlug: "espectroscopia"
+order: 6
+summary: "Determinação da constante de Rydberg a partir dos comprimentos de onda das linhas visíveis da série de Balmer do hidrogênio."
+status: "available"
+estimatedTime: "1 encontro de laboratório"
+learningFocus:
+  - "Relacionar linhas espectrais discretas com transições entre níveis de energia"
+  - "Medir comprimentos de onda com um espectrômetro e uma rede de difração"
+  - "Ler o goniômetro e tratar corretamente graus e minutos de arco"
+  - "Linearizar a equação de Rydberg para a série de Balmer"
+  - "Determinar a constante de Rydberg por ajuste linear e avaliar sua incerteza"
+materialsStatus: "Roteiro reestruturado e pronto para revisão em aula"
+sourcesStatus: "Apostila da disciplina, folhas de laboratório e roteiro do simulador"
+---
+
+import PracticeSection from "../../../components/practice/PracticeSection.astro";
+import LatexBlock from "../../../components/ui/LatexBlock.astro";
+import LatexInline from "../../../components/ui/LatexInline.astro";
+
+<PracticeSection id="objetivos-de-aprendizagem" title="Objetivos de aprendizagem">
+  <ul>
+    <li>Distinguir um espectro de linhas de um espectro contínuo.</li>
+    <li>Relacionar as linhas visíveis do hidrogênio com transições eletrônicas da série de Balmer.</li>
+    <li>Usar uma rede de difração para determinar o comprimento de onda de cada linha observada.</li>
+    <li>Construir a forma linear da equação de Rydberg e interpretar seus coeficientes.</li>
+    <li>Determinar experimentalmente a constante de Rydberg e sua incerteza.</li>
+  </ul>
+</PracticeSection>
+
+<PracticeSection id="introducao-teorica" title="Introdução teórica">
+  <p>
+    Quando um gás rarefeito é excitado por uma descarga elétrica, os átomos emitem luz apenas em determinados comprimentos de onda.
+    Ao atravessar uma rede de difração, essa luz forma linhas coloridas separadas, e não um espectro contínuo. Cada linha corresponde
+    à emissão de fótons associados a uma transição específica entre dois níveis de energia do átomo.
+  </p>
+  <p>
+    Para um fóton emitido na transição de um estado inicial <LatexInline expression={String.raw`n_i`} /> para um estado final
+    <LatexInline expression={String.raw`n_f`} />, a conservação de energia fornece:
+  </p>
+  <LatexBlock expression={String.raw`E_\gamma=hf=\frac{hc}{\lambda}=E_{n_i}-E_{n_f}`} />
+  <p>
+    No modelo de Bohr para o hidrogênio, os níveis eletrônicos são quantizados e podem ser escritos em função da constante de
+    Rydberg do hidrogênio <LatexInline expression={String.raw`R_{\mathrm H}`} />:
+  </p>
+  <LatexBlock expression={String.raw`E_n=-\frac{hcR_{\mathrm H}}{n^2}`} />
+  <p>
+    Combinando as duas expressões, obtém-se a equação de Rydberg:
+  </p>
+  <LatexBlock expression={String.raw`\frac{1}{\lambda}=R_{\mathrm H}\left(\frac{1}{n_f^2}-\frac{1}{n_i^2}\right),\qquad n_i>n_f`} />
+  <p>
+    As linhas visíveis do hidrogênio pertencem à série de Balmer, para a qual
+    <LatexInline expression={String.raw`n_f=2`} />. Nesta prática serão procuradas as transições indicadas abaixo.
+  </p>
+
+  | Linha | Transição | Cor aproximada | Comprimento de onda de referência |
+  | --- | --- | --- | --- |
+  | Hα | `3 -> 2` | vermelha | 656,3 nm |
+  | Hβ | `4 -> 2` | azul-esverdeada | 486,1 nm |
+  | Hγ | `5 -> 2` | azul-violeta | 434,0 nm |
+  | Hδ | `6 -> 2` | violeta | 410,2 nm |
+
+  <div class="callout">
+    <strong>Atenção.</strong> Os valores de referência servem para identificar as linhas. A constante de Rydberg experimental deve
+    ser calculada usando os comprimentos de onda obtidos das leituras angulares, e não substituindo-os pelos valores tabelados.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="modelo-fisico" title="Modelo físico">
+  <h3>Rede de difração</h3>
+  <p>
+    Para uma rede iluminada com incidência normal, os máximos de difração satisfazem:
+  </p>
+  <LatexBlock expression={String.raw`m\lambda=d\sin\theta`} />
+  <p>
+    Nessa equação, <LatexInline expression={String.raw`m`} /> é a ordem de difração,
+    <LatexInline expression={String.raw`d`} /> é a distância entre linhas consecutivas da rede e
+    <LatexInline expression={String.raw`\theta`} /> é o ângulo entre a linha observada e a ordem central
+    <LatexInline expression={String.raw`m=0`} />. Para uma rede com <LatexInline expression={String.raw`N`} /> linhas por unidade de
+    comprimento:
+  </p>
+  <LatexBlock expression={String.raw`d=\frac{1}{N}`} />
+  <p>
+    Se a rede tiver <code>600 linhas/mm</code>, por exemplo:
+  </p>
+  <LatexBlock expression={String.raw`d=\frac{1}{600}\ \mathrm{mm}=1{,}667\times10^{-6}\ \mathrm{m}`} />
+
+  <h3>Leitura angular</h3>
+  <p>
+    A escala principal do goniômetro é lida em graus e o vernier em minutos de arco. Converta a leitura para graus decimais usando:
+  </p>
+  <LatexBlock expression={String.raw`\theta\,(^\circ)=\theta_{\mathrm{graus}}+\frac{\theta_{\mathrm{minutos}}}{60}`} />
+  <p>
+    Um minuto de arco corresponde a aproximadamente <code>0,0167°</code>. Para reduzir o efeito de um pequeno erro na posição do zero,
+    meça cada linha nos dois lados da ordem central e use a média dos módulos:
+  </p>
+  <LatexBlock expression={String.raw`\theta=\frac{|\theta_{\mathrm E}|+|\theta_{\mathrm D}|}{2}`} />
+  <p>
+    O comprimento de onda é então calculado por:
+  </p>
+  <LatexBlock expression={String.raw`\lambda=\frac{d}{m}\sin\theta`} />
+  <p>
+    Desprezando a incerteza de <LatexInline expression={String.raw`d`} />, a propagação da incerteza angular fornece:
+  </p>
+  <LatexBlock expression={String.raw`\Delta\lambda=\left|\frac{d}{m}\cos\theta\right|\Delta\theta`} />
+  <p>
+    Nesta última expressão, <LatexInline expression={String.raw`\theta`} /> e
+    <LatexInline expression={String.raw`\Delta\theta`} /> devem ser escritos em radianos.
+  </p>
+
+  <h3>Forma linear da equação de Rydberg</h3>
+  <p>
+    Para a série de Balmer, defina:
+  </p>
+  <LatexBlock expression={String.raw`x=\frac{1}{4}-\frac{1}{n_i^2}\qquad\text{e}\qquad y=\frac{1}{\lambda}`} />
+  <p>
+    A relação esperada é linear:
+  </p>
+  <LatexBlock expression={String.raw`y=R_{\mathrm H}x`} />
+  <p>
+    Experimentalmente, ajustaremos uma reta mais geral,
+    <LatexInline expression={String.raw`y=ax+b`} />. O coeficiente angular
+    <LatexInline expression={String.raw`a`} /> fornece <LatexInline expression={String.raw`R_{\mathrm H}`} /> e o coeficiente linear
+    <LatexInline expression={String.raw`b`} /> deve ser compatível com zero dentro das incertezas. Como <LatexInline expression={String.raw`x`} /> é
+    adimensional, a unidade do coeficiente angular é <LatexInline expression={String.raw`\mathrm{m^{-1}}`} />.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
+  <p>
+    A prática usa uma ampola com gás de hidrogênio e um espectrômetro equipado com rede de difração. A descarga elétrica excita os
+    átomos do gás. A luz emitida passa por uma fenda estreita, é colimada e incide na rede. O telescópio permite localizar cada linha
+    da série de Balmer e ler sua posição angular no goniômetro.
+  </p>
+  <p>
+    A atividade experimental tem um único objetivo quantitativo: obter os comprimentos de onda das linhas do hidrogênio e, a partir
+    deles, determinar a constante de Rydberg. Não fazem parte deste roteiro a identificação de gases desconhecidos, a comparação
+    entre redes diferentes, o uso de prisma ou a análise de uma fonte incandescente.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
+  <ul>
+    <li>ampola espectral com gás de hidrogênio e fonte de alimentação apropriada;</li>
+    <li>espectrômetro com colimador, fenda regulável, mesa angular, goniômetro e telescópio;</li>
+    <li>rede de difração de <code>600 linhas/mm</code>, ou a rede indicada pelo professor;</li>
+    <li>lupa para leitura do goniômetro;</li>
+    <li>câmera do celular, opcionalmente, para registrar as leituras e reduzir o tempo de operação da ampola.</li>
+  </ul>
+  <p>
+    A rede deve ficar aproximadamente normal ao feixe colimado. O valor real de linhas por milímetro indicado na rede usada deve ser
+    registrado, pois ele determina o espaçamento <LatexInline expression={String.raw`d`} /> empregado nos cálculos.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="procedimento-experimental" title="Procedimento experimental">
+  <ol>
+    <li>Com a fonte desligada e sem a rede na mesa, ajuste a ocular até visualizar nitidamente o retículo do telescópio.</li>
+    <li>Alinhe o telescópio com o colimador e faça a imagem da fenda coincidir com o retículo. Essa direção define a ordem central <code>m = 0</code>.</li>
+    <li>Ajuste a fenda para que fique estreita, mas ainda suficientemente luminosa, e corrija o foco do colimador até obter uma linha nítida.</li>
+    <li>Coloque a rede de difração no suporte, com as linhas na orientação indicada e a superfície aproximadamente normal ao feixe.</li>
+    <li>Confirme o número de linhas por milímetro da rede e calcule o espaçamento <LatexInline expression={String.raw`d`} />.</li>
+    <li>Ligue a ampola de hidrogênio apenas quando o espectrômetro estiver pronto para a leitura.</li>
+    <li>Localize a primeira ordem, <code>|m| = 1</code>, em um lado da ordem central e identifique as linhas Hα, Hβ, Hγ e, se estiver visível, Hδ.</li>
+    <li>Faça cada linha coincidir com o retículo, leia graus e minutos no goniômetro e registre a incerteza angular.</li>
+    <li>Repita as leituras para as mesmas linhas no outro lado da ordem central.</li>
+    <li>Desligue a ampola assim que as leituras forem concluídas.</li>
+  </ol>
+  <div class="callout">
+    <strong>Cuidado operacional.</strong> A ampola de hidrogênio tem vida útil limitada. Trabalhe com ciclos curtos, conforme a
+    orientação do professor e do fabricante. Como referência, o material da disciplina recomenda ciclos de aproximadamente
+    <code>30 s</code> ligada e <code>30 s</code> desligada e determina que nunca sejam ultrapassados <code>5 min</code> de operação
+    contínua. Não toque na ampola durante ou logo após o uso.
+  </div>
+  <div class="callout">
+    <strong>Linha Hδ.</strong> A linha violeta de aproximadamente <code>410 nm</code> pode ser fraca e difícil de observar. Se ela não
+    puder ser medida com segurança, faça o ajuste apenas com as linhas observadas. Não introduza o valor tabelado como se fosse uma
+    medida experimental.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
+  <h3>Características do instrumento</h3>
+
+  | Grandeza | Valor | Incerteza | Unidade |
+  | --- | --- | --- | --- |
+  | Densidade de linhas da rede `N` |  |  | linhas/mm |
+  | Espaçamento da rede `d = 1/N` |  |  | m |
+  | Menor divisão do goniômetro |  |  | minuto de arco |
+  | Incerteza angular adotada `Δθ` |  |  | minuto de arco |
+
+  <h3>Leituras angulares</h3>
+
+  | Linha | Cor | `n_i` | Ordem `m` | Leitura à esquerda (graus e minutos) | Leitura à direita (graus e minutos) | `θ` médio (°) | `Δθ` (°) |
+  | --- | --- | --- | --- | --- | --- | --- | --- |
+  | Hα | vermelha | 3 | 1 |  |  |  |  |
+  | Hβ | azul-esverdeada | 4 | 1 |  |  |  |  |
+  | Hγ | azul-violeta | 5 | 1 |  |  |  |  |
+  | Hδ | violeta | 6 | 1 |  |  |  |  |
+
+  <h3>Grandezas calculadas</h3>
+
+  | Linha | `λ` (nm) | `Δλ` (nm) | `x = 1/4 - 1/n_i²` | `y = 1/λ` (m⁻¹) | `Δy` (m⁻¹) |
+  | --- | --- | --- | --- | --- | --- |
+  | Hα |  |  |  |  |  |
+  | Hβ |  |  |  |  |  |
+  | Hγ |  |  |  |  |  |
+  | Hδ |  |  |  |  |  |
+</PracticeSection>
+
+<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+  <ol>
+    <li>Converta todas as leituras de graus e minutos para graus decimais.</li>
+    <li>Calcule o ângulo médio de cada linha usando as medidas dos dois lados da ordem central.</li>
+    <li>Calcule o espaçamento <LatexInline expression={String.raw`d`} /> da rede em metros.</li>
+    <li>Determine cada comprimento de onda com <LatexInline expression={String.raw`\lambda=(d/m)\sin\theta`} />.</li>
+    <li>Propague a incerteza angular para obter <LatexInline expression={String.raw`\Delta\lambda`} />. Use radianos nessa etapa.</li>
+    <li>Calcule <LatexInline expression={String.raw`x=1/4-1/n_i^2`} /> e <LatexInline expression={String.raw`y=1/\lambda`} /> para cada linha medida.</li>
+    <li>Use <LatexInline expression={String.raw`\Delta y=\Delta\lambda/\lambda^2`} /> para estimar a incerteza de <LatexInline expression={String.raw`y`} />.</li>
+    <li>Construa o gráfico de <LatexInline expression={String.raw`1/\lambda`} /> em função de <LatexInline expression={String.raw`1/4-1/n_i^2`} /> e faça um ajuste linear.</li>
+    <li>Identifique a constante de Rydberg com o coeficiente angular da reta e apresente <LatexInline expression={String.raw`R_{\mathrm H}\pm\Delta R_{\mathrm H}`} /> em <LatexInline expression={String.raw`\mathrm{m^{-1}}`} />.</li>
+    <li>Verifique se o coeficiente linear é compatível com zero dentro de sua incerteza.</li>
+    <li>Compare o resultado com <LatexInline expression={String.raw`R_{\mathrm H,ref}=1{,}097\times10^7\ \mathrm{m^{-1}}`} />.</li>
+  </ol>
+  <p>
+    A diferença percentual em relação ao valor de referência pode ser calculada por:
+  </p>
+  <LatexBlock expression={String.raw`\text{diferença percentual}=\frac{|R_{\mathrm H,exp}-R_{\mathrm H,ref}|}{R_{\mathrm H,ref}}\times100\%`} />
+  <div class="callout">
+    <strong>Atenção às unidades.</strong> Converta <LatexInline expression={String.raw`\lambda`} /> de nanômetros para metros antes de
+    calcular <LatexInline expression={String.raw`1/\lambda`} />. Se o eixo vertical for apresentado em
+    <LatexInline expression={String.raw`10^6\ \mathrm{m^{-1}}`} />, a escala deve ser reincorporada ao valor final de
+    <LatexInline expression={String.raw`R_{\mathrm H}`} />.
+  </div>
+  <p>
+    Para o ajuste e a construção do gráfico, podem ser usados, por exemplo, Excel, LibreOffice Calc ou Google Sheets. O relatório deve
+    mostrar os coeficientes angular e linear, suas incertezas e as respectivas unidades.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="simulador" title="Simulador">
+  <p>
+    Use o <a href="../../acessos/simulador/espectroscopia/spectrometer/" data-force-new-tab="true">simulador de espectro de emissão</a>
+    como uma atividade separada da bancada. Selecione <strong>Hydrogen</strong> e mantenha a rede em <code>600 lines/mm</code>. O
+    simulador apresenta as quatro linhas visíveis da série de Balmer e seus comprimentos de onda.
+  </p>
+  <p>
+    Registre os valores mostrados, calcule novamente <LatexInline expression={String.raw`x=1/4-1/n_i^2`} /> e
+    <LatexInline expression={String.raw`y=1/\lambda`} />, faça o ajuste linear e determine
+    <LatexInline expression={String.raw`R_{\mathrm H,sim}`} />. Compare esse resultado com o valor experimental e com o valor de
+    referência.
+  </p>
+
+  | Linha | `n_i` | `λ_sim` (nm) | `x = 1/4 - 1/n_i²` | `1/λ_sim` (m⁻¹) |
+  | --- | --- | --- | --- | --- |
+  | Hα | 3 |  |  |  |
+  | Hβ | 4 |  |  |  |
+  | Hγ | 5 |  |  |  |
+  | Hδ | 6 |  |  |  |
+
+  <div class="callout">
+    <strong>Interpretação.</strong> O simulador fornece comprimentos de onda ideais diretamente; ele não reproduz a leitura do
+    goniômetro nem os erros de alinhamento da bancada. Por isso, o resultado simulado deve ser analisado separadamente e tende a ficar
+    mais próximo do valor de referência.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
+  <ol>
+    <li>Por que o hidrogênio excitado produz linhas discretas em vez de um espectro contínuo?</li>
+    <li>O que caracteriza a série de Balmer e por que suas primeiras linhas aparecem na região visível?</li>
+    <li>Por que medir a mesma linha nos dois lados da ordem central reduz a influência de um erro de alinhamento do zero?</li>
+    <li>Como a largura da fenda afeta a nitidez da linha e a incerteza na leitura angular?</li>
+    <li>Qual é o significado físico dos coeficientes angular e linear no gráfico usado para determinar a constante de Rydberg?</li>
+    <li>Quais erros experimentais podem deslocar sistematicamente o valor obtido para <LatexInline expression={String.raw`R_{\mathrm H}`} />?</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
+  <ol>
+    <li>objetivo da prática;</li>
+    <li>introdução breve sobre espectros de linhas, níveis de energia e série de Balmer;</li>
+    <li>modelo teórico com a equação da rede e a equação de Rydberg;</li>
+    <li>descrição objetiva do espectrômetro, da rede usada e do procedimento de alinhamento;</li>
+    <li>tabela completa das leituras angulares dos dois lados da ordem central;</li>
+    <li>um exemplo de conversão de graus e minutos, cálculo de <LatexInline expression={String.raw`\lambda`} /> e propagação de <LatexInline expression={String.raw`\Delta\lambda`} />;</li>
+    <li>tabela das grandezas calculadas e gráfico de <LatexInline expression={String.raw`1/\lambda`} /> em função de <LatexInline expression={String.raw`1/4-1/n_i^2`} />;</li>
+    <li>ajuste linear com coeficientes, incertezas e unidades;</li>
+    <li>resultado experimental <LatexInline expression={String.raw`R_{\mathrm H}\pm\Delta R_{\mathrm H}`} /> e comparação com o valor de referência;</li>
+    <li>tabela e ajuste do simulador apresentados separadamente;</li>
+    <li>discussão das limitações da bancada e conclusão sobre a compatibilidade do resultado com o modelo.</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
+  <p>
+    Na discussão, avalie se os comprimentos de onda medidos seguem a tendência prevista para as transições da série de Balmer e se a
+    relação linear usada no ajuste descreve adequadamente os dados. Comente a compatibilidade entre o coeficiente linear e zero e
+    entre o coeficiente angular e o valor de referência da constante de Rydberg.
+  </p>
+  <p>
+    Diferenças entre o valor experimental e o valor de referência podem resultar do alinhamento da rede, da definição da ordem
+    central, da leitura do vernier, da largura da fenda, da baixa intensidade das linhas violetas e da tolerância no número de linhas
+    por milímetro da rede. A conclusão deve distinguir essas limitações da bancada do resultado ideal fornecido pelo simulador.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="referencias" title="Referências Gerais">
+  <ul>
+    <li>Material da disciplina. <em>Laboratório 4: Espectroscopia - Linhas Espectrais</em> e folhas de manipulação.</li>
+    <li>Halliday, D.; Resnick, R.; Walker, J. <em>Fundamentos de Física</em>. Volume de óptica e física moderna.</li>
+    <li>Young, H. D.; Freedman, R. A. <em>Física Universitária com Física Moderna</em>.</li>
+    <li>Eisberg, R.; Resnick, R. <em>Física Quântica</em>.</li>
+    <li>NIST. <em>Atomic Spectra Database</em>. Disponível em: <a href="https://physics.nist.gov/PhysRefData/ASD/lines_form.html" data-force-new-tab="true">physics.nist.gov/PhysRefData/ASD</a>.</li>
+    <li>VideoPhysics. <em>Spectrometer</em>. Disponível em: <a href="../../acessos/simulador/espectroscopia/spectrometer/" data-force-new-tab="true">abrir simulador</a>.</li>
+  </ul>
+</PracticeSection>

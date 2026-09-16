@@ -90,6 +90,14 @@ export const trackedLinks: TrackedLinkItem[] = [
     label: "Simulador KCVS para a prática de efeito fotoelétrico",
     openInNewTab: true,
   },
+  {
+    kind: "simulador",
+    practiceSlug: "espectroscopia",
+    resourceSlug: "spectrometer",
+    destination: "https://videophysics.com/spectrometer",
+    label: "Simulador de espectro de emissão do hidrogênio para a prática de linhas espectrais",
+    openInNewTab: true,
+  },
 ];
 
 export function getTrackedLink(kind: TrackedLinkKind, practiceSlug: string, resourceSlug: string) {

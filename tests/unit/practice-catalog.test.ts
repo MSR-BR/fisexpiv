@@ -6,14 +6,28 @@ describe("practice catalog", () => {
     expect(practiceCatalog).toHaveLength(9);
   });
 
-  it("enables only the first two practices at this stage", () => {
-    expect(enabledPracticeSlugs).toEqual(["revisao", "carga-massa"]);
-    expect(practiceCounts.available).toBe(2);
-    expect(practiceCounts.planned).toBe(7);
+  it("enables every completed practice", () => {
+    expect(enabledPracticeSlugs).toEqual([
+      "revisao",
+      "carga-massa",
+      "radiacao-termica",
+      "stefan-boltzmann",
+      "efeito-fotoeletrico",
+      "espectroscopia",
+    ]);
+    expect(practiceCounts.available).toBe(6);
+    expect(practiceCounts.planned).toBe(3);
   });
 
-  it("keeps explicit catalog status data for MVP discovery", () => {
-    expect(availablePractices.map((practice) => practice.slug)).toEqual(["revisao", "carga-massa"]);
+  it("keeps explicit catalog status data for discovery", () => {
+    expect(availablePractices.map((practice) => practice.slug)).toEqual([
+      "revisao",
+      "carga-massa",
+      "radiacao-termica",
+      "stefan-boltzmann",
+      "efeito-fotoeletrico",
+      "espectroscopia",
+    ]);
     expect(plannedPractices.every((practice) => practice.materialStatus.length > 0)).toBe(true);
     expect(practiceCatalog.every((practice) => practice.sourceStatus.length > 0)).toBe(true);
   });
