@@ -34,15 +34,15 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     O espectro do hidrogênio apresenta linhas em comprimentos de onda bem definidos. Antes que sua origem física fosse compreendida,
     esses comprimentos de onda foram organizados pela equação empírica de Rydberg:
   </p>
-  <LatexBlock expression={String.raw`\frac{1}{\lambda}=R_{\mathrm H}\left(\frac{1}{n_f^2}-\frac{1}{n_i^2}\right),\qquad n_i>n_f`} />
+  <LatexBlock expression={String.raw`\frac{1}{\lambda}=R_{\mathrm H}\left(\frac{1}{n^2}-\frac{1}{m^2}\right),\qquad m>n`} />
   <p>
     Nessa expressão, <LatexInline expression={String.raw`R_{\mathrm H}`} /> é a constante de Rydberg para o hidrogênio,
-    <LatexInline expression={String.raw`n_i`} /> é o número quântico principal do nível inicial e
-    <LatexInline expression={String.raw`n_f`} /> é o número quântico principal do nível final. Cada valor fixo de
-    <LatexInline expression={String.raw`n_f`} /> define uma série espectral:
+    <LatexInline expression={String.raw`m`} /> é o número quântico principal do nível inicial e
+    <LatexInline expression={String.raw`n`} /> é o número quântico principal do nível final. Cada valor fixo de
+    <LatexInline expression={String.raw`n`} /> define uma série espectral:
   </p>
 
-  | Série | Nível final `n_f` | Região do espectro |
+  | Série | Nível final `n` | Região do espectro |
   | --- | --- | --- |
   | Lyman | 1 | ultravioleta |
   | Balmer | 2 | visível para as primeiras linhas |
@@ -52,7 +52,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   | Humphreys | 6 | infravermelho |
 
   <p>
-    Nesta prática, o foco será a série de Balmer, para a qual <LatexInline expression={String.raw`n_f=2`} />. Suas primeiras linhas
+    Nesta prática, o foco será a série de Balmer, para a qual <LatexInline expression={String.raw`n=2`} />. Suas primeiras linhas
     estão na região visível e podem ser observadas com o espectrômetro do laboratório.
   </p>
   <p>
@@ -67,10 +67,10 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   </p>
   <p>
     Uma transição entre dois níveis envolve a emissão ou a absorção de um fóton. Na emissão, o elétron passa do nível inicial mais
-    alto <LatexInline expression={String.raw`n_i`} /> para o nível final mais baixo <LatexInline expression={String.raw`n_f`} />,
-    com <LatexInline expression={String.raw`n_i>n_f`} />. Pela conservação da energia:
+    alto <LatexInline expression={String.raw`m`} /> para o nível final mais baixo <LatexInline expression={String.raw`n`} />,
+    com <LatexInline expression={String.raw`m>n`} />. Pela conservação da energia:
   </p>
-  <LatexBlock expression={String.raw`hf=\frac{hc}{\lambda}=E_{n_i}-E_{n_f}=E_0\left(\frac{1}{n_f^2}-\frac{1}{n_i^2}\right)`} />
+  <LatexBlock expression={String.raw`hf=\frac{hc}{\lambda}=E_{m}-E_{n}=E_0\left(\frac{1}{n^2}-\frac{1}{m^2}\right)`} />
   <p>
     Na absorção ocorre o processo inverso: um fóton com essa mesma energia promove o elétron do nível mais baixo para o nível mais
     alto.
@@ -81,11 +81,11 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <LatexBlock expression={String.raw`R_{\mathrm H}=\frac{E_0}{hc}`} />
   <p>
     Portanto, os números inteiros da equação de Rydberg identificam os níveis quânticos envolvidos na transição. Para a série de
-    Balmer, <LatexInline expression={String.raw`n_f=2`} /> permanece fixo e <LatexInline expression={String.raw`n_i`} /> assume os
+    Balmer, <LatexInline expression={String.raw`n=2`} /> permanece fixo e <LatexInline expression={String.raw`m`} /> assume os
     valores 3, 4, 5, 6, ... Nesta prática serão procuradas as transições indicadas abaixo.
   </p>
 
-  | Linha | Transição `n_i -> n_f` | Cor aproximada | Comprimento de onda de referência |
+  | Linha | Transição `m -> n` | Cor aproximada | Comprimento de onda de referência |
   | --- | --- | --- | --- |
   | Hα | `3 -> 2` | vermelha | 656,3 nm |
   | Hβ | `4 -> 2` | azul-esverdeada | 486,1 nm |
@@ -103,12 +103,12 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <p>
     Para uma rede iluminada com incidência normal, os máximos de difração satisfazem:
   </p>
-  <LatexBlock expression={String.raw`m\lambda=d\sin\theta`} />
+  <LatexBlock expression={String.raw`p\lambda=d\sin\theta`} />
   <p>
-    Nessa equação, <LatexInline expression={String.raw`m`} /> é a ordem de difração,
+    Nessa equação, <LatexInline expression={String.raw`p`} /> é a ordem de difração,
     <LatexInline expression={String.raw`d`} /> é a distância entre linhas consecutivas da rede e
     <LatexInline expression={String.raw`\theta`} /> é o ângulo entre a linha observada e a ordem central
-    <LatexInline expression={String.raw`m=0`} />. Para uma rede com <LatexInline expression={String.raw`N`} /> linhas por unidade de
+    <LatexInline expression={String.raw`p=0`} />. Para uma rede com <LatexInline expression={String.raw`N`} /> linhas por unidade de
     comprimento:
   </p>
   <LatexBlock expression={String.raw`d=\frac{1}{N}`} />
@@ -121,7 +121,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <p>
     Para a série de Balmer, defina:
   </p>
-  <LatexBlock expression={String.raw`x=\frac{1}{4}-\frac{1}{n_i^2}\qquad\text{e}\qquad y=\frac{1}{\lambda}`} />
+  <LatexBlock expression={String.raw`x=\frac{1}{4}-\frac{1}{m^2}\qquad\text{e}\qquad y=\frac{1}{\lambda}`} />
   <p>
     A relação esperada é linear:
   </p>
@@ -165,14 +165,13 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 <PracticeSection id="procedimento-experimental" title="Procedimento experimental">
   <ol>
     <li>Com a fonte desligada e sem a rede na mesa, ajuste a ocular até visualizar nitidamente o retículo do telescópio.</li>
-    <li>Alinhe o telescópio com o colimador e faça a imagem da fenda coincidir com o retículo. Essa direção define a ordem central <code>m = 0</code>.</li>
+    <li>Alinhe o telescópio com o colimador e faça a imagem da fenda coincidir com o retículo. Essa direção define a ordem central <code>p = 0</code>.</li>
     <li>Ajuste a fenda para que fique estreita, mas ainda suficientemente luminosa, e corrija o foco do colimador até obter uma linha nítida.</li>
     <li>Coloque a rede de difração no suporte, com as linhas na orientação indicada e a superfície aproximadamente normal ao feixe.</li>
     <li>Confirme o número de linhas por milímetro da rede e calcule o espaçamento <LatexInline expression={String.raw`d`} />.</li>
     <li>Ligue a ampola de hidrogênio apenas quando o espectrômetro estiver pronto para a leitura.</li>
-    <li>Localize a primeira ordem, <code>|m| = 1</code>, em um lado da ordem central e identifique as linhas Hα, Hβ, Hγ e, se estiver visível, Hδ.</li>
+    <li>Localize a primeira ordem, <code>|p| = 1</code>, em um lado da ordem central e identifique as linhas Hα, Hβ, Hγ e, se estiver visível, Hδ.</li>
     <li>Faça cada linha coincidir com o retículo, leia graus e minutos no goniômetro e registre a incerteza angular.</li>
-    <li>Repita as leituras para as mesmas linhas no outro lado da ordem central.</li>
     <li>Desligue a ampola assim que as leituras forem concluídas.</li>
   </ol>
   <div class="callout">
@@ -200,16 +199,16 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
   <h3>Leituras angulares</h3>
 
-  | Linha | Cor | `n_i` | Ordem `m` | Leitura à esquerda (graus e minutos) | Leitura à direita (graus e minutos) | `θ` médio (°) | `Δθ` (°) |
-  | --- | --- | --- | --- | --- | --- | --- | --- |
-  | Hα | vermelha | 3 | 1 |  |  |  |  |
-  | Hβ | azul-esverdeada | 4 | 1 |  |  |  |  |
-  | Hγ | azul-violeta | 5 | 1 |  |  |  |  |
-  | Hδ | violeta | 6 | 1 |  |  |  |  |
+  | Linha | Cor | `m` | Ordem `p` | Leitura angular `θ` (graus e minutos) | `Δθ` (minuto de arco) |
+  | --- | --- | --- | --- | --- | --- |
+  | Hα | vermelha | 3 | 1 |  |  |
+  | Hβ | azul-esverdeada | 4 | 1 |  |  |
+  | Hγ | azul-violeta | 5 | 1 |  |  |
+  | Hδ | violeta | 6 | 1 |  |  |
 
   <h3>Grandezas calculadas</h3>
 
-  | Linha | `λ` (nm) | `Δλ` (nm) | `x = 1/4 - 1/n_i²` | `y = 1/λ` (m⁻¹) | `Δy` (m⁻¹) |
+  | Linha | `λ` (nm) | `Δλ` (nm) | `x = 1/4 - 1/m²` | `y = 1/λ` (m⁻¹) | `Δy` (m⁻¹) |
   | --- | --- | --- | --- | --- | --- |
   | Hα |  |  |  |  |  |
   | Hβ |  |  |  |  |  |
@@ -220,13 +219,12 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
   <ol>
     <li>Converta todas as leituras de graus e minutos para graus decimais.</li>
-    <li>Calcule o ângulo médio de cada linha usando as medidas dos dois lados da ordem central.</li>
     <li>Calcule o espaçamento <LatexInline expression={String.raw`d`} /> da rede em metros.</li>
-    <li>Determine cada comprimento de onda com <LatexInline expression={String.raw`\lambda=(d/m)\sin\theta`} />.</li>
+    <li>Determine cada comprimento de onda com <LatexInline expression={String.raw`\lambda=(d/p)\sin\theta`} />.</li>
     <li>Propague a incerteza angular para obter <LatexInline expression={String.raw`\Delta\lambda`} />. Use radianos nessa etapa.</li>
-    <li>Calcule <LatexInline expression={String.raw`x=1/4-1/n_i^2`} /> e <LatexInline expression={String.raw`y=1/\lambda`} /> para cada linha medida.</li>
+    <li>Calcule <LatexInline expression={String.raw`x=1/4-1/m^2`} /> e <LatexInline expression={String.raw`y=1/\lambda`} /> para cada linha medida.</li>
     <li>Use <LatexInline expression={String.raw`\Delta y=\Delta\lambda/\lambda^2`} /> para estimar a incerteza de <LatexInline expression={String.raw`y`} />.</li>
-    <li>Construa o gráfico de <LatexInline expression={String.raw`1/\lambda`} /> em função de <LatexInline expression={String.raw`1/4-1/n_i^2`} /> e faça um ajuste linear.</li>
+    <li>Construa o gráfico de <LatexInline expression={String.raw`1/\lambda`} /> em função de <LatexInline expression={String.raw`1/4-1/m^2`} /> e faça um ajuste linear.</li>
     <li>Identifique a constante de Rydberg com o coeficiente angular da reta e apresente <LatexInline expression={String.raw`R_{\mathrm H}\pm\Delta R_{\mathrm H}`} /> em <LatexInline expression={String.raw`\mathrm{m^{-1}}`} />.</li>
     <li>Verifique se o coeficiente linear é compatível com zero dentro de sua incerteza.</li>
     <li>Compare o resultado com <LatexInline expression={String.raw`R_{\mathrm H,ref}=1{,}097\times10^7\ \mathrm{m^{-1}}`} />.</li>
@@ -254,13 +252,13 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     simulador apresenta as quatro linhas visíveis da série de Balmer e seus comprimentos de onda.
   </p>
   <p>
-    Registre os valores mostrados, calcule novamente <LatexInline expression={String.raw`x=1/4-1/n_i^2`} /> e
+    Registre os valores mostrados, calcule novamente <LatexInline expression={String.raw`x=1/4-1/m^2`} /> e
     <LatexInline expression={String.raw`y=1/\lambda`} />, faça o ajuste linear e determine
     <LatexInline expression={String.raw`R_{\mathrm H,sim}`} />. Compare esse resultado com o valor experimental e com o valor de
     referência.
   </p>
 
-  | Linha | `n_i` | `λ_sim` (nm) | `x = 1/4 - 1/n_i²` | `1/λ_sim` (m⁻¹) |
+  | Linha | `m` | `λ_sim` (nm) | `x = 1/4 - 1/m²` | `1/λ_sim` (m⁻¹) |
   | --- | --- | --- | --- | --- |
   | Hα | 3 |  |  |  |
   | Hβ | 4 |  |  |  |
@@ -278,7 +276,6 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <ol>
     <li>Por que o hidrogênio excitado produz linhas discretas em vez de um espectro contínuo?</li>
     <li>O que caracteriza a série de Balmer e por que suas primeiras linhas aparecem na região visível?</li>
-    <li>Por que medir a mesma linha nos dois lados da ordem central reduz a influência de um erro de alinhamento do zero?</li>
     <li>Como a largura da fenda afeta a nitidez da linha e a incerteza na leitura angular?</li>
     <li>Qual é o significado físico dos coeficientes angular e linear no gráfico usado para determinar a constante de Rydberg?</li>
     <li>Quais erros experimentais podem deslocar sistematicamente o valor obtido para <LatexInline expression={String.raw`R_{\mathrm H}`} />?</li>
@@ -288,12 +285,11 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 <PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
   <ol>
     <li>objetivo da prática;</li>
-    <li>introdução breve sobre espectros de linhas, níveis de energia e série de Balmer;</li>
+    <li>introdução breve sobre espectros de linhas e níveis de energia;</li>
     <li>modelo teórico com a equação da rede e a equação de Rydberg;</li>
     <li>descrição objetiva do espectrômetro, da rede usada e do procedimento de alinhamento;</li>
-    <li>tabela completa das leituras angulares dos dois lados da ordem central;</li>
     <li>um exemplo de conversão de graus e minutos, cálculo de <LatexInline expression={String.raw`\lambda`} /> e propagação de <LatexInline expression={String.raw`\Delta\lambda`} />;</li>
-    <li>tabela das grandezas calculadas e gráfico de <LatexInline expression={String.raw`1/\lambda`} /> em função de <LatexInline expression={String.raw`1/4-1/n_i^2`} />;</li>
+    <li>tabela das grandezas calculadas e gráfico de <LatexInline expression={String.raw`1/\lambda`} /> em função de <LatexInline expression={String.raw`1/4-1/m^2`} />;</li>
     <li>ajuste linear com coeficientes, incertezas e unidades;</li>
     <li>resultado experimental <LatexInline expression={String.raw`R_{\mathrm H}\pm\Delta R_{\mathrm H}`} /> e comparação com o valor de referência;</li>
     <li>tabela e ajuste do simulador apresentados separadamente;</li>
@@ -303,9 +299,8 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
 <PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
   <p>
-    Na discussão, avalie se os comprimentos de onda medidos seguem a tendência prevista para as transições da série de Balmer e se a
-    relação linear usada no ajuste descreve adequadamente os dados. Comente a compatibilidade entre o coeficiente linear e zero e
-    entre o coeficiente angular e o valor de referência da constante de Rydberg.
+    Comente a compatibilidade entre o coeficiente linear e zero e entre o coeficiente angular e o valor de referência da constante
+    de Rydberg.
   </p>
   <p>
     Diferenças entre o valor experimental e o valor de referência podem resultar do alinhamento da rede, da definição da ordem
@@ -316,7 +311,6 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
 <PracticeSection id="referencias" title="Referências Gerais">
   <ul>
-    <li>Material da disciplina. <em>Laboratório 4: Espectroscopia - Linhas Espectrais</em> e folhas de manipulação.</li>
     <li>Halliday, D.; Resnick, R.; Walker, J. <em>Fundamentos de Física</em>. Volume de óptica e física moderna.</li>
     <li>Young, H. D.; Freedman, R. A. <em>Física Universitária com Física Moderna</em>.</li>
     <li>Eisberg, R.; Resnick, R. <em>Física Quântica</em>.</li>
