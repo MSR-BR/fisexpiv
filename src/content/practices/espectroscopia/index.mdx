@@ -31,30 +31,61 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
 <PracticeSection id="introducao-teorica" title="Introdução teórica">
   <p>
-    Quando um gás rarefeito é excitado por uma descarga elétrica, os átomos emitem luz apenas em determinados comprimentos de onda.
-    Ao atravessar uma rede de difração, essa luz forma linhas coloridas separadas, e não um espectro contínuo. Cada linha corresponde
-    à emissão de fótons associados a uma transição específica entre dois níveis de energia do átomo.
-  </p>
-  <p>
-    Para um fóton emitido na transição de um estado inicial <LatexInline expression={String.raw`n_i`} /> para um estado final
-    <LatexInline expression={String.raw`n_f`} />, a conservação de energia fornece:
-  </p>
-  <LatexBlock expression={String.raw`E_\gamma=hf=\frac{hc}{\lambda}=E_{n_i}-E_{n_f}`} />
-  <p>
-    No modelo de Bohr para o hidrogênio, os níveis eletrônicos são quantizados e podem ser escritos em função da constante de
-    Rydberg do hidrogênio <LatexInline expression={String.raw`R_{\mathrm H}`} />:
-  </p>
-  <LatexBlock expression={String.raw`E_n=-\frac{hcR_{\mathrm H}}{n^2}`} />
-  <p>
-    Combinando as duas expressões, obtém-se a equação de Rydberg:
+    O espectro do hidrogênio apresenta linhas em comprimentos de onda bem definidos. Antes que sua origem física fosse compreendida,
+    esses comprimentos de onda foram organizados pela equação empírica de Rydberg:
   </p>
   <LatexBlock expression={String.raw`\frac{1}{\lambda}=R_{\mathrm H}\left(\frac{1}{n_f^2}-\frac{1}{n_i^2}\right),\qquad n_i>n_f`} />
   <p>
-    As linhas visíveis do hidrogênio pertencem à série de Balmer, para a qual
-    <LatexInline expression={String.raw`n_f=2`} />. Nesta prática serão procuradas as transições indicadas abaixo.
+    Nessa expressão, <LatexInline expression={String.raw`R_{\mathrm H}`} /> é a constante de Rydberg para o hidrogênio,
+    <LatexInline expression={String.raw`n_i`} /> é o número quântico principal do nível inicial e
+    <LatexInline expression={String.raw`n_f`} /> é o número quântico principal do nível final. Cada valor fixo de
+    <LatexInline expression={String.raw`n_f`} /> define uma série espectral:
   </p>
 
-  | Linha | Transição | Cor aproximada | Comprimento de onda de referência |
+  | Série | Nível final `n_f` | Região do espectro |
+  | --- | --- | --- |
+  | Lyman | 1 | ultravioleta |
+  | Balmer | 2 | visível para as primeiras linhas |
+  | Paschen | 3 | infravermelho |
+  | Brackett | 4 | infravermelho |
+  | Pfund | 5 | infravermelho |
+  | Humphreys | 6 | infravermelho |
+
+  <p>
+    Nesta prática, o foco será a série de Balmer, para a qual <LatexInline expression={String.raw`n_f=2`} />. Suas primeiras linhas
+    estão na região visível e podem ser observadas com o espectrômetro do laboratório.
+  </p>
+  <p>
+    O modelo de Bohr forneceu uma explicação física para a regularidade empírica de Rydberg. Nesse modelo, o elétron do átomo de
+    hidrogênio só pode ocupar níveis de energia quantizados, descritos por:
+  </p>
+  <LatexBlock expression={String.raw`E_n=-\frac{E_0}{n^2}`} />
+  <p>
+    Aqui, <LatexInline expression={String.raw`n=1,2,3,\ldots`} /> identifica o nível de energia e
+    <LatexInline expression={String.raw`E_0=13{,}6\ \mathrm{eV}`} /> é a energia de ionização do hidrogênio a partir do estado
+    fundamental. O sinal negativo indica que o elétron está ligado ao núcleo.
+  </p>
+  <p>
+    Uma transição entre dois níveis envolve a emissão ou a absorção de um fóton. Na emissão, o elétron passa do nível inicial mais
+    alto <LatexInline expression={String.raw`n_i`} /> para o nível final mais baixo <LatexInline expression={String.raw`n_f`} />,
+    com <LatexInline expression={String.raw`n_i>n_f`} />. Pela conservação da energia:
+  </p>
+  <LatexBlock expression={String.raw`hf=\frac{hc}{\lambda}=E_{n_i}-E_{n_f}=E_0\left(\frac{1}{n_f^2}-\frac{1}{n_i^2}\right)`} />
+  <p>
+    Na absorção ocorre o processo inverso: um fóton com essa mesma energia promove o elétron do nível mais baixo para o nível mais
+    alto.
+  </p>
+  <p>
+    Comparando essa expressão, obtida pelo modelo de Bohr, com a equação empírica de Rydberg, encontra-se:
+  </p>
+  <LatexBlock expression={String.raw`R_{\mathrm H}=\frac{E_0}{hc}`} />
+  <p>
+    Portanto, os números inteiros da equação de Rydberg identificam os níveis quânticos envolvidos na transição. Para a série de
+    Balmer, <LatexInline expression={String.raw`n_f=2`} /> permanece fixo e <LatexInline expression={String.raw`n_i`} /> assume os
+    valores 3, 4, 5, 6, ... Nesta prática serão procuradas as transições indicadas abaixo.
+  </p>
+
+  | Linha | Transição `n_i -> n_f` | Cor aproximada | Comprimento de onda de referência |
   | --- | --- | --- | --- |
   | Hα | `3 -> 2` | vermelha | 656,3 nm |
   | Hβ | `4 -> 2` | azul-esverdeada | 486,1 nm |
@@ -85,29 +116,6 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     Se a rede tiver <code>600 linhas/mm</code>, por exemplo:
   </p>
   <LatexBlock expression={String.raw`d=\frac{1}{600}\ \mathrm{mm}=1{,}667\times10^{-6}\ \mathrm{m}`} />
-
-  <h3>Leitura angular</h3>
-  <p>
-    A escala principal do goniômetro é lida em graus e o vernier em minutos de arco. Converta a leitura para graus decimais usando:
-  </p>
-  <LatexBlock expression={String.raw`\theta\,(^\circ)=\theta_{\mathrm{graus}}+\frac{\theta_{\mathrm{minutos}}}{60}`} />
-  <p>
-    Um minuto de arco corresponde a aproximadamente <code>0,0167°</code>. Para reduzir o efeito de um pequeno erro na posição do zero,
-    meça cada linha nos dois lados da ordem central e use a média dos módulos:
-  </p>
-  <LatexBlock expression={String.raw`\theta=\frac{|\theta_{\mathrm E}|+|\theta_{\mathrm D}|}{2}`} />
-  <p>
-    O comprimento de onda é então calculado por:
-  </p>
-  <LatexBlock expression={String.raw`\lambda=\frac{d}{m}\sin\theta`} />
-  <p>
-    Desprezando a incerteza de <LatexInline expression={String.raw`d`} />, a propagação da incerteza angular fornece:
-  </p>
-  <LatexBlock expression={String.raw`\Delta\lambda=\left|\frac{d}{m}\cos\theta\right|\Delta\theta`} />
-  <p>
-    Nesta última expressão, <LatexInline expression={String.raw`\theta`} /> e
-    <LatexInline expression={String.raw`\Delta\theta`} /> devem ser escritos em radianos.
-  </p>
 
   <h3>Forma linear da equação de Rydberg</h3>
   <p>
