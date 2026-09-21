@@ -137,20 +137,25 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
 <PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
   <p>
-    A prática usa uma ampola com gás de hidrogênio e um espectrômetro equipado com rede de difração. A descarga elétrica excita os
-    átomos do gás. A luz emitida passa por uma fenda estreita, é colimada e incide na rede. O telescópio permite localizar cada linha
-    da série de Balmer e ler sua posição angular no goniômetro.
+    A prática usa uma ampola espectral com gás de hidrogênio ou hélio e um espectrômetro equipado com rede de difração. A descarga
+    elétrica excita os átomos do gás. A luz emitida passa por uma fenda estreita, é colimada e incide na rede. O telescópio permite
+    localizar cada linha de emissão e ler sua posição angular no goniômetro.
   </p>
   <p>
-    A atividade experimental tem um único objetivo quantitativo: obter os comprimentos de onda das linhas do hidrogênio e, a partir
-    deles, determinar a constante de Rydberg. Não fazem parte deste roteiro a identificação de gases desconhecidos, a comparação
+    Com a ampola de hidrogênio, o objetivo quantitativo é obter os comprimentos de onda das linhas espectrais e, a partir deles,
+    determinar a constante de Rydberg. Não fazem parte deste roteiro a identificação de gases desconhecidos, a comparação
     entre redes diferentes, o uso de prisma ou a análise de uma fonte incandescente.
+  </p>
+  <p>
+    Caso seja utilizada uma ampola de hélio, determine os comprimentos de onda das duas linhas indicadas na tabela específica e
+    compare-os com os valores de referência. As linhas do hélio não pertencem à série de Balmer e não devem ser incluídas no ajuste
+    usado para determinar a constante de Rydberg do hidrogênio.
   </p>
 </PracticeSection>
 
 <PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
   <ul>
-    <li>ampola espectral com gás de hidrogênio e fonte de alimentação apropriada;</li>
+    <li>ampola espectral com gás de hidrogênio ou hélio e fonte de alimentação apropriada;</li>
     <li>espectrômetro com colimador, fenda regulável, mesa angular, goniômetro e telescópio;</li>
     <li>rede de difração de <code>600 linhas/mm</code>, ou a rede indicada pelo professor;</li>
     <li>lupa para leitura do goniômetro;</li>
@@ -169,8 +174,9 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>Ajuste a fenda para que fique estreita, mas ainda suficientemente luminosa, e corrija o foco do colimador até obter uma linha nítida.</li>
     <li>Coloque a rede de difração no suporte, com as linhas na orientação indicada e a superfície aproximadamente normal ao feixe.</li>
     <li>Confirme o número de linhas por milímetro da rede e calcule o espaçamento <LatexInline expression={String.raw`d`} />.</li>
-    <li>Ligue a ampola de hidrogênio apenas quando o espectrômetro estiver pronto para a leitura.</li>
-    <li>Localize a primeira ordem, <code>|p| = 1</code>, em um lado da ordem central e identifique as linhas Hα, Hβ, Hγ e, se estiver visível, Hδ.</li>
+    <li>Ligue a ampola disponibilizada apenas quando o espectrômetro estiver pronto para a leitura.</li>
+    <li>Localize a primeira ordem, <code>|p| = 1</code>, em um lado da ordem central.</li>
+    <li>Se a ampola for de hidrogênio, identifique as linhas Hα, Hβ, Hγ e, se estiver visível, Hδ. Se for de hélio, meça as duas linhas indicadas na tabela específica.</li>
     <li>Faça cada linha coincidir com o retículo, leia graus e minutos no goniômetro e registre a incerteza angular.</li>
     <li>Desligue a ampola assim que as leituras forem concluídas.</li>
   </ol>
@@ -197,7 +203,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   | Menor divisão do goniômetro |  |  | minuto de arco |
   | Incerteza angular adotada `Δθ` |  |  | minuto de arco |
 
-  <h3>Leituras angulares</h3>
+  <h3>Leituras angulares - hidrogênio</h3>
 
   | Linha | Cor | `m` | Ordem `p` | Leitura angular `θ` (graus e minutos) | `Δθ` (minuto de arco) |
   | --- | --- | --- | --- | --- | --- |
@@ -206,7 +212,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   | Hγ | azul-violeta | 5 | 1 |  |  |
   | Hδ | violeta | 6 | 1 |  |  |
 
-  <h3>Grandezas calculadas</h3>
+  <h3>Grandezas calculadas - hidrogênio</h3>
 
   | Linha | `λ` (nm) | `Δλ` (nm) | `x = 1/4 - 1/m²` | `y = 1/λ` (m⁻¹) | `Δy` (m⁻¹) |
   | --- | --- | --- | --- | --- | --- |
@@ -214,9 +220,21 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   | Hβ |  |  |  |  |  |
   | Hγ |  |  |  |  |  |
   | Hδ |  |  |  |  |  |
+
+  <h3>Caso seja utilizada uma lâmpada de hélio</h3>
+  <p>
+    O anexo da apostila, baseado no NIST Atomic Spectra Database, fornece os seguintes comprimentos de onda observados no ar. Registre
+    as leituras angulares e determine experimentalmente o comprimento de onda de cada linha.
+  </p>
+
+  | `λ_ref` (nm) | `Δλ_ref` (nm) | Ordem `p` | Leitura angular `θ` (graus e minutos) | `Δθ` (minuto de arco) | `λ_exp` (nm) | `Δλ_exp` (nm) |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | 447,14802 | 0,00015 | 1 |  |  |  |  |
+  | 587,5621 | 0,0010 | 1 |  |  |  |  |
 </PracticeSection>
 
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+  <h3>Hidrogênio</h3>
   <ol>
     <li>Converta todas as leituras de graus e minutos para graus decimais.</li>
     <li>Calcule o espaçamento <LatexInline expression={String.raw`d`} /> da rede em metros.</li>
@@ -242,6 +260,13 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <p>
     Para o ajuste e a construção do gráfico, podem ser usados, por exemplo, Excel, LibreOffice Calc ou Google Sheets. O relatório deve
     mostrar os coeficientes angular e linear, suas incertezas e as respectivas unidades.
+  </p>
+  <h3>Hélio</h3>
+  <p>
+    Se a lâmpada utilizada for de hélio, converta as leituras angulares, calcule <LatexInline expression={String.raw`\lambda`} /> e
+    <LatexInline expression={String.raw`\Delta\lambda`} /> e compare cada resultado com o respectivo valor de referência da tabela.
+    Não calcule <LatexInline expression={String.raw`x=1/4-1/m^2`} /> nem inclua as linhas do hélio no ajuste para
+    <LatexInline expression={String.raw`R_{\mathrm H}`} />.
   </p>
 </PracticeSection>
 
@@ -295,17 +320,26 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>tabela e ajuste do simulador apresentados separadamente;</li>
     <li>discussão das limitações da bancada e conclusão sobre a compatibilidade do resultado com o modelo.</li>
   </ol>
+  <div class="callout">
+    <strong>Caso seja utilizada a lâmpada de hélio.</strong> Substitua o ajuste experimental da série de Balmer pela tabela das duas
+    linhas do hélio e pela comparação entre os comprimentos de onda experimentais e os valores de referência. As linhas do hélio não
+    devem ser usadas para obter <LatexInline expression={String.raw`R_{\mathrm H}`} />.
+  </div>
 </PracticeSection>
 
 <PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
   <p>
-    Comente a compatibilidade entre o coeficiente linear e zero e entre o coeficiente angular e o valor de referência da constante
-    de Rydberg.
+    Com a ampola de hidrogênio, comente a compatibilidade entre o coeficiente linear e zero e entre o coeficiente angular e o valor
+    de referência da constante de Rydberg.
   </p>
   <p>
     Diferenças entre o valor experimental e o valor de referência podem resultar do alinhamento da rede, da definição da ordem
     central, da leitura do vernier, da largura da fenda, da baixa intensidade das linhas violetas e da tolerância no número de linhas
     por milímetro da rede. A conclusão deve distinguir essas limitações da bancada do resultado ideal fornecido pelo simulador.
+  </p>
+  <p>
+    Se a lâmpada utilizada for de hélio, discuta a compatibilidade de cada comprimento de onda medido com o respectivo valor de
+    referência e deixe explícito que essas linhas não foram usadas na determinação da constante de Rydberg do hidrogênio.
   </p>
 </PracticeSection>
 
