@@ -117,6 +117,23 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   </p>
   <LatexBlock expression={String.raw`\theta=\frac{1}{2}\arctan\!\left(\frac{r}{R+\sqrt{R^2-r^2}}\right)`} />
   <p>
+    Quando o anel é pequeno em comparação com o bulbo, <LatexInline expression={String.raw`r\ll R`} />. Nesse limite,
+    <LatexInline expression={String.raw`\sqrt{R^2-r^2}\approx R`} /> e, como
+    <LatexInline expression={String.raw`r=D/2`} />, a geometria pode ser aproximada por:
+  </p>
+  <LatexBlock expression={String.raw`\tan(2\theta)\approx\frac{r}{2R}=\frac{D}{4R}`} />
+  <p>
+    Para ângulos pequenos, <LatexInline expression={String.raw`\tan(2\theta)\approx\sin(2\theta)`} /> e
+    <LatexInline expression={String.raw`\sin(2\theta)=2\sin\theta\cos\theta\approx2\sin\theta`} />. Na primeira ordem, a lei de
+    Bragg fornece <LatexInline expression={String.raw`\lambda=2d\sin\theta`} />. Portanto:
+  </p>
+  <LatexBlock expression={String.raw`\frac{D}{4R}\approx2\sin\theta=\frac{\lambda}{d}`} />
+  <LatexBlock expression={String.raw`\lambda\approx\frac{dD}{4R}`} />
+  <p>
+    Essa última relação é a forma aproximada para ângulos pequenos. A expressão anterior para
+    <LatexInline expression={String.raw`\theta`} /> preserva a geometria esférica completa do tubo.
+  </p>
+  <p>
     Definindo <LatexInline expression={String.raw`x=\sin\theta`} /> e usando a primeira ordem da lei de Bragg:
   </p>
   <LatexBlock expression={String.raw`\lambda=2d\,x`} />
