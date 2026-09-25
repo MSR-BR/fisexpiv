@@ -51,13 +51,20 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   </p>
   <LatexBlock expression={String.raw`\lambda=\frac{1{,}23}{\sqrt{V}}\ \mathrm{nm}\qquad(V\ \text{em volts})`} />
   <p>
-    Para trabalhar diretamente com a tensão em quilovolts, a mesma expressão pode ser escrita como:
+    Em um monocristal, os planos atômicos têm orientações bem definidas. Quando uma família de planos satisfaz a condição de Bragg,
+    os elétrons são difratados em direções específicas e tendem a produzir pontos na tela.
   </p>
-  <LatexBlock expression={String.raw`\lambda=\frac{38{,}9}{\sqrt{V_{\mathrm{kV}}}}\ \mathrm{pm}`} />
   <p>
-    Ao atravessar um filme policristalino de grafite, os elétrons são espalhados pelos planos atômicos. Como os cristalitos têm
-    diferentes orientações, as direções de interferência construtiva formam cones. A interseção desses cones com a tela fluorescente
-    produz anéis, em vez de pontos isolados.
+    O filme de grafite usado nesta prática é policristalino: ele contém muitos pequenos cristalitos orientados ao acaso. Para uma
+    determinada família de planos, sempre haverá cristalitos orientados de modo que o feixe incidente forme com esses planos o
+    ângulo de Bragg <LatexInline expression={String.raw`\theta`} />. O feixe difratado forma o mesmo ângulo com os planos, do lado
+    oposto; por isso, o ângulo entre a direção incidente e a direção difratada é
+    <LatexInline expression={String.raw`2\theta`} />.
+  </p>
+  <p>
+    Como existem cristalitos equivalentes em todas as orientações ao redor do feixe incidente, as direções difratadas com o mesmo
+    <LatexInline expression={String.raw`2\theta`} /> formam um cone. A interseção desse cone com a tela fluorescente produz um anel.
+    Assim, cada família de planos com espaçamento <LatexInline expression={String.raw`d`} /> pode originar um anel diferente.
   </p>
 
   <figure>
@@ -66,9 +73,10 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
       alt="Esquema do feixe de elétrons difratado formando um cone que atinge a tela fluorescente"
     />
     <figcaption>
-      Geometria do feixe difratado e do ângulo de espalhamento <LatexInline expression={String.raw`2\theta`} />. Embora a figura use
-      a expressão “alvo monocristal”, o tubo empregado nesta prática contém um filme de grafite policristalino, necessário para a
-      formação dos anéis.
+      Corte lateral do cone de difração. Para um dos cristalitos, <LatexInline expression={String.raw`\theta`} /> é o ângulo entre o
+      feixe incidente e os planos cristalinos; <LatexInline expression={String.raw`2\theta`} /> é o ângulo de espalhamento entre o
+      feixe incidente e o difratado. A figura representa essa geometria elementar e usa a expressão “alvo monocristal”. No tubo real,
+      muitos cristalitos orientados ao acaso completam o cone, cuja interseção com a tela forma o anel.
     </figcaption>
   </figure>
 </PracticeSection>
@@ -82,7 +90,9 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <LatexBlock expression={String.raw`2d\sin\theta=n_{\mathrm B}\lambda`} />
   <p>
     Nessa expressão, <LatexInline expression={String.raw`d`} /> é o espaçamento entre planos, <LatexInline expression={String.raw`\theta`} />
-    é o ângulo de Bragg e <LatexInline expression={String.raw`n_{\mathrm B}`} /> é a ordem da difração. Os dois anéis principais serão
+    é o ângulo entre o feixe incidente e os planos cristalinos, e <LatexInline expression={String.raw`n_{\mathrm B}`} /> é a ordem da
+    difração. Esse <LatexInline expression={String.raw`\theta`} /> não deve ser confundido com o ângulo de espalhamento observado a
+    partir da direção original do feixe, que vale <LatexInline expression={String.raw`2\theta`} />. Os dois anéis principais serão
     analisados na primeira ordem, <LatexInline expression={String.raw`n_{\mathrm B}=1`} />.
   </p>
 
@@ -101,7 +111,9 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <p>
     Para cada anel, meça o diâmetro <LatexInline expression={String.raw`D`} /> e calcule o raio
     <LatexInline expression={String.raw`r=D/2`} />. Considerando o raio do bulbo
-    <LatexInline expression={String.raw`R=65\ \mathrm{mm}`} />, o ângulo de Bragg é obtido pela geometria esférica do tubo:
+    <LatexInline expression={String.raw`R=65\ \mathrm{mm}`} />, a posição do anel fornece primeiro o ângulo de espalhamento
+    <LatexInline expression={String.raw`2\theta`} />. Por isso, o fator <LatexInline expression={String.raw`1/2`} /> aparece na
+    expressão que determina o ângulo de Bragg:
   </p>
   <LatexBlock expression={String.raw`\theta=\frac{1}{2}\arctan\!\left(\frac{r}{R+\sqrt{R^2-r^2}}\right)`} />
   <p>
@@ -215,7 +227,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
   <ol>
-    <li>Converta cada tensão de quilovolts para volts antes de usar <LatexInline expression={String.raw`\lambda=1{,}23/\sqrt{V}`} /> em nanômetros, ou use diretamente a forma equivalente em quilovolts e picômetros.</li>
+    <li>Converta cada tensão de quilovolts para volts antes de usar <LatexInline expression={String.raw`\lambda=1{,}23/\sqrt{V}`} /> em nanômetros.</li>
     <li>Calcule a incerteza do comprimento de onda pela propagação linear:</li>
   </ol>
   <LatexBlock expression={String.raw`\Delta\lambda=\frac{\lambda}{2}\frac{\Delta V}{V}`} />
