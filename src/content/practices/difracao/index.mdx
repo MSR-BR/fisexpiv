@@ -259,17 +259,6 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>Apresente os dois resultados em picômetros e verifique se os coeficientes lineares são compatíveis com zero.</li>
     <li>Compare os espaçamentos obtidos com os valores indicados no material: <LatexInline expression={String.raw`213\ \mathrm{pm}`} /> e <LatexInline expression={String.raw`123\ \mathrm{pm}`} />.</li>
   </ol>
-  <p>
-    A diferença percentual pode ser calculada separadamente para cada espaçamento:
-  </p>
-  <LatexBlock expression={String.raw`\text{diferença percentual}=\frac{|d_{\mathrm{exp}}-d_{\mathrm{ref}}|}{d_{\mathrm{ref}}}\times100\%`} />
-  <div class="callout">
-    <strong>Atenção às unidades.</strong> Use <code>D</code> e <code>R</code> na mesma unidade. Como
-    <LatexInline expression={String.raw`D/(4R)`} /> é adimensional, o coeficiente angular terá a mesma unidade escolhida para
-    <LatexInline expression={String.raw`\lambda`} /> e representará diretamente <LatexInline expression={String.raw`d`} />. Se
-    <LatexInline expression={String.raw`\lambda`} /> estiver em picômetros, <LatexInline expression={String.raw`d`} /> também sairá em
-    picômetros.
-  </div>
 </PracticeSection>
 
 <PracticeSection id="simulador" title="Simulador">
