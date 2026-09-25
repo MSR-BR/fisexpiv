@@ -50,6 +50,22 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     Na forma numérica usada nesta prática:
   </p>
   <LatexBlock expression={String.raw`\lambda=\frac{1{,}23}{\sqrt{V}}\ \mathrm{nm}\qquad(V\ \text{em volts})`} />
+</PracticeSection>
+
+<PracticeSection id="modelo-fisico" title="Modelo físico">
+  <h3>Lei de Bragg</h3>
+  <p>
+    A interferência entre ondas espalhadas por planos cristalinos sucessivos é construtiva quando a diferença de caminho corresponde
+    a um número inteiro de comprimentos de onda:
+  </p>
+  <LatexBlock expression={String.raw`2d\sin\theta=n_{\mathrm B}\lambda`} />
+  <p>
+    Nessa expressão, <LatexInline expression={String.raw`d`} /> é o espaçamento entre planos, <LatexInline expression={String.raw`\theta`} />
+    é o ângulo entre o feixe incidente e os planos cristalinos, e <LatexInline expression={String.raw`n_{\mathrm B}`} /> é a ordem da
+    difração. Esse <LatexInline expression={String.raw`\theta`} /> não deve ser confundido com o ângulo de espalhamento observado a
+    partir da direção original do feixe, que vale <LatexInline expression={String.raw`2\theta`} />. Os dois anéis principais serão
+    analisados na primeira ordem, <LatexInline expression={String.raw`n_{\mathrm B}=1`} />.
+  </p>
   <p>
     Em um monocristal, os planos atômicos têm orientações bem definidas. Quando uma família de planos satisfaz a condição de Bragg,
     os elétrons são difratados em direções específicas e tendem a produzir pontos na tela.
@@ -79,22 +95,6 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
       muitos cristalitos orientados ao acaso completam o cone, cuja interseção com a tela forma o anel.
     </figcaption>
   </figure>
-</PracticeSection>
-
-<PracticeSection id="modelo-fisico" title="Modelo físico">
-  <h3>Lei de Bragg</h3>
-  <p>
-    A interferência entre ondas espalhadas por planos cristalinos sucessivos é construtiva quando a diferença de caminho corresponde
-    a um número inteiro de comprimentos de onda:
-  </p>
-  <LatexBlock expression={String.raw`2d\sin\theta=n_{\mathrm B}\lambda`} />
-  <p>
-    Nessa expressão, <LatexInline expression={String.raw`d`} /> é o espaçamento entre planos, <LatexInline expression={String.raw`\theta`} />
-    é o ângulo entre o feixe incidente e os planos cristalinos, e <LatexInline expression={String.raw`n_{\mathrm B}`} /> é a ordem da
-    difração. Esse <LatexInline expression={String.raw`\theta`} /> não deve ser confundido com o ângulo de espalhamento observado a
-    partir da direção original do feixe, que vale <LatexInline expression={String.raw`2\theta`} />. Os dois anéis principais serão
-    analisados na primeira ordem, <LatexInline expression={String.raw`n_{\mathrm B}=1`} />.
-  </p>
 
   <figure>
     <img
