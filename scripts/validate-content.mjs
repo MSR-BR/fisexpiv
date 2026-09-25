@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const practicesDir = path.join(root, "src", "content", "practices");
-const expected = ["revisao", "carga-massa"];
+const expected = ["revisao", "carga-massa", "difracao"];
 
 async function exists(target) {
   try {

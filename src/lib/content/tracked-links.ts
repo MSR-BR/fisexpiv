@@ -98,6 +98,14 @@ export const trackedLinks: TrackedLinkItem[] = [
     label: "Simulador de espectro de emissão do hidrogênio para a prática de linhas espectrais",
     openInNewTab: true,
   },
+  {
+    kind: "simulador",
+    practiceSlug: "difracao",
+    resourceSlug: "ufc",
+    destination: "https://www.laboratoriovirtual.fisica.ufc.br/difracao-de-eletrons",
+    label: "Simulador UFC para a prática de difração de elétrons",
+    openInNewTab: true,
+  },
 ];
 
 export function getTrackedLink(kind: TrackedLinkKind, practiceSlug: string, resourceSlug: string) {

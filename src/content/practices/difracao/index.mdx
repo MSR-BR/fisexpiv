@@ -1,0 +1,322 @@
+---
+title: "Difração de elétrons"
+practiceSlug: "difracao"
+order: 7
+summary: "Verificação do comportamento ondulatório dos elétrons e determinação dos espaçamentos interplanares do grafite."
+status: "available"
+estimatedTime: "1 encontro de laboratório"
+learningFocus:
+  - "Relacionar a hipótese de de Broglie com elétrons acelerados por uma diferença de potencial"
+  - "Interpretar os anéis observados por meio da lei de Bragg"
+  - "Medir os diâmetros dos dois anéis de difração com suas incertezas"
+  - "Determinar os espaçamentos interplanares do grafite por ajuste linear"
+  - "Comparar separadamente os resultados da bancada e do simulador"
+materialsStatus: "Roteiro reestruturado e pronto para revisão em aula"
+sourcesStatus: "Apostila e folhas do Laboratório 7, figuras fornecidas e simulador da UFC"
+---
+
+import PracticeSection from "../../../components/practice/PracticeSection.astro";
+import LatexBlock from "../../../components/ui/LatexBlock.astro";
+import LatexInline from "../../../components/ui/LatexInline.astro";
+
+<PracticeSection id="objetivos-de-aprendizagem" title="Objetivos de aprendizagem">
+  <ul>
+    <li>Reconhecer a difração de elétrons como evidência experimental de seu comportamento ondulatório.</li>
+    <li>Calcular o comprimento de onda de de Broglie de elétrons acelerados por uma diferença de potencial.</li>
+    <li>Relacionar os dois anéis de difração aos planos cristalinos do grafite.</li>
+    <li>Medir tensão e diâmetros com unidades e incertezas.</li>
+    <li>Determinar os dois espaçamentos interplanares do grafite por ajustes lineares independentes.</li>
+  </ul>
+</PracticeSection>
+
+<PracticeSection id="introducao-teorica" title="Introdução teórica">
+  <p>
+    Experimentos como o efeito fotoelétrico mostram que a radiação eletromagnética pode trocar energia em unidades discretas,
+    chamadas fótons. Em 1924, Louis de Broglie propôs a ideia complementar: partículas materiais também podem apresentar
+    comportamento ondulatório. A uma partícula de momento <LatexInline expression={String.raw`p`} /> associa-se o comprimento de onda:
+  </p>
+  <LatexBlock expression={String.raw`\lambda=\frac{h}{p}`} />
+  <p>
+    Para um elétron não relativístico, <LatexInline expression={String.raw`p=m_e v`} />. Se ele parte aproximadamente do repouso e é
+    acelerado por uma diferença de potencial <LatexInline expression={String.raw`V`} />, a energia elétrica adquirida transforma-se
+    em energia cinética:
+  </p>
+  <LatexBlock expression={String.raw`eV=\frac{1}{2}m_e v^2`} />
+  <p>
+    Combinando as duas relações, obtemos o comprimento de onda de de Broglie do elétron acelerado:
+  </p>
+  <LatexBlock expression={String.raw`\lambda=\frac{h}{\sqrt{2m_e eV}}`} />
+  <p>
+    Na forma numérica usada nesta prática:
+  </p>
+  <LatexBlock expression={String.raw`\lambda=\frac{1{,}23}{\sqrt{V}}\ \mathrm{nm}\qquad(V\ \text{em volts})`} />
+  <p>
+    Para trabalhar diretamente com a tensão em quilovolts, a mesma expressão pode ser escrita como:
+  </p>
+  <LatexBlock expression={String.raw`\lambda=\frac{38{,}9}{\sqrt{V_{\mathrm{kV}}}}\ \mathrm{pm}`} />
+  <p>
+    Ao atravessar um filme policristalino de grafite, os elétrons são espalhados pelos planos atômicos. Como os cristalitos têm
+    diferentes orientações, as direções de interferência construtiva formam cones. A interseção desses cones com a tela fluorescente
+    produz anéis, em vez de pontos isolados.
+  </p>
+
+  <figure>
+    <img
+      src="/fisexpiv/images/difracao-cone-tela-fluorescente.png"
+      alt="Esquema do feixe de elétrons difratado formando um cone que atinge a tela fluorescente"
+    />
+    <figcaption>
+      Geometria do feixe difratado e do ângulo de espalhamento <LatexInline expression={String.raw`2\theta`} />. Embora a figura use
+      a expressão “alvo monocristal”, o tubo empregado nesta prática contém um filme de grafite policristalino, necessário para a
+      formação dos anéis.
+    </figcaption>
+  </figure>
+</PracticeSection>
+
+<PracticeSection id="modelo-fisico" title="Modelo físico">
+  <h3>Lei de Bragg</h3>
+  <p>
+    A interferência entre ondas espalhadas por planos cristalinos sucessivos é construtiva quando a diferença de caminho corresponde
+    a um número inteiro de comprimentos de onda:
+  </p>
+  <LatexBlock expression={String.raw`2d\sin\theta=n_{\mathrm B}\lambda`} />
+  <p>
+    Nessa expressão, <LatexInline expression={String.raw`d`} /> é o espaçamento entre planos, <LatexInline expression={String.raw`\theta`} />
+    é o ângulo de Bragg e <LatexInline expression={String.raw`n_{\mathrm B}`} /> é a ordem da difração. Os dois anéis principais serão
+    analisados na primeira ordem, <LatexInline expression={String.raw`n_{\mathrm B}=1`} />.
+  </p>
+
+  <figure>
+    <img
+      src="/fisexpiv/images/difracao-lei-bragg.png"
+      alt="Representação da diferença de caminho que conduz à lei de Bragg"
+    />
+    <figcaption>
+      Diferença de caminho entre ondas espalhadas por planos sucessivos. A condição de interferência construtiva é
+      <LatexInline expression={String.raw`2d\sin\theta=n_{\mathrm B}\lambda`} />.
+    </figcaption>
+  </figure>
+
+  <h3>Geometria do tubo</h3>
+  <p>
+    Para cada anel, meça o diâmetro <LatexInline expression={String.raw`D`} /> e calcule o raio
+    <LatexInline expression={String.raw`r=D/2`} />. Considerando o raio do bulbo
+    <LatexInline expression={String.raw`R=65\ \mathrm{mm}`} />, o ângulo de Bragg é obtido pela geometria esférica do tubo:
+  </p>
+  <LatexBlock expression={String.raw`\theta=\frac{1}{2}\arctan\!\left(\frac{r}{R+\sqrt{R^2-r^2}}\right)`} />
+  <p>
+    Definindo <LatexInline expression={String.raw`x=\sin\theta`} /> e usando a primeira ordem da lei de Bragg:
+  </p>
+  <LatexBlock expression={String.raw`\lambda=2d\,x`} />
+  <p>
+    Para cada anel, ajuste uma reta geral <LatexInline expression={String.raw`\lambda=ax+b`} />. O coeficiente angular fornece:
+  </p>
+  <LatexBlock expression={String.raw`d=\frac{a}{2}\qquad\text{e}\qquad \Delta d=\frac{\Delta a}{2}`} />
+  <p>
+    O coeficiente linear deve ser compatível com zero dentro da incerteza. Como os dois anéis correspondem a famílias diferentes de
+    planos do grafite, devem ser feitos dois ajustes independentes.
+  </p>
+
+  <figure>
+    <img
+      src="/fisexpiv/images/difracao-grafite-planos.png"
+      alt="Esquema dos planos do grafite associados aos espaçamentos de 213 e 123 picômetros"
+    />
+    <figcaption>
+      Planos do grafite associados aos dois anéis principais. Os valores de referência indicados no material são
+      <LatexInline expression={String.raw`d_1=213\ \mathrm{pm}`} /> e
+      <LatexInline expression={String.raw`d_2=123\ \mathrm{pm}`} />.
+    </figcaption>
+  </figure>
+</PracticeSection>
+
+<PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
+  <p>
+    O tubo contém um cátodo aquecido, eletrodos que aceleram e focalizam os elétrons, um filme fino de grafite policristalino e uma
+    tela fluorescente. Depois de atravessar o grafite, os elétrons difratados atingem a tela e produzem dois anéis luminosos.
+  </p>
+  <p>
+    A tensão de aceleração controla o momento dos elétrons e, portanto, seu comprimento de onda. Para cada tensão, medem-se os
+    diâmetros do anel interno e do anel externo. Quando a tensão aumenta, o comprimento de onda diminui e os anéis devem ficar
+    menores.
+  </p>
+  <p>
+    O anel interno será identificado por <LatexInline expression={String.raw`D_1`} /> e o anel externo por
+    <LatexInline expression={String.raw`D_2`} /> durante toda a coleta. Essa convenção deve ser mantida nas tabelas, nos gráficos e no
+    relatório.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
+  <ul>
+    <li>tubo de difração de elétrons com alvo de grafite policristalino e tela fluorescente;</li>
+    <li>fonte de alta tensão de <code>0-10 kV</code>;</li>
+    <li>fonte de tensão de <code>0-600 VDC</code> para os eletrodos auxiliares;</li>
+    <li>resistor de <code>10 MΩ</code> e cabo apropriado para alta tensão;</li>
+    <li>paquímetro de plástico;</li>
+    <li>cabos de conexão.</li>
+  </ul>
+  <div class="callout">
+    <strong>Alta tensão.</strong> Não altere conexões, não toque nos terminais e não use paquímetro metálico próximo ao tubo. A
+    montagem elétrica e os ajustes iniciais devem ser realizados ou autorizados pelo professor. Use somente o paquímetro de plástico
+    fornecido para medir os anéis.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="procedimento-experimental" title="Procedimento experimental">
+  <ol>
+    <li>Confira com o professor se as fontes estão inicialmente em zero e se todas as conexões de alta tensão estão corretas.</li>
+    <li>Ligue o equipamento e espere alguns minutos antes de elevar as tensões.</li>
+    <li>Nos ajustes indicados no material, use aproximadamente <code>30 V</code> em <code>G1</code> e <code>250 V</code> em <code>G4</code>, sempre sob orientação do professor.</li>
+    <li>Ajuste a tensão de aceleração <code>G3</code> para um valor na faixa indicada, tipicamente entre <code>4,0 kV</code> e <code>9,0 kV</code>.</li>
+    <li>Se necessário, refine <code>G1</code> e <code>G4</code> para tornar os dois anéis mais nítidos, sem ultrapassar os limites do equipamento.</li>
+    <li>Registre a tensão de aceleração e sua incerteza.</li>
+    <li>Meça com o paquímetro de plástico o diâmetro do anel interno, <LatexInline expression={String.raw`D_1`} />, e do anel externo, <LatexInline expression={String.raw`D_2`} />.</li>
+    <li>Repita as leituras de diâmetro quando a borda do anel estiver larga e use um critério consistente para todas as medidas.</li>
+    <li>Repita o procedimento para vários valores de tensão distribuídos na faixa operacional.</li>
+    <li>Ao terminar, reduza a alta tensão a zero e desligue o equipamento conforme a orientação do professor.</li>
+  </ol>
+  <div class="callout">
+    <strong>Critério de leitura.</strong> Os anéis têm largura finita. Escolha um único critério, como medir pelo centro da faixa
+    luminosa, e mantenha-o em todos os pontos. A incerteza do diâmetro deve considerar tanto a resolução do paquímetro quanto a
+    dificuldade de localizar a borda ou o centro do anel.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
+  <p>
+    Registre tensão e diâmetros com as respectivas incertezas. Use uma única unidade de comprimento ao aplicar a expressão geométrica;
+    por exemplo, converta <LatexInline expression={String.raw`D`} />, <LatexInline expression={String.raw`r`} /> e
+    <LatexInline expression={String.raw`R`} /> para milímetros.
+  </p>
+
+  <h3>Coleta experimental</h3>
+
+  | Ponto | `V` (kV) | `ΔV` (kV) | `D_1` interno (mm) | `ΔD_1` (mm) | `D_2` externo (mm) | `ΔD_2` (mm) |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | 1 |  |  |  |  |  |  |
+  | 2 |  |  |  |  |  |  |
+  | 3 |  |  |  |  |  |  |
+  | 4 |  |  |  |  |  |  |
+  | 5 |  |  |  |  |  |  |
+  | 6 |  |  |  |  |  |  |
+
+  <h3>Grandezas calculadas</h3>
+
+  | Ponto | `λ` (pm) | `Δλ` (pm) | `r_1=D_1/2` (mm) | `x_1=sen θ_1` | `r_2=D_2/2` (mm) | `x_2=sen θ_2` |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | 1 |  |  |  |  |  |  |
+  | 2 |  |  |  |  |  |  |
+  | 3 |  |  |  |  |  |  |
+  | 4 |  |  |  |  |  |  |
+  | 5 |  |  |  |  |  |  |
+  | 6 |  |  |  |  |  |  |
+</PracticeSection>
+
+<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+  <ol>
+    <li>Converta cada tensão de quilovolts para volts antes de usar <LatexInline expression={String.raw`\lambda=1{,}23/\sqrt{V}`} /> em nanômetros, ou use diretamente a forma equivalente em quilovolts e picômetros.</li>
+    <li>Calcule a incerteza do comprimento de onda pela propagação linear:</li>
+  </ol>
+  <LatexBlock expression={String.raw`\Delta\lambda=\frac{\lambda}{2}\frac{\Delta V}{V}`} />
+  <ol start="3">
+    <li>Para cada anel, calcule <LatexInline expression={String.raw`r=D/2`} /> e depois o ângulo <LatexInline expression={String.raw`\theta`} /> pela geometria esférica do tubo.</li>
+    <li>Calcule <LatexInline expression={String.raw`x_1=\sin\theta_1`} /> para o anel interno e <LatexInline expression={String.raw`x_2=\sin\theta_2`} /> para o anel externo.</li>
+    <li>Construa o gráfico de <LatexInline expression={String.raw`\lambda`} /> em função de <LatexInline expression={String.raw`x_1`} /> e faça o ajuste <LatexInline expression={String.raw`\lambda=a_1x_1+b_1`} />.</li>
+    <li>Construa separadamente o gráfico de <LatexInline expression={String.raw`\lambda`} /> em função de <LatexInline expression={String.raw`x_2`} /> e faça o ajuste <LatexInline expression={String.raw`\lambda=a_2x_2+b_2`} />.</li>
+    <li>Determine <LatexInline expression={String.raw`d_1=a_1/2`} /> e <LatexInline expression={String.raw`d_2=a_2/2`} />, com <LatexInline expression={String.raw`\Delta d_i=\Delta a_i/2`} />.</li>
+    <li>Apresente os dois resultados em picômetros e verifique se os coeficientes lineares são compatíveis com zero.</li>
+    <li>Compare os espaçamentos obtidos com os valores indicados no material: <LatexInline expression={String.raw`213\ \mathrm{pm}`} /> e <LatexInline expression={String.raw`123\ \mathrm{pm}`} />.</li>
+  </ol>
+  <p>
+    A diferença percentual pode ser calculada separadamente para cada espaçamento:
+  </p>
+  <LatexBlock expression={String.raw`\text{diferença percentual}=\frac{|d_{\mathrm{exp}}-d_{\mathrm{ref}}|}{d_{\mathrm{ref}}}\times100\%`} />
+  <div class="callout">
+    <strong>Atenção às unidades.</strong> O argumento da função trigonométrica é adimensional, portanto <code>r</code> e <code>R</code>
+    devem estar na mesma unidade. O coeficiente angular terá a mesma unidade escolhida para <LatexInline expression={String.raw`\lambda`} />.
+    Se o gráfico usar <LatexInline expression={String.raw`\lambda`} /> em picômetros, o valor de <LatexInline expression={String.raw`d`} />
+    sairá diretamente em picômetros.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="simulador" title="Simulador">
+  <p>
+    Use o <a href="../../acessos/simulador/difracao/ufc/" data-force-new-tab="true">simulador de difração de elétrons da UFC</a>
+    como uma coleta separada da bancada. Clique em <strong>ON</strong>, ajuste a fonte de alta tensão e use a régua móvel para medir os
+    diâmetros dos dois anéis.
+  </p>
+  <p>
+    Escolha vários valores de tensão, calcule o comprimento de onda de de Broglie e repita os dois ajustes de
+    <LatexInline expression={String.raw`\lambda`} /> em função de <LatexInline expression={String.raw`\sin\theta`} />. Determine os
+    espaçamentos interplanares simulados e compare-os, separadamente, com os resultados experimentais e com os valores de referência.
+  </p>
+
+  | Ponto | `V_sim` (kV) | `D_1,sim` interno (mm) | `D_2,sim` externo (mm) | `λ_sim` (pm) | `x_1,sim` | `x_2,sim` |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | 1 |  |  |  |  |  |  |
+  | 2 |  |  |  |  |  |  |
+  | 3 |  |  |  |  |  |  |
+  | 4 |  |  |  |  |  |  |
+  | 5 |  |  |  |  |  |  |
+
+  <div class="callout">
+    <strong>Dados separados.</strong> Não misture na mesma regressão as medidas da bancada e as medidas do simulador. O ambiente
+    virtual reproduz a dependência entre tensão e diâmetro, mas não inclui todas as limitações de foco, paralaxe e largura dos anéis
+    presentes no equipamento real.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
+  <ol>
+    <li>Por que a observação dos anéis constitui evidência do comportamento ondulatório dos elétrons?</li>
+    <li>Por que um alvo policristalino produz anéis, enquanto uma orientação cristalina única tende a produzir direções discretas de difração?</li>
+    <li>O que acontece com o comprimento de onda e com os diâmetros dos anéis quando a tensão de aceleração aumenta?</li>
+    <li>Por que aparecem dois anéis principais no tubo de difração?</li>
+    <li>Por que é necessário realizar dois ajustes lineares independentes?</li>
+    <li>Como a largura e a nitidez dos anéis influenciam a incerteza dos diâmetros?</li>
+    <li>Quais limitações experimentais podem produzir um coeficiente linear diferente de zero?</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
+  <ol>
+    <li>objetivo da prática;</li>
+    <li>introdução breve sobre a hipótese de de Broglie e a lei de Bragg;</li>
+    <li>descrição do tubo, do alvo de grafite policristalino e das grandezas medidas;</li>
+    <li>tabela experimental completa com tensão, diâmetros e incertezas;</li>
+    <li>um exemplo de cálculo de <LatexInline expression={String.raw`\lambda`} />, <LatexInline expression={String.raw`\theta`} /> e <LatexInline expression={String.raw`\sin\theta`} />;</li>
+    <li>dois gráficos e dois ajustes lineares, um para cada anel;</li>
+    <li>resultados <LatexInline expression={String.raw`d_1\pm\Delta d_1`} /> e <LatexInline expression={String.raw`d_2\pm\Delta d_2`} /> em picômetros;</li>
+    <li>comparação com <LatexInline expression={String.raw`213\ \mathrm{pm}`} /> e <LatexInline expression={String.raw`123\ \mathrm{pm}`} />;</li>
+    <li>tabela, ajustes e resultados do simulador apresentados separadamente;</li>
+    <li>discussão das limitações experimentais e conclusão sobre o comportamento ondulatório do elétron.</li>
+  </ol>
+  <div class="callout">
+    <strong>Dica prática.</strong> Identifique claramente qual conjunto pertence ao anel interno e qual pertence ao anel externo. Em
+    cada gráfico, mostre a equação ajustada, os coeficientes com suas incertezas e as unidades.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
+  <p>
+    Discuta se os coeficientes lineares são compatíveis com zero e se os espaçamentos obtidos se aproximam dos valores de referência.
+    Considere especialmente a largura dos anéis, a definição de seus diâmetros, a leitura do paquímetro, a estabilidade da alta
+    tensão, o foco do feixe e o uso da geometria esférica do tubo.
+  </p>
+  <p>
+    Na conclusão, relacione a dependência observada com <LatexInline expression={String.raw`\lambda\propto1/\sqrt{V}`} /> e explique
+    por que a difração em um cristal confirma, neste experimento, o caráter ondulatório dos elétrons. Compare também os resultados da
+    bancada e do simulador sem misturar os dois conjuntos de dados.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="referencias" title="Referências Gerais">
+  <ul>
+    <li>Material da disciplina. <em>Laboratório 7: Difração de elétrons</em>.</li>
+    <li>Reis, M. <em>Quantum Mechanics: Theory and Applications</em>. Elsevier, 2026.</li>
+    <li>Halliday, D.; Resnick, R.; Walker, J. <em>Fundamentos de Física</em>. Volume de óptica e física moderna.</li>
+    <li>Young, H. D.; Freedman, R. A. <em>Física Universitária com Física Moderna</em>.</li>
+    <li>Laboratório Virtual de Física da UFC. <em>Difração de Elétrons</em>. Disponível em: <a href="../../acessos/simulador/difracao/ufc/" data-force-new-tab="true">abrir simulador</a>.</li>
+  </ul>
+</PracticeSection>
