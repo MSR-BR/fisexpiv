@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const practicesDir = path.join(root, "src", "content", "practices");
-const expected = ["revisao", "carga-massa", "difracao"];
+const expected = ["revisao", "carga-massa", "difracao", "diodos"];
 
 async function exists(target) {
   try {
@@ -36,4 +36,3 @@ main().catch((error) => {
   console.error(error.message);
   process.exitCode = 1;
 });
-
