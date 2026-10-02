@@ -1,17 +1,17 @@
 ---
-title: "Diodos: característica de um LED"
+title: "Diodos: característica corrente-tensão"
 practiceSlug: "diodos"
 order: 8
-summary: "Caracterização da curva corrente-tensão de um LED e estimativa da energia e do comprimento de onda da luz emitida."
+summary: "Caracterização experimental da curva corrente-tensão de um diodo semicondutor e análise de sua polarização direta e reversa."
 status: "available"
 estimatedTime: "1 encontro de laboratório"
 learningFocus:
-  - "Identificar a polarização direta de um LED e interpretar sua curva corrente-tensão"
+  - "Identificar as regiões semicondutoras do tipo p e do tipo n e descrever a junção"
+  - "Relacionar a zona de depleção à polarização da junção e à corrente elétrica"
+  - "Medir e interpretar a curva corrente-tensão de um diodo"
   - "Estimar a tensão de barreira por uma construção gráfica"
-  - "Relacionar a energia elétrica característica do LED à energia e ao comprimento de onda dos fótons emitidos"
-  - "Propagar a incerteza da tensão de barreira para a estimativa do comprimento de onda"
-materialsStatus: "Roteiro elaborado com base no Lab8 e pronto para revisão em aula"
-sourcesStatus: "Lab8.pdf fornecido para a prática"
+materialsStatus: "Roteiro revisado com foco em diodo semicondutor, pronto para revisão em aula"
+sourcesStatus: "Lab8.pdf fornecido para a prática e referências universitárias sobre junções p-n"
 ---
 
 import PracticeSection from "../../../components/practice/PracticeSection.astro";
@@ -20,118 +20,98 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
 <PracticeSection id="objetivos-de-aprendizagem" title="Objetivos de aprendizagem">
   <ul>
-    <li>Reconhecer os terminais e a condição de polarização direta do LED utilizado.</li>
-    <li>Medir a corrente no circuito e a diferença de potencial diretamente nos terminais do LED.</li>
-    <li>Construir e interpretar a curva característica <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_{\mathrm{LED}}`} />.</li>
+    <li>Reconhecer o significado das regiões semicondutoras do tipo <code>p</code> e do tipo <code>n</code>.</li>
+    <li>Explicar a formação da zona de depleção e do campo elétrico interno na junção.</li>
+    <li>Relacionar a polarização direta e reversa com a largura da zona de depleção e a corrente.</li>
+    <li>Medir e interpretar a curva característica <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_D`} />.</li>
     <li>Obter uma estimativa operacional da tensão de barreira por extrapolação gráfica.</li>
-    <li>Estimar o comprimento de onda associado à energia dos fótons emitidos e comparar com a cor observada.</li>
   </ul>
 </PracticeSection>
 
 <PracticeSection id="introducao-teorica" title="Introdução teórica">
   <p>
-    Um diodo é formado por regiões semicondutoras do tipo <code>p</code> e do tipo <code>n</code>. Na junção, a difusão inicial de
-    elétrons e lacunas deixa uma região com poucos portadores móveis. A diferença de potencial interna dessa região dificulta a
-    passagem de corrente em uma das direções e favorece a condução quando o diodo é polarizado diretamente.
+    Um semicondutor do tipo <code>n</code> é dopado com átomos doadores e tem elétrons como portadores móveis majoritários. Um
+    semicondutor do tipo <code>p</code> é dopado com átomos aceitadores e tem buracos como portadores majoritários. Um buraco é a
+    ausência de um elétron em uma ligação do cristal; sua movimentação equivale ao transporte de carga positiva.
   </p>
   <p>
-    O diodo emissor de luz (LED) é construído de modo que parte dos elétrons e das lacunas que se recombinam na junção libere energia
-    na forma de fótons. A cor emitida depende do material semicondutor e da energia característica dessas transições. Nesta prática,
-    será usada a curva corrente-tensão para estimar essa energia e, em seguida, o comprimento de onda correspondente.
-  </p>
-  <figure>
-    <img
-      src="/fisexpiv/images/practices/diodos/polaridade-led.png"
-      alt="Representação esquemática da junção p-n e do símbolo de um LED polarizado diretamente"
-    />
-    <figcaption>Representação da junção e do símbolo do LED mostrados no material de referência. Confira a identificação física dos terminais do componente antes de energizar o circuito.</figcaption>
-  </figure>
-</PracticeSection>
-
-<PracticeSection id="modelo-fisico" title="Modelo físico">
-  <h3>Polarização e curva característica</h3>
-  <p>
-    Na polarização direta, o terminal <code>p</code> fica em potencial mais alto que o terminal <code>n</code>. Ao aumentar a tensão
-    aplicada ao LED, a corrente permanece inicialmente pequena e depois cresce rapidamente. A relação entre corrente e tensão,
-    portanto, não é linear como a de um resistor ôhmico.
+    Quando as regiões <code>p</code> e <code>n</code> são unidas, elétrons difundem do lado <code>n</code> para o lado <code>p</code>,
+    enquanto buracos difundem do lado <code>p</code> para o lado <code>n</code>. Perto da junção, elétrons e buracos se recombinam.
+    Com isso, deixam de existir portadores móveis nessa faixa e permanecem átomos dopantes ionizados presos à rede: íons aceitadores
+    negativos do lado <code>p</code> e íons doadores positivos do lado <code>n</code>.
   </p>
   <p>
-    A tensão de barreira <LatexInline expression={String.raw`V_b`} /> será estimada nesta prática pelo intercepto no eixo das tensões
-    de uma tangente traçada à região de crescimento acentuado da curva. Esse procedimento define uma estimativa gráfica, não um
-    limiar perfeitamente abrupto: a tensão observada depende da corrente, do LED e da resistência em série do circuito.
+    Essa faixa, chamada <strong>zona de depleção</strong>, contém poucos portadores móveis, mas não está vazia: nela permanecem os
+    íons fixos. A separação dessas cargas cria um campo elétrico e uma diferença de potencial interna que se opõem à difusão
+    adicional. Em equilíbrio, o efeito do campo elétrico compensa a difusão, e não há corrente resultante através da junção.
   </p>
-  <figure>
-    <img
-      src="/fisexpiv/images/practices/diodos/curva-exemplo.jpg"
-      alt="Curva característica ilustrativa de corrente em função da tensão de um LED, com uma tangente na região de crescimento rápido"
-    />
-    <figcaption>Exemplo do Lab8: corrente em função da diferença de potencial medida no LED. A extrapolação da tangente indicada fornece uma estimativa gráfica de <LatexInline expression={String.raw`V_b`} />.</figcaption>
-  </figure>
-
-  <h3>Energia dos fótons e comprimento de onda</h3>
+  <h3>Polarização da junção</h3>
   <p>
-    A energia de um fóton de comprimento de onda <LatexInline expression={String.raw`\lambda`} /> é
-    <LatexInline expression={String.raw`E_\gamma=hc/\lambda`} />. Como aproximação didática, associa-se a energia característica
-    liberada na junção à energia elétrica <LatexInline expression={String.raw`eV_b`} />. Assim, a estimativa do comprimento de onda é:
+    Na <strong>polarização direta</strong>, conecta-se o lado <code>p</code> ao potencial positivo e o lado <code>n</code> ao
+    potencial negativo. O campo externo se opõe ao campo interno da junção: a barreira de potencial diminui e a zona de depleção se
+    estreita. Ela <strong>não desaparece de repente</strong>. À medida que a barreira fica menor, mais portadores atravessam a
+    junção por difusão e a corrente aumenta rapidamente.
   </p>
-  <LatexBlock expression={String.raw`\lambda\approx\frac{hc}{eV_b}`} />
   <p>
-    Usando <LatexInline expression={String.raw`h=6{,}63\times10^{-34}\ \mathrm{J\,s}`} />, <LatexInline expression={String.raw`c=3{,}00\times10^8\ \mathrm{m/s}`} />
-    e <LatexInline expression={String.raw`e=1{,}60\times10^{-19}\ \mathrm{C}`} />, pode-se calcular <LatexInline expression={String.raw`\lambda`} />
-    em metros e converter o resultado para nanômetros. Com essas constantes, a forma prática é aproximadamente:
+    Na <strong>polarização reversa</strong>, a conexão é invertida. O campo externo reforça o campo interno, aumentando a barreira e
+    alargando a zona de depleção. Em condições usuais, passa apenas uma corrente reversa pequena; não se deve aumentar a tensão até
+    a região de ruptura.
   </p>
-  <LatexBlock expression={String.raw`\lambda\ (\mathrm{nm})\approx\frac{1243}{V_b\ (\mathrm{V})}`} />
   <p>
-    Se a incerteza de <LatexInline expression={String.raw`V_b`} /> for <LatexInline expression={String.raw`\Delta V_b`} /> e as
-    constantes forem consideradas exatas para esta propagação, a incerteza da estimativa é:
+    No modelo ideal de uma junção, a corrente direta depende aproximadamente de forma exponencial da tensão nos terminais do
+    diodo:
   </p>
-  <LatexBlock expression={String.raw`\Delta\lambda\approx\lambda\frac{\Delta V_b}{V_b}`} />
+  <LatexBlock expression={String.raw`I=I_S\left[\exp\!\left(\frac{qV_D}{n k_B T}\right)-1\right]`} />
   <p>
-    Essa relação fornece uma estimativa, pois a tensão obtida pela tangente não mede diretamente a energia de uma única transição
-    microscópica. Ao final, compare o intervalo de comprimento de onda obtido com a cor observada, sem esperar uma correspondência
-    espectral precisa para um LED real.
+    Aqui, <LatexInline expression={String.raw`I_S`} /> é a corrente de saturação reversa, <LatexInline expression={String.raw`q`} />
+    é o módulo da carga do elétron, <LatexInline expression={String.raw`V_D`} /> é a tensão aplicada diretamente ao diodo,
+    <LatexInline expression={String.raw`k_B`} /> é a constante de Boltzmann, <LatexInline expression={String.raw`T`} /> é a
+    temperatura absoluta e <LatexInline expression={String.raw`n`} /> representa um fator de idealidade do modelo. A equação ajuda
+    a entender por que a curva não é uma reta; componentes reais também sofrem efeitos de temperatura, resistências internas e
+    condições de operação.
+  </p>
+  <h3>Tensão de barreira estimada graficamente</h3>
+  <p>
+    Nesta prática, <LatexInline expression={String.raw`V_b`} /> será estimada pelo intercepto no eixo das tensões de uma tangente à
+    região de crescimento acentuado da curva experimental. Esse valor é uma <strong>estimativa operacional definida pelo método
+    gráfico</strong>; não significa que a zona de depleção desapareça nesse ponto nem corresponde, por si só, a uma medida direta da
+    diferença de potencial interna da junção em equilíbrio. O resultado depende da curva medida, da região escolhida para a tangente
+    e das condições do circuito.
   </p>
 </PracticeSection>
 
 <PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
   <p>
-    O LED e os resistores são ligados em série com a fonte e o amperímetro. O voltímetro é ligado em paralelo diretamente aos
-    terminais do LED. A fonte controla o circuito completo, mas a tensão necessária para a análise é
-    <LatexInline expression={String.raw`V_{\mathrm{LED}}`} />, indicada pelo voltímetro nos terminais do componente.
+    O diodo e os resistores são ligados em série com a fonte e o amperímetro. O voltímetro é conectado em paralelo diretamente aos
+    terminais do diodo. A fonte controla o circuito completo, mas a grandeza usada para construir a curva é
+    <LatexInline expression={String.raw`V_D`} />, medida no componente.
   </p>
-  <figure>
-    <img
-      src="/fisexpiv/images/practices/diodos/circuito.jpg"
-      alt="Circuito experimental com fonte, amperímetro e LED com resistores em série; voltímetro conectado em paralelo ao LED"
-    />
-    <figcaption>Esquema de montagem reproduzido do Lab8. O amperímetro fica em série; o voltímetro mede a tensão apenas nos terminais do LED.</figcaption>
-  </figure>
   <p>
     Os resistores limitam a corrente. Por isso, quando a corrente aumenta, parte da tensão da fonte cai nos resistores e a tensão da
-    fonte deixa de ser igual à tensão no LED. Não use a tensão ajustada na fonte como se fosse
-    <LatexInline expression={String.raw`V_{\mathrm{LED}}`} />.
+    fonte deixa de ser igual a <LatexInline expression={String.raw`V_D`} />. Todas as leituras de tensão da tabela devem ser feitas
+    nos terminais do diodo.
   </p>
 </PracticeSection>
 
 <PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
   <ul>
     <li>fonte de tensão contínua variável;</li>
-    <li>placa ou kit de circuito com um LED e três resistores em série;</li>
+    <li>placa ou kit de circuito com um diodo e três resistores em série;</li>
     <li>dois multímetros digitais, um configurado como amperímetro e outro como voltímetro;</li>
     <li>cabos de conexão compatíveis com o circuito.</li>
   </ul>
   <div class="callout">
-    <strong>Segurança e proteção do LED.</strong> Antes de ligar a fonte, confira a montagem com o professor, confirme a polaridade do LED e deixe a tensão da fonte em zero. Comece na maior escala de corrente do multímetro. Não ultrapasse <code>30 mA</code> nem um limite menor indicado pelo professor ou pelo componente.
+    <strong>Segurança.</strong> Comece com a fonte desligada e ajustada em zero. Selecione a maior escala de corrente do multímetro antes de iniciar. Não ultrapasse <code>30 mA</code> ou o limite menor especificado para o componente e autorizado pelo professor. Reduza a tensão a zero antes de alterar conexões.
   </div>
 </PracticeSection>
 
 <PracticeSection id="procedimento-experimental" title="Procedimento experimental">
   <ol>
-    <li>Com a fonte desligada e ajustada em zero, monte o circuito conforme o esquema. O amperímetro deve estar em série e o voltímetro em paralelo com o LED.</li>
+    <li>Com a fonte desligada e ajustada em zero, monte o circuito em polarização direta: lado <code>p</code> no potencial positivo e lado <code>n</code> no potencial negativo. Ligue o amperímetro em série e o voltímetro em paralelo com o diodo.</li>
     <li>Peça ao professor que confira as conexões. Selecione no amperímetro a maior escala de corrente contínua antes de energizar o circuito.</li>
-    <li>Ligue a fonte e aumente a tensão gradualmente, observando simultaneamente a corrente e <LatexInline expression={String.raw`V_{\mathrm{LED}}`} />.</li>
-    <li>Na primeira parte da coleta, ajuste a tensão medida no LED para os valores indicados na Tabela 1. Registre a corrente correspondente. Perto de <code>1 mA</code>, use incrementos menores, de aproximadamente <code>0,05 V</code>, até alcançar essa corrente.</li>
-    <li>Na segunda parte, ajuste o circuito para as correntes-alvo da Tabela 2 e registre a tensão efetivamente medida nos terminais do LED. Não use a tensão indicada na fonte como substituta.</li>
+    <li>Ligue a fonte e aumente a tensão gradualmente. Registre simultaneamente a corrente e a tensão <LatexInline expression={String.raw`V_D`} /> medida diretamente no diodo.</li>
+    <li>Faça leituras desde corrente pequena até a região em que ela cresce rapidamente. Use passos menores de tensão nessa região para descrever melhor a curva.</li>
+    <li>Em seguida, ajuste o circuito para as correntes-alvo indicadas na Tabela 2 e anote a tensão correspondente no diodo. Não use a tensão indicada na fonte como substituta.</li>
     <li>Para cada leitura, espere os valores estabilizarem e registre a resolução ou a incerteza de leitura dos instrumentos conforme suas especificações.</li>
     <li>Ao terminar, reduza a tensão da fonte a zero e desligue-a antes de alterar qualquer conexão.</li>
   </ol>
@@ -140,24 +120,24 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 <PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
   <p>
     Registre a incerteza de cada leitura de acordo com a resolução e as especificações dos multímetros utilizados. Nas duas tabelas,
-    <LatexInline expression={String.raw`V_{\mathrm{LED}}`} /> é a diferença de potencial medida diretamente no LED.
+    <LatexInline expression={String.raw`V_D`} /> é a diferença de potencial medida diretamente no diodo.
   </p>
-  <h3>Tabela 1. Variação da tensão no LED</h3>
+  <h3>Tabela 1. Varredura da tensão no diodo</h3>
 
-  | Leitura | `V_LED` ajustada (V) | `ΔV_LED` (V) | Corrente `I` (mA) | `ΔI` (mA) |
+  | Leitura | Tensão `V_D` (V) | Incerteza `ΔV_D` (V) | Corrente `I` (mA) | Incerteza `ΔI` (mA) |
   | --- | ---: | ---: | ---: | ---: |
-  | 1 | 0,00 |  |  |  |
-  | 2 | 0,50 |  |  |  |
-  | 3 | 1,00 |  |  |  |
-  | 4 | 1,50 |  |  |  |
-  | 5 | 1,60 |  |  |  |
-  | 6 | 1,65 |  |  |  |
+  | 1 |  |  |  |  |
+  | 2 |  |  |  |  |
+  | 3 |  |  |  |  |
+  | 4 |  |  |  |  |
+  | 5 |  |  |  |  |
+  | 6 |  |  |  |  |
   | 7 |  |  |  |  |
   | 8 |  |  |  |  |
 
   <h3>Tabela 2. Leituras em correntes-alvo</h3>
 
-  | Corrente-alvo (mA) | Corrente medida `I` (mA) | `ΔI` (mA) | `V_LED` (V) | `ΔV_LED` (V) |
+  | Corrente-alvo (mA) | Corrente medida `I` (mA) | Incerteza `ΔI` (mA) | Tensão `V_D` (V) | Incerteza `ΔV_D` (V) |
   | ---: | ---: | ---: | ---: | ---: |
   | 1 |  |  |  |  |
   | 3 |  |  |  |  |
@@ -169,13 +149,10 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
   <ol>
-    <li>Reúna as medidas das duas tabelas e construa o gráfico da corrente <LatexInline expression={String.raw`I`} /> em função da tensão <LatexInline expression={String.raw`V_{\mathrm{LED}}`} />. Identifique as regiões de corrente pequena e de crescimento acentuado.</li>
+    <li>Reúna as medidas das duas tabelas e construa o gráfico da corrente <LatexInline expression={String.raw`I`} /> em função da tensão <LatexInline expression={String.raw`V_D`} />. Identifique as regiões de corrente pequena e de crescimento acentuado.</li>
     <li>Trace uma tangente à região de crescimento acentuado e estime seu intercepto no eixo horizontal. Apresente esse intercepto como <LatexInline expression={String.raw`V_b`} />, acompanhado de uma incerteza gráfica <LatexInline expression={String.raw`\Delta V_b`} /> e da descrição do critério usado para estimá-la.</li>
-    <li>Escolha um par de pontos representativo da região de corrente pequena e outro da região de corrente elevada. Para cada intervalo, calcule <LatexInline expression={String.raw`\Delta V_{\mathrm{LED}}/\Delta I`} />. Converta a corrente para ampères e apresente o resultado em ohms; interprete esses valores como resistências médias no intervalo, não como uma resistência constante do LED.</li>
-    <li>Use <LatexInline expression={String.raw`V_b`} /> para estimar <LatexInline expression={String.raw`\lambda`} /> pela relação do modelo físico. Mostre as conversões de unidades e apresente o resultado em nanômetros.</li>
-    <li>Calcule <LatexInline expression={String.raw`\Delta\lambda`} /> a partir de <LatexInline expression={String.raw`\Delta V_b`} />. Apresente o comprimento de onda com algarismos significativos compatíveis com a incerteza.</li>
-    <li>Compare o intervalo obtido com as faixas de cor: violeta (380–430 nm), azul (430–500 nm), verde (500–565 nm), amarelo (565–580 nm), laranja (580–625 nm) e vermelho (625–740 nm).</li>
-    <li>Explique por que a tensão da fonte e a tensão medida no LED diferem, sobretudo quando a corrente aumenta.</li>
+    <li>Escolha um intervalo de corrente pequena e outro de corrente elevada. Em cada intervalo, calcule <LatexInline expression={String.raw`\Delta V_D/\Delta I`} />. Converta a corrente para ampères e apresente o resultado em ohms; interprete-o como resistência média no intervalo, não como uma resistência constante do diodo.</li>
+    <li>Explique por que a tensão medida nos terminais do diodo difere da tensão da fonte e por que essa diferença aumenta quando cresce a corrente no circuito.</li>
   </ol>
   <div class="callout">
     <strong>Leitura do intercepto.</strong> A tangente deve representar a parte de crescimento rápido da curva. O ponto em que ela cruza o eixo de tensão depende da região escolhida e da qualidade dos dados; por isso, <LatexInline expression={String.raw`V_b`} /> é uma estimativa operacional do roteiro, e sua incerteza deve refletir essa limitação.
@@ -184,41 +161,43 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
 <PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
   <ol>
-    <li>O que significa polarizar diretamente a junção <code>p-n</code>? Como a polaridade incorreta afeta a corrente no LED?</li>
-    <li>Por que a curva <LatexInline expression={String.raw`I(V_{\mathrm{LED}})`} /> não é uma reta?</li>
-    <li>Por que o voltímetro deve ser conectado aos terminais do LED, em vez de medir apenas a tensão da fonte?</li>
-    <li>Que aproximação permite associar <LatexInline expression={String.raw`eV_b`} /> à energia dos fótons? Por que o comprimento de onda calculado deve ser interpretado como uma estimativa?</li>
-    <li>Como a incerteza de <LatexInline expression={String.raw`V_b`} /> afeta a incerteza relativa de <LatexInline expression={String.raw`\lambda`} />?</li>
+    <li>O que caracteriza uma região semicondutora do tipo <code>p</code> e uma do tipo <code>n</code>? Quais são seus portadores majoritários?</li>
+    <li>Como a difusão de elétrons e buracos após a formação da junção produz a zona de depleção e o campo elétrico interno?</li>
+    <li>Na polarização direta, o que ocorre com a barreira e com a largura da zona de depleção? Ela desaparece abruptamente?</li>
+    <li>Como a polarização reversa afeta a zona de depleção e a corrente?</li>
+    <li>Por que a curva corrente-tensão do diodo não é linear como a de um resistor ôhmico?</li>
+    <li>Qual é a função dos resistores em série e por que o voltímetro deve medir a tensão diretamente no diodo?</li>
   </ol>
 </PracticeSection>
 
 <PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
   <ol>
-    <li>objetivo e breve contextualização do LED e da junção <code>p-n</code>;</li>
-    <li>esquema da montagem e identificação dos instrumentos e dos terminais do LED;</li>
+    <li>objetivo e breve contextualização dos semicondutores <code>p</code> e <code>n</code>;</li>
+    <li>descrição da montagem, com o diodo, os resistores e os instrumentos;</li>
     <li>tabelas de medidas com unidades e incertezas;</li>
-    <li>gráfico de <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_{\mathrm{LED}}`} />, com a tangente utilizada para estimar <LatexInline expression={String.raw`V_b`} />;</li>
-    <li>cálculos de <LatexInline expression={String.raw`V_b`} />, <LatexInline expression={String.raw`\lambda`} /> e suas incertezas, incluindo a análise dimensional;</li>
-    <li>comparação entre o comprimento de onda estimado e a cor observada;</li>
-    <li>discussão das limitações do método e conclusão.</li>
+    <li>gráfico de <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_D`} />, com a tangente utilizada para estimar <LatexInline expression={String.raw`V_b`} />;</li>
+    <li>cálculos das resistências médias em dois intervalos, com conversão explícita de unidades;</li>
+    <li>discussão da zona de depleção, da polarização e das limitações das medidas;</li>
+    <li>conclusão coerente com os resultados obtidos.</li>
   </ol>
 </PracticeSection>
 
 <PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
   <p>
-    Discuta a forma da curva, a mudança da corrente nas proximidades da região de condução acentuada e as diferenças entre a tensão
-    da fonte e a tensão nos terminais do LED. Avalie como a escolha da tangente, a resolução dos instrumentos e as resistências em
-    série afetam a estimativa de <LatexInline expression={String.raw`V_b`} />.
+    Discuta a forma não linear da curva, a mudança da corrente com a polarização e a função da zona de depleção. Considere também a
+    escolha da tangente para estimar <LatexInline expression={String.raw`V_b`} />, a resolução dos instrumentos e a queda de tensão
+    nos resistores em série.
   </p>
   <p>
-    Na conclusão, apresente <LatexInline expression={String.raw`V_b\pm\Delta V_b`} /> e
-    <LatexInline expression={String.raw`\lambda\pm\Delta\lambda`} />, com unidades, e diga se a cor observada é compatível com a
-    estimativa dentro das limitações do modelo usado.
+    Na conclusão, resuma o comportamento observado em polarização direta e explique como ele é compatível com o modelo qualitativo
+    da junção <code>p-n</code>, sem afirmar que a zona de depleção desaparece subitamente.
   </p>
 </PracticeSection>
 
 <PracticeSection id="referencias" title="Referências Gerais">
   <ul>
     <li>Material da disciplina. <em>Laboratório 8: Diodos</em>. PDF fornecido para a elaboração deste roteiro.</li>
+    <li>University of New Mexico, Department of Electrical and Computer Engineering. <a href="https://ece-research.unm.edu/jimp/vlsiII/slides/html/diode1.html" target="_blank" rel="noreferrer">Physical representation of a pn-junction diode</a>.</li>
+    <li>University of Central Florida, Pressbooks. <a href="https://pressbooks.online.ucf.edu/osuniversityphysics3/chapter/semiconductors-and-doping/" target="_blank" rel="noreferrer">Semiconductors and doping</a>.</li>
   </ul>
 </PracticeSection>
