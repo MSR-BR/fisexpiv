@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" role="img" aria-labelledby="title desc">
+  <title id="title">Jun&#231;&#227;o p-n em equil&#237;brio</title>
+  <desc id="desc">Buracos m&#243;veis no lado p, el&#233;trons m&#243;veis no lado n e &#237;ons fixos na zona de deple&#231;&#227;o entre os dois lados.</desc>
+  <rect width="960" height="470" rx="24" fill="#f8fbfd"/>
+  <text x="54" y="58" fill="#153a56" font-family="Georgia,serif" font-size="29" font-weight="bold">Jun&#231;&#227;o p-n em equil&#237;brio</text>
+  <rect x="66" y="118" width="414" height="248" rx="16" fill="#e6f4ed" stroke="#b3d7c6" stroke-width="2"/>
+  <rect x="480" y="118" width="414" height="248" rx="16" fill="#e7f0f8" stroke="#bfd4e5" stroke-width="2"/>
+  <rect x="385" y="118" width="190" height="248" fill="#fff3df" stroke="#e6c891" stroke-width="2"/>
+  <path d="M385 118V366 M575 118V366" fill="none" stroke="#a87c42" stroke-width="2" stroke-dasharray="8 7"/>
+  <text x="173" y="165" fill="#17684d" font-family="Georgia,serif" font-size="28" font-weight="bold">regi&#227;o p</text>
+  <text x="698" y="165" fill="#215d89" font-family="Georgia,serif" font-size="28" font-weight="bold">regi&#227;o n</text>
+  <text x="480" y="96" text-anchor="middle" fill="#815c2c" font-family="Georgia,serif" font-size="23">zona de deple&#231;&#227;o</text>
+  <g fill="#fff" stroke="#2f9873" stroke-width="3">
+    <circle cx="151" cy="223" r="22"/><circle cx="251" cy="279" r="22"/>
+    <circle cx="318" cy="206" r="22"/><circle cx="156" cy="316" r="22"/>
+  </g>
+  <g fill="#1c8060" text-anchor="middle" dominant-baseline="central" font-family="Arial,sans-serif" font-size="30">
+    <text x="151" y="223">+</text><text x="251" y="279">+</text>
+    <text x="318" y="206">+</text><text x="156" y="316">+</text>
+  </g>
+  <g fill="#fff" stroke="#3977a6" stroke-width="3">
+    <circle cx="653" cy="220" r="22"/><circle cx="745" cy="289" r="22"/>
+    <circle cx="822" cy="208" r="22"/><circle cx="650" cy="319" r="22"/>
+  </g>
+  <g fill="#216493" text-anchor="middle" dominant-baseline="central" font-family="Arial,sans-serif" font-size="30">
+    <text x="653" y="220">&#8722;</text><text x="745" y="289">&#8722;</text>
+    <text x="822" y="208">&#8722;</text><text x="650" y="319">&#8722;</text>
+  </g>
+  <g fill="#fff" stroke="#c38b43" stroke-width="3">
+    <circle cx="422" cy="214" r="19"/><circle cx="447" cy="280" r="19"/>
+    <circle cx="510" cy="214" r="19"/><circle cx="541" cy="280" r="19"/>
+  </g>
+  <g fill="#986529" text-anchor="middle" dominant-baseline="central" font-family="Arial,sans-serif" font-size="26">
+    <text x="422" y="214">&#8722;</text><text x="447" y="280">&#8722;</text>
+    <text x="510" y="214">+</text><text x="541" y="280">+</text>
+  </g>
+  <text x="248" y="411" text-anchor="middle" fill="#17684d" font-family="Georgia,serif" font-size="21">buracos m&#243;veis</text>
+  <text x="480" y="411" text-anchor="middle" fill="#815c2c" font-family="Georgia,serif" font-size="20">&#237;ons fixos</text>
+  <text x="720" y="411" text-anchor="middle" fill="#215d89" font-family="Georgia,serif" font-size="21">el&#233;trons m&#243;veis</text>
+</svg>

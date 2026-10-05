@@ -888,6 +888,32 @@ img {
   line-height: 1.5;
 }
 
+.practice-section__body .kit-photo__frame {
+  position: relative;
+  width: min(100%, 42rem);
+  aspect-ratio: 4 / 3;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid rgba(13, 76, 125, 0.12);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(15, 42, 67, 0.06);
+}
+
+.practice-section__body figure.kit-photo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 75%;
+  max-width: none;
+  height: auto;
+  image-orientation: from-image;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
 .temperature-calculator {
   display: grid;
   gap: 16px;

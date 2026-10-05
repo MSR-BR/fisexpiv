@@ -2,15 +2,15 @@
 title: "Diodos: característica corrente-tensão"
 practiceSlug: "diodos"
 order: 8
-summary: "Caracterização experimental da curva corrente-tensão de um diodo semicondutor e análise de sua polarização direta e reversa."
+summary: "Medida direta da curva corrente-tensão de um diodo em polarização direta com o Kit R-Diodo."
 status: "available"
 estimatedTime: "1 encontro de laboratório"
 learningFocus:
   - "Identificar as regiões semicondutoras do tipo p e do tipo n e descrever a junção"
   - "Relacionar a zona de depleção à polarização da junção e à corrente elétrica"
-  - "Medir e interpretar a curva corrente-tensão de um diodo"
-  - "Estimar a tensão de barreira por uma construção gráfica"
-materialsStatus: "Montagem adaptada à placa Kit R-Diodo fotografada para a prática"
+  - "Medir e interpretar a curva corrente-tensão do diodo em polarização direta"
+  - "Estimar graficamente uma tensão característica de condução"
+materialsStatus: "Montagem adaptada ao Kit R-Diodo, com amperímetro em série e voltímetro no diodo"
 sourcesStatus: "Fotografia do Kit R-Diodo fornecida para a prática, Lab8.pdf e referências universitárias sobre junções p-n"
 ---
 
@@ -23,8 +23,9 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>Reconhecer o significado das regiões semicondutoras do tipo <code>p</code> e do tipo <code>n</code>.</li>
     <li>Explicar a formação da zona de depleção e do campo elétrico interno na junção.</li>
     <li>Relacionar a polarização direta e reversa com a largura da zona de depleção e a corrente.</li>
-    <li>Medir e interpretar a curva característica <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_D`} />.</li>
-    <li>Obter uma estimativa operacional da tensão de barreira por extrapolação gráfica.</li>
+    <li>Medir diretamente a corrente <LatexInline expression={String.raw`I`} /> e a tensão <LatexInline expression={String.raw`V_D`} /> para construir a curva do diodo em polarização direta.</li>
+    <li>Reconhecer o comportamento não ôhmico e comparar a inclinação da curva em duas regiões de corrente mensurável.</li>
+    <li>Estimar graficamente a chamada tensão de barreira <LatexInline expression={String.raw`V_b`} />, entendida aqui como tensão característica de condução definida pelo método.</li>
   </ul>
 </PracticeSection>
 
@@ -37,7 +38,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <p>
     Quando as regiões <code>p</code> e <code>n</code> são unidas, elétrons difundem do lado <code>n</code> para o lado <code>p</code>,
     enquanto buracos difundem do lado <code>p</code> para o lado <code>n</code>. Perto da junção, elétrons e buracos se recombinam.
-    Com isso, deixam de existir portadores móveis nessa faixa e permanecem átomos dopantes ionizados presos à rede: íons aceitadores
+    Com isso, a concentração de portadores móveis diminui nessa faixa e permanecem átomos dopantes ionizados presos à rede: íons aceitadores
     negativos do lado <code>p</code> e íons doadores positivos do lado <code>n</code>.
   </p>
   <p>
@@ -45,6 +46,17 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     íons fixos. A separação dessas cargas cria um campo elétrico e uma diferença de potencial interna que se opõem à difusão
     adicional. Em equilíbrio, o efeito do campo elétrico compensa a difusão, e não há corrente resultante através da junção.
   </p>
+  <figure>
+    <img
+      src="/fisexpiv/images/diodos-juncao-pn.svg"
+      alt="Esquema da junção p-n em equilíbrio, com buracos no lado p, elétrons no lado n e íons fixos na zona de depleção"
+      loading="lazy"
+    />
+    <figcaption>
+      Junção <code>p-n</code> em equilíbrio. Na zona de depleção há poucos portadores móveis; permanecem íons aceitadores negativos
+      no lado <code>p</code> e íons doadores positivos no lado <code>n</code>. O esquema não está em escala.
+    </figcaption>
+  </figure>
   <h3>Polarização da junção</h3>
   <p>
     Na <strong>polarização direta</strong>, conecta-se o lado <code>p</code> ao potencial positivo e o lado <code>n</code> ao
@@ -70,45 +82,61 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     a entender por que a curva não é uma reta; componentes reais também sofrem efeitos de temperatura, resistências internas e
     condições de operação.
   </p>
-  <h3>Tensão de barreira estimada graficamente</h3>
+  <h3>Tensão característica de condução</h3>
   <p>
-    Nesta prática, <LatexInline expression={String.raw`V_b`} /> será estimada pelo intercepto no eixo das tensões de uma tangente à
-    região de crescimento acentuado da curva experimental. Esse valor é uma <strong>estimativa operacional definida pelo método
-    gráfico</strong>; não significa que a zona de depleção desapareça nesse ponto nem corresponde, por si só, a uma medida direta da
-    diferença de potencial interna da junção em equilíbrio. O resultado depende da curva medida, da região escolhida para a tangente
-    e das condições do circuito.
+    Chamaremos de <LatexInline expression={String.raw`V_b`} /> a <strong>tensão de barreira estimada graficamente</strong>,
+    isto é, uma tensão característica de condução definida pelo método desta prática. Para obtê-la, traça-se uma reta tangente
+    à região de crescimento acentuado da curva
+    <LatexInline expression={String.raw`I(V_D)`} /> e prolonga-se essa reta até sua <strong>interseção com o eixo
+    <LatexInline expression={String.raw`V_D`} /></strong>, onde a corrente representada é zero. O valor da abscissa dessa
+    interseção é a estimativa de <LatexInline expression={String.raw`V_b`} />.
+  </p>
+  <figure>
+    <img
+      src="/fisexpiv/images/diodos-curva-iv.svg"
+      alt="Curva qualitativa não linear de corrente versus tensão direta, com tangente na região de crescimento rápido e sua interseção com o eixo das tensões"
+      loading="lazy"
+    />
+    <figcaption>
+      Construção gráfica qualitativa de <LatexInline expression={String.raw`V_b`} />. A curva azul representa o comportamento
+      esperado; a reta laranja ilustra a extrapolação da região de crescimento rápido. Não há escala numérica.
+    </figcaption>
+  </figure>
+  <p>
+    <LatexInline expression={String.raw`V_b`} /> é uma <strong>estimativa operacional</strong>, não um limiar abrupto nem uma medida
+    direta da diferença de potencial interna da junção em equilíbrio. Seu valor depende da faixa escolhida para a reta e das
+    condições da medida.
   </p>
 </PracticeSection>
 
 <PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
   <p>
-    O <strong>Kit R-Diodo</strong> já contém um resistor e um diodo em série. O borne superior, marcado com <code>+</code>,
-    liga-se ao resistor; o borne central é o ponto entre resistor e diodo; o borne inferior liga-se à outra extremidade do diodo.
-    A foto abaixo mostra a placa usada nesta prática.
+    O <strong>Kit R-Diodo</strong> já contém um resistor limitador e um diodo em série. Na foto, girada para facilitar a leitura,
+    o borne marcado com <code>+</code> fica à esquerda; o borne central é a ligação entre resistor e diodo; o outro borne
+    fica à direita do diodo.
   </p>
-  <figure>
-    <img
-      src="/fisexpiv/images/kit-r-diodo.jpeg"
-      alt="Placa Kit R-Diodo da UFF: três bornes alinhados, resistor entre os bornes superior e central e diodo entre os bornes central e inferior"
-      loading="lazy"
-    />
+  <figure class="kit-photo">
+    <div class="kit-photo__frame">
+      <img
+        src="/fisexpiv/images/kit-r-diodo.jpeg"
+        alt="Placa Kit R-Diodo da UFF girada para leitura: borne positivo à esquerda, resistor, borne central, diodo e borne da direita"
+        loading="lazy"
+      />
+    </div>
     <figcaption>
-      Kit R-Diodo utilizado no laboratório. O borne superior está marcado com <code>+</code>; o central permite medir separadamente
-      a queda de tensão no resistor e a tensão no diodo. Antes de energizar a placa, confira a orientação do diodo com o professor.
+      Kit R-Diodo utilizado no laboratório. A imagem foi girada para que a identificação da placa fique legível. Confira com o
+      professor a polaridade do diodo antes de energizar.
     </figcaption>
   </figure>
   <p>
-    Com a fonte desligada, meça a resistência <LatexInline expression={String.raw`R`} /> entre os bornes superior e central.
-    Durante a varredura, meça <LatexInline expression={String.raw`V_R`} /> entre esses mesmos bornes e
-    <LatexInline expression={String.raw`V_D`} /> entre os bornes central e inferior. Como resistor e diodo estão em série, a corrente
-    é calculada por <LatexInline expression={String.raw`I=V_R/R`} />. Não é necessário abrir o circuito para inserir um amperímetro.
+    Ligue o <strong>amperímetro em série</strong> com a fonte e o kit para medir diretamente a corrente
+    <LatexInline expression={String.raw`I`} />. Ligue o <strong>voltímetro em paralelo com o diodo</strong>, entre o borne central e
+    o borne do outro lado do diodo, para medir diretamente <LatexInline expression={String.raw`V_D`} />. Varie a tensão total da
+    fonte, mas construa o gráfico usando <LatexInline expression={String.raw`V_D`} />, não a indicação de tensão da fonte.
   </p>
-  <LatexBlock expression={String.raw`V_{\mathrm{fonte}}=V_R+V_D,\qquad I=\frac{V_R}{R}`} />
   <p>
-    O resistor limita a corrente. Portanto, a tensão da fonte não deve ser usada como se fosse
-    <LatexInline expression={String.raw`V_D`} />. Se não houver dois voltímetros disponíveis, faça as leituras de
-    <LatexInline expression={String.raw`V_R`} /> e <LatexInline expression={String.raw`V_D`} /> em sequência, mantendo a fonte no
-    mesmo ajuste e confirmando a estabilidade do circuito.
+    O resistor interno limita a corrente e recebe parte da tensão aplicada. Por isso, a tensão total da fonte geralmente é
+    diferente da tensão nos terminais do diodo. Seu valor de resistência não é necessário para obter a curva experimental.
   </p>
 </PracticeSection>
 
@@ -116,55 +144,60 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <ul>
     <li>fonte de tensão contínua variável;</li>
     <li>placa Kit R-Diodo com um resistor e um diodo em série e três bornes acessíveis;</li>
-    <li>dois multímetros digitais configurados como voltímetros, ou um voltímetro usado em sequência; um deles também será usado como ohmímetro com a fonte desligada;</li>
+    <li>dois multímetros digitais: um configurado como amperímetro para corrente contínua e outro como voltímetro para tensão contínua;</li>
     <li>cabos de conexão compatíveis com o circuito.</li>
   </ul>
   <div class="callout">
-    <strong>Segurança.</strong> Comece com a fonte desligada e ajustada em zero. Nunca use a função de resistência com a placa energizada. Confira com o professor a polaridade do diodo e o limite de corrente do kit; não ultrapasse <code>30 mA</code> nem um limite menor indicado para o componente. Reduza a tensão a zero antes de alterar conexões.
+    <strong>Segurança.</strong> Comece com a fonte desligada e ajustada em zero. Confira os bornes e a escala de corrente do
+    amperímetro antes de ligá-lo <strong>em série</strong>; nunca o conecte em paralelo à fonte ou ao diodo. Confirme com o
+    professor a polaridade do diodo e o limite de corrente do kit. Reduza a tensão a zero antes de alterar conexões.
   </div>
 </PracticeSection>
 
 <PracticeSection id="procedimento-experimental" title="Procedimento experimental">
   <ol>
-    <li>Com a fonte desligada e desconectada do kit, meça <LatexInline expression={String.raw`R`} /> entre os bornes superior e central. Registre <LatexInline expression={String.raw`R\pm\Delta R`} /> em ohms; não deduza o valor apenas das faixas de cor vistas na foto.</li>
-    <li>Peça ao professor que confirme a polaridade do diodo. Com a fonte ajustada em zero, conecte o positivo ao borne superior marcado com <code>+</code> e o negativo ao borne inferior para a varredura em polarização direta.</li>
-    <li>Configure os multímetros para tensão contínua. Meça <LatexInline expression={String.raw`V_R`} /> entre o borne superior e o central e <LatexInline expression={String.raw`V_D`} /> entre o central e o inferior, mantendo as pontas positivas voltadas para o borne de maior potencial em cada medida.</li>
-    <li>Ligue a fonte e aumente sua tensão gradualmente. Para cada ajuste, aguarde a estabilização e registre <LatexInline expression={String.raw`V_R`} /> e <LatexInline expression={String.raw`V_D`} />. Calcule <LatexInline expression={String.raw`I=V_R/R`} /> antes de aumentar mais a tensão, para respeitar o limite de corrente do kit.</li>
-    <li>Faça cerca de oito leituras, começando com corrente pequena e usando passos menores na região em que a corrente cresce rapidamente. Registre a resolução ou a incerteza dos instrumentos conforme suas especificações.</li>
-    <li>Ao terminar, reduza a tensão da fonte a zero e desligue-a antes de remover ou alterar qualquer conexão.</li>
+    <li>Com a fonte desligada e ajustada em zero, peça ao professor que confirme a polaridade do diodo e o limite de corrente permitido. Identifique o borne <code>+</code>, o borne central e o borne do outro lado do diodo.</li>
+    <li>Configure um multímetro para corrente contínua, começando pela escala mais alta. Ligue-o em série: positivo da fonte → amperímetro → borne <code>+</code> do kit; ligue o borne do outro lado do diodo ao negativo da fonte.</li>
+    <li>Configure o segundo multímetro para tensão contínua e ligue-o em paralelo ao diodo: ponta positiva no borne central e ponta negativa no borne do outro lado do diodo. Peça ao professor que confira o circuito antes de energizá-lo.</li>
+    <li>Ligue a fonte e aumente gradualmente sua tensão total. Se a corrente permanecer muito abaixo da escala selecionada, desligue a fonte antes de escolher uma escala mais sensível. Em cada ajuste, aguarde a estabilização e leia diretamente <LatexInline expression={String.raw`I`} /> no amperímetro e <LatexInline expression={String.raw`V_D`} /> no voltímetro. Acompanhe a corrente para não ultrapassar o limite estabelecido.</li>
+    <li>Obtenha cerca de dez pares de medidas, com passos menores na faixa em que a corrente cresce mais rapidamente. Registre a incerteza ou a resolução de cada instrumento; uma indicação de <code>0,00 mA</code> pode significar corrente abaixo da resolução, não ausência absoluta de corrente.</li>
+    <li>Ao terminar, reduza a tensão da fonte a zero e desligue-a antes de remover ou alterar conexões.</li>
   </ol>
 </PracticeSection>
 
 <PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
   <p>
-    Registre <LatexInline expression={String.raw`R\pm\Delta R`} /> em ohms. Na tabela, <LatexInline expression={String.raw`V_R`} />
-    é a tensão medida no resistor e <LatexInline expression={String.raw`V_D`} /> é a tensão medida no diodo. A corrente é calculada,
-    não lida diretamente no multímetro. Use as especificações dos instrumentos para as incertezas das tensões.
+    Registre a tensão indicada pela fonte apenas para identificar cada ajuste. As grandezas usadas no gráfico são as leituras diretas
+    da corrente <LatexInline expression={String.raw`I`} /> e da tensão <LatexInline expression={String.raw`V_D`} /> no diodo.
+    Se o voltímetro indicar volts, converta para milivolts na tabela. Determine as incertezas pelas especificações dos instrumentos.
   </p>
-  <h3>Varredura da corrente-tensão do diodo</h3>
+  <h3>Varredura da corrente-tensão</h3>
 
-  | Leitura | `V_R` (V) | `ΔV_R` (V) | `V_D` (V) | `ΔV_D` (V) | `I=V_R/R` (mA) | `ΔI` (mA) |
-  | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-  | 1 |  |  |  |  |  |  |
-  | 2 |  |  |  |  |  |  |
-  | 3 |  |  |  |  |  |  |
-  | 4 |  |  |  |  |  |  |
-  | 5 |  |  |  |  |  |  |
-  | 6 |  |  |  |  |  |  |
-  | 7 |  |  |  |  |  |  |
-  | 8 |  |  |  |  |  |  |
+  | Leitura | Fonte: ajuste (V) | `V_D` (mV) | `ΔV_D` (mV) | `I` (mA) | `ΔI` (mA) |
+  | --- | ---: | ---: | ---: | ---: | ---: |
+  | 1 |  |  |  |  |  |
+  | 2 |  |  |  |  |  |
+  | 3 |  |  |  |  |  |
+  | 4 |  |  |  |  |  |
+  | 5 |  |  |  |  |  |
+  | 6 |  |  |  |  |  |
+  | 7 |  |  |  |  |  |
+  | 8 |  |  |  |  |  |
+  | 9 |  |  |  |  |  |
+  | 10 |  |  |  |  |  |
 </PracticeSection>
 
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
   <ol>
-    <li>Calcule <LatexInline expression={String.raw`I=V_R/R`} /> para cada linha e converta de ampères para miliampères. Construa o gráfico de <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_D`} /> e identifique as regiões de corrente pequena e de crescimento acentuado.</li>
-    <li>Calcule a incerteza da corrente pela propagação linear <LatexInline expression={String.raw`\Delta I=\Delta V_R/R+|V_R|\Delta R/R^2`} />; use as mesmas unidades de corrente na tabela e no gráfico.</li>
-    <li>Trace uma tangente à região de crescimento acentuado e estime seu intercepto no eixo horizontal. Apresente esse intercepto como <LatexInline expression={String.raw`V_b`} />, acompanhado de uma incerteza gráfica <LatexInline expression={String.raw`\Delta V_b`} /> e da descrição do critério usado para estimá-la.</li>
-    <li>Escolha um intervalo de corrente pequena e outro de corrente elevada. Em cada intervalo, calcule <LatexInline expression={String.raw`\Delta V_D/\Delta I`} />. Converta a corrente para ampères e apresente o resultado em ohms; interprete-o como resistência média no intervalo, não como uma resistência constante do diodo.</li>
-    <li>Explique por que <LatexInline expression={String.raw`V_D`} /> difere da tensão da fonte e por que a diferença <LatexInline expression={String.raw`V_R`} /> aumenta quando cresce a corrente no circuito.</li>
+    <li>Construa o gráfico de <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_D`} /> com os pares medidos diretamente. Coloque <LatexInline expression={String.raw`V_D`} /> no eixo horizontal e <LatexInline expression={String.raw`I`} /> no vertical, com unidades e barras de incerteza quando disponíveis. Não substitua <LatexInline expression={String.raw`V_D`} /> pela tensão da fonte.</li>
+    <li>Identifique a região de corrente pequena e a de crescimento acentuado. Compare a inclinação média <LatexInline expression={String.raw`\Delta I/\Delta V_D`} /> de dois intervalos com correntes mensuráveis, escolhendo pontos distintos em cada intervalo. Explique por que a inclinação não é constante.</li>
+    <li>Trace uma tangente ou ajuste uma reta apenas à região de crescimento acentuado. Prolongue-a até sua interseção com o eixo horizontal e leia <LatexInline expression={String.raw`V_b`} />. Indique a faixa de dados escolhida e estime uma incerteza gráfica <LatexInline expression={String.raw`\Delta V_b`} /> variando de modo razoável a escolha da tangente.</li>
+    <li>Explique por que a tensão medida no diodo difere da tensão total aplicada pela fonte: o resistor do kit também apresenta queda de tensão quando há corrente.</li>
   </ol>
   <div class="callout">
-    <strong>Leitura do intercepto.</strong> A tangente deve representar a parte de crescimento rápido da curva. O ponto em que ela cruza o eixo de tensão depende da região escolhida e da qualidade dos dados; por isso, <LatexInline expression={String.raw`V_b`} /> é uma estimativa operacional do roteiro, e sua incerteza deve refletir essa limitação.
+    <strong>Leitura de <LatexInline expression={String.raw`V_b`} />.</strong> A interseção da reta prolongada com o eixo
+    <LatexInline expression={String.raw`V_D`} /> depende da região escolhida e da qualidade dos dados. Ela fornece uma estimativa
+    gráfica, não um ponto físico em que a zona de depleção desaparece.
   </div>
 </PracticeSection>
 
@@ -175,27 +208,28 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>Na polarização direta, o que ocorre com a barreira e com a largura da zona de depleção? Ela desaparece abruptamente?</li>
     <li>Como a polarização reversa afeta a zona de depleção e a corrente?</li>
     <li>Por que a curva corrente-tensão do diodo não é linear como a de um resistor ôhmico?</li>
-    <li>Qual é a função do resistor em série no kit e por que é preciso medir separadamente <LatexInline expression={String.raw`V_R`} /> e <LatexInline expression={String.raw`V_D`} />?</li>
+    <li>Qual é a função do resistor em série no kit? Por que a tensão da fonte não pode substituir <LatexInline expression={String.raw`V_D`} /> no gráfico?</li>
+    <li>Por que a interseção da tangente com o eixo das tensões não deve ser interpretada como uma fronteira abrupta entre diodo desligado e ligado?</li>
   </ol>
 </PracticeSection>
 
 <PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
   <ol>
     <li>objetivo e breve contextualização dos semicondutores <code>p</code> e <code>n</code>;</li>
-    <li>descrição do Kit R-Diodo, dos três bornes, da fonte e dos instrumentos;</li>
-    <li>valor medido de <LatexInline expression={String.raw`R\pm\Delta R`} /> e tabela de tensões e corrente calculada com unidades e incertezas;</li>
-    <li>gráfico de <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_D`} />, com a tangente utilizada para estimar <LatexInline expression={String.raw`V_b`} />;</li>
-    <li>cálculos das resistências médias em dois intervalos, com conversão explícita de unidades;</li>
-    <li>discussão da zona de depleção, da polarização e das limitações das medidas;</li>
+    <li>descrição do Kit R-Diodo e das ligações do amperímetro em série e do voltímetro em paralelo ao diodo;</li>
+    <li>tabela de correntes e tensões medidas diretamente, com unidades e incertezas;</li>
+    <li>gráfico de <LatexInline expression={String.raw`I`} /> em função de <LatexInline expression={String.raw`V_D`} />, com os intervalos de inclinação comparados e a tangente usada para estimar <LatexInline expression={String.raw`V_b`} />;</li>
+    <li>valor de <LatexInline expression={String.raw`V_b`} /> com incerteza gráfica, faixa escolhida para a tangente e interpretação de seu significado;</li>
+    <li>discussão da não linearidade, da zona de depleção e das limitações das medidas;</li>
     <li>conclusão coerente com os resultados obtidos.</li>
   </ol>
 </PracticeSection>
 
 <PracticeSection id="discussao-e-conclusao" title="Discussão e conclusão">
   <p>
-    Discuta a forma não linear da curva, a mudança da corrente com a polarização e a função da zona de depleção. Considere também a
-    escolha da tangente para estimar <LatexInline expression={String.raw`V_b`} />, a resolução dos instrumentos e a queda de tensão
-    no resistor em série.
+    Discuta a forma não linear da curva obtida em polarização direta e a função da zona de depleção. Considere também a escolha da
+    região para estimar <LatexInline expression={String.raw`V_b`} />, a resolução dos instrumentos e o fato de que parte da tensão
+    da fonte aparece no resistor em série.
   </p>
   <p>
     Na conclusão, resuma o comportamento observado em polarização direta e explique como ele é compatível com o modelo qualitativo

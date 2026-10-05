@@ -15,9 +15,10 @@ describe("practice catalog", () => {
       "efeito-fotoeletrico",
       "espectroscopia",
       "difracao",
+      "diodos",
     ]);
-    expect(practiceCounts.available).toBe(7);
-    expect(practiceCounts.planned).toBe(2);
+    expect(practiceCounts.available).toBe(8);
+    expect(practiceCounts.planned).toBe(1);
   });
 
   it("keeps explicit catalog status data for discovery", () => {
@@ -29,6 +30,7 @@ describe("practice catalog", () => {
       "efeito-fotoeletrico",
       "espectroscopia",
       "difracao",
+      "diodos",
     ]);
     expect(plannedPractices.every((practice) => practice.materialStatus.length > 0)).toBe(true);
     expect(practiceCatalog.every((practice) => practice.sourceStatus.length > 0)).toBe(true);

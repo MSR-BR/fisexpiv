@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" role="img" aria-labelledby="title desc">
+  <title id="title">Curva qualitativa corrente-tens&#227;o de um diodo</title>
+  <desc id="desc">A corrente cresce lentamente para pequenas tens&#245;es e rapidamente para tens&#245;es maiores. Uma reta tangente prolongada cruza o eixo das tens&#245;es em Vb.</desc>
+  <rect width="960" height="500" rx="24" fill="#f8fbfd"/>
+  <text x="54" y="60" fill="#153a56" font-family="Georgia,serif" font-size="28" font-weight="bold">Curva qualitativa corrente-tens&#227;o</text>
+  <path d="M106 412H887 M106 412V99" fill="none" stroke="#173a55" stroke-width="3"/>
+  <path d="M887 412l-13-8v16z M106 99l-8 13h16z" fill="#173a55"/>
+  <path d="M128 407C305 407 432 403 512 390 C590 377 648 342 697 286 C742 233 776 163 807 102"
+        fill="none" stroke="#176ca0" stroke-width="6" stroke-linecap="round"/>
+  <path d="M619 412L836 101" fill="none" stroke="#d66e38" stroke-width="4"/>
+  <path d="M619 412V447" fill="none" stroke="#d66e38" stroke-width="2" stroke-dasharray="6 6"/>
+  <circle cx="619" cy="412" r="7" fill="#d66e38"/>
+  <text x="907" y="420" fill="#173a55" font-family="Georgia,serif" font-size="27">V</text>
+  <text x="927" y="431" fill="#173a55" font-family="Georgia,serif" font-size="18">D</text>
+  <text x="96" y="89" fill="#173a55" font-family="Georgia,serif" font-size="27">I</text>
+  <text x="606" y="474" fill="#b25424" font-family="Georgia,serif" font-size="25" font-weight="bold">V</text>
+  <text x="625" y="484" fill="#b25424" font-family="Georgia,serif" font-size="17" font-weight="bold">b</text>
+  <text x="732" y="347" fill="#b25424" font-family="Georgia,serif" font-size="20">tangente prolongada</text>
+  <text x="408" y="362" fill="#215d89" font-family="Georgia,serif" font-size="20">corrente pequena</text>
+  <text x="728" y="83" fill="#215d89" font-family="Georgia,serif" font-size="19">crescimento r&#225;pido</text>
+</svg>
