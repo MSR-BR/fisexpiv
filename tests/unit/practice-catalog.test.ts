@@ -16,9 +16,10 @@ describe("practice catalog", () => {
       "espectroscopia",
       "difracao",
       "diodos",
+      "radioatividade",
     ]);
-    expect(practiceCounts.available).toBe(8);
-    expect(practiceCounts.planned).toBe(1);
+    expect(practiceCounts.available).toBe(9);
+    expect(practiceCounts.planned).toBe(0);
   });
 
   it("keeps explicit catalog status data for discovery", () => {
@@ -31,6 +32,7 @@ describe("practice catalog", () => {
       "espectroscopia",
       "difracao",
       "diodos",
+      "radioatividade",
     ]);
     expect(plannedPractices.every((practice) => practice.materialStatus.length > 0)).toBe(true);
     expect(practiceCatalog.every((practice) => practice.sourceStatus.length > 0)).toBe(true);

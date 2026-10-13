@@ -1,0 +1,230 @@
+---
+title: "Radioatividade"
+practiceSlug: "radioatividade"
+order: 9
+summary: "Atenuação de raios gama, dependência com a distância e estatística de contagens."
+status: "available"
+estimatedTime: "1 encontro de laboratório"
+learningFocus:
+  - "Determinar o coeficiente de atenuação de um material a partir de contagens corrigidas pelo fundo"
+  - "Verificar a dependência aproximada do inverso do quadrado da distância"
+  - "Analisar a flutuação das contagens por meio da distribuição de Poisson"
+materialsStatus: "Roteiro simplificado, pronto para revisão em aula"
+sourcesStatus: "Apostila e folhas de manipulação do Laboratório 8"
+---
+
+import PracticeSection from "../../../components/practice/PracticeSection.astro";
+import LatexBlock from "../../../components/ui/LatexBlock.astro";
+import LatexInline from "../../../components/ui/LatexInline.astro";
+
+<PracticeSection id="objetivos-de-aprendizagem" title="Objetivos de aprendizagem">
+  <ul>
+    <li>Medir a atenuação da radiação gama por placas de um mesmo material e determinar seu coeficiente de atenuação.</li>
+    <li>Investigar como a taxa de contagens varia com a distância entre a fonte e o detector.</li>
+    <li>Observar a flutuação estatística das contagens e compará-la com uma distribuição de Poisson.</li>
+  </ul>
+</PracticeSection>
+
+<PracticeSection id="introducao-teorica" title="Introdução teórica">
+  <p>
+    Nesta prática, uma fonte de <LatexInline expression={String.raw`^{137}\mathrm{Cs}`} /> e um contador Geiger-Müller permitem
+    estudar raios gama. O detector registra <strong>contagens</strong> em um intervalo de tempo, não a energia de cada fóton.
+    Para intervalos de duração <LatexInline expression={String.raw`t`} /> iguais, a taxa de contagens corrigida pelo fundo serve
+    como medida proporcional à intensidade detectada.
+  </p>
+
+  <h3>Atenuação em um material</h3>
+  <p>
+    Se um feixe atravessa uma espessura <LatexInline expression={String.raw`d`} /> de um mesmo material, sua intensidade
+    transmitida diminui aproximadamente de forma exponencial:
+  </p>
+  <LatexBlock expression={String.raw`I(d)=I_0e^{-\mu d}`} />
+  <p>
+    <LatexInline expression={String.raw`I_0`} /> é a taxa sem placa, <LatexInline expression={String.raw`I(d)`} /> é a taxa
+    com espessura total <LatexInline expression={String.raw`d`} /> e <LatexInline expression={String.raw`\mu`} /> é o
+    coeficiente linear de atenuação, com unidade inversa à usada para <LatexInline expression={String.raw`d`} />. Tomando o
+    logaritmo natural:
+  </p>
+  <LatexBlock expression={String.raw`\ln I=\ln I_0-\mu d`} />
+  <p>
+    Assim, no gráfico de <LatexInline expression={String.raw`\ln I`} /> em função de
+    <LatexInline expression={String.raw`d`} />, o coeficiente angular da reta é
+    <LatexInline expression={String.raw`-\mu`} />. A atenuação inclui absorção e espalhamento; a lei é uma aproximação para a
+    geometria do experimento.
+  </p>
+
+  <h3>Distância da fonte</h3>
+  <p>
+    Para uma fonte aproximadamente puntiforme que emite em todas as direções, a mesma radiação se distribui por uma área
+    proporcional a <LatexInline expression={String.raw`r^2`} />. Mantendo detector e fonte alinhados:
+  </p>
+  <LatexBlock expression={String.raw`I(r)=\frac{K}{r^2}\qquad\Longrightarrow\qquad\ln I=\ln K-2\ln r`} />
+  <p>
+    Aqui, <LatexInline expression={String.raw`r`} /> é a distância entre a fonte e a região sensível do detector, e
+    <LatexInline expression={String.raw`K`} /> reúne fatores mantidos constantes. O coeficiente angular esperado no gráfico
+    <LatexInline expression={String.raw`\ln I`} /> em função de <LatexInline expression={String.raw`\ln r`} /> é
+    aproximadamente <LatexInline expression={String.raw`-2`} />. Desvios são possíveis porque a fonte e o detector têm dimensões
+    finitas e porque há radiação espalhada. Essa diminuição com a distância é <strong>geométrica</strong>; não é o decaimento
+    temporal dos núcleos da fonte.
+  </p>
+
+  <h3>Estatística das contagens</h3>
+  <p>
+    Mesmo com fonte, detector e tempo de medida fixos, o número <LatexInline expression={String.raw`k`} /> de contagens muda de
+    uma janela de tempo para outra. Para eventos aproximadamente independentes e taxa estável, a distribuição esperada é a de
+    Poisson:
+  </p>
+  <LatexBlock expression={String.raw`P(k;\lambda)=\frac{\lambda^k e^{-\lambda}}{k!},\qquad \lambda=\langle k\rangle`} />
+  <p>
+    <LatexInline expression={String.raw`\lambda`} /> é a média de contagens por janela. Na distribuição de Poisson, a variância
+    também vale <LatexInline expression={String.raw`\lambda`} /> e o desvio padrão vale
+    <LatexInline expression={String.raw`\sqrt{\lambda}`} />. O histograma deve usar as <strong>contagens inteiras brutas por
+    janela</strong>, sem subtrair o fundo de cada observação.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="descricao-do-experimento" title="Descrição do experimento">
+  <p>
+    Serão feitas três séries independentes. Primeiro, mantenha a distância fixa e interponha sucessivamente placas idênticas para
+    medir <LatexInline expression={String.raw`I(d)`} />. Depois, retire as placas e varie apenas a distância para medir
+    <LatexInline expression={String.raw`I(r)`} />. Por fim, fixe toda a montagem e repita muitas contagens em intervalos curtos e
+    iguais para estudar a distribuição estatística.
+  </p>
+  <p>
+    Nas duas primeiras séries, use a mesma duração <LatexInline expression={String.raw`t`} /> para cada leitura e para a
+    leitura do fundo. Se <LatexInline expression={String.raw`N`} /> é a contagem com a fonte e
+    <LatexInline expression={String.raw`N_B`} /> é a contagem de fundo, a taxa líquida é:
+  </p>
+  <LatexBlock expression={String.raw`I=\frac{N-N_B}{t}`} />
+  <p>
+    Uma única medida de fundo pode ser usada como referência se as condições permanecerem estáveis. Se
+    <LatexInline expression={String.raw`N\leq N_B`} />, não calcule <LatexInline expression={String.raw`\ln I`} /> para esse
+    ponto: aumente o tempo de contagem e repita a medida.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="materiais-e-montagem" title="Materiais e montagem">
+  <ul>
+    <li>fonte selada de <LatexInline expression={String.raw`^{137}\mathrm{Cs}`} /> e suporte apropriado;</li>
+    <li>contador Geiger-Müller, detector e trilho ou suporte para alinhamento;</li>
+    <li>placas de um mesmo material absorvedor, paquímetro e régua ou trena;</li>
+    <li>papel-alumínio sobre a fonte, se essa for a configuração indicada pelo professor para bloquear a componente beta.</li>
+  </ul>
+  <div class="callout">
+    <strong>Segurança.</strong> A fonte radioativa deve permanecer no suporte e ser manuseada somente conforme a orientação do
+    professor. Não abra a fonte nem remova a tampa do detector. Evite exposição desnecessária; para medir o fundo, peça ao
+    professor que afaste ou proteja a fonte. Não altere outras configurações enquanto uma série estiver sendo medida.
+  </div>
+</PracticeSection>
+
+<PracticeSection id="procedimento-experimental" title="Procedimento experimental">
+  <h3>1. Atenuação pelas placas</h3>
+  <ol>
+    <li>Alinhe fonte e detector. Escolha a menor distância que comporte todas as placas sem alterar sua posição ao longo da série. Mantenha essa distância fixa.</li>
+    <li>Identifique um material e meça a espessura das placas com o paquímetro. Em cada configuração, registre a <strong>espessura total</strong> <LatexInline expression={String.raw`d`} /> interposta.</li>
+    <li>Adote <LatexInline expression={String.raw`t=60\ \mathrm{s}`} /> por leitura. Sem placa, registre <LatexInline expression={String.raw`N_0`} />. Depois, registre <LatexInline expression={String.raw`N`} /> com uma, duas, três, quatro e cinco placas, se disponíveis.</li>
+    <li>Com a fonte afastada ou protegida pelo professor, registre a contagem de fundo <LatexInline expression={String.raw`N_B`} /> durante os mesmos 60 s.</li>
+  </ol>
+
+  <h3>2. Dependência com a distância</h3>
+  <ol>
+    <li>Retire as placas. Sem mudar o alinhamento ou o tempo de leitura, meça a contagem <LatexInline expression={String.raw`N`} /> para aproximadamente <code>5, 7, 10, 15, 22 e 30 cm</code> entre fonte e detector, se a montagem permitir.</li>
+    <li>Meça as distâncias sempre entre os mesmos pontos de referência da fonte e do detector. Anote como definiu esses pontos; nas pequenas distâncias, a separação efetiva até a região sensível pode diferir da leitura externa.</li>
+    <li>Registre uma nova contagem de fundo de 60 s se as condições do laboratório tiverem mudado.</li>
+  </ol>
+
+  <h3>3. Flutuação estatística</h3>
+  <ol>
+    <li>Fixe fonte e detector a cerca de <code>5 cm</code>, sem placas. Não mude geometria ou configuração do contador durante esta série.</li>
+    <li>Faça <strong>35 leituras independentes de 10 s</strong>. Registre o número inteiro de contagens em cada intervalo, inclusive repetições e zeros, se ocorrerem.</li>
+    <li>Ao terminar, peça ao professor que acondicione a fonte conforme o procedimento do laboratório.</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="aquisicao-de-dados" title="Aquisição de dados">
+  <p>
+    Para as duas primeiras tabelas, use <LatexInline expression={String.raw`t=60\ \mathrm{s}`} /> e subtraia o fundo medido no
+    mesmo intervalo. Anote a contagem de fundo junto à respectiva série. A taxa
+    <LatexInline expression={String.raw`I`} /> deve ser expressa em <code>contagens/s</code> antes de calcular o logaritmo.
+  </p>
+  <h3>Atenuação: material e espessura</h3>
+  <p>Material: __________ &nbsp;&nbsp; Distância fixa: __________ cm &nbsp;&nbsp; Fundo <LatexInline expression={String.raw`N_B`} /> (60 s): __________</p>
+
+  | Placas | Espessura total `d` (cm) | Contagens `N` (60 s) | Taxa líquida `I` (contagens/s) | `ln I` |
+  | ---: | ---: | ---: | ---: | ---: |
+  | 0 | 0 |  |  |  |
+  | 1 |  |  |  |  |
+  | 2 |  |  |  |  |
+  | 3 |  |  |  |  |
+  | 4 |  |  |  |  |
+  | 5 |  |  |  |  |
+
+  <h3>Distância da fonte</h3>
+  <p>Fundo <LatexInline expression={String.raw`N_B`} /> (60 s): __________ &nbsp;&nbsp; Referências usadas para medir <LatexInline expression={String.raw`r`} />: __________</p>
+
+  | Distância `r` (cm) | Contagens `N` (60 s) | Taxa líquida `I` (contagens/s) | `ln r` | `ln I` |
+  | ---: | ---: | ---: | ---: | ---: |
+  | 5 |  |  |  |  |
+  | 7 |  |  |  |  |
+  | 10 |  |  |  |  |
+  | 15 |  |  |  |  |
+  | 22 |  |  |  |  |
+  | 30 |  |  |  |  |
+
+  <h3>Estatística</h3>
+  <p>
+    Registre as 35 contagens brutas de 10 s em sequência. Não transforme os valores em contagens por segundo para construir o
+    histograma de Poisson.
+  </p>
+
+  | Leituras 1-7 | Leituras 8-14 | Leituras 15-21 | Leituras 22-28 | Leituras 29-35 |
+  | --- | --- | --- | --- | --- |
+  |  |  |  |  |  |
+  |  |  |  |  |  |
+  |  |  |  |  |  |
+  |  |  |  |  |  |
+  |  |  |  |  |  |
+  |  |  |  |  |  |
+  |  |  |  |  |  |
+</PracticeSection>
+
+<PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
+  <ol>
+    <li><strong>Atenuação:</strong> calcule <LatexInline expression={String.raw`I=(N-N_B)/t`} /> para cada espessura. Faça o gráfico de <LatexInline expression={String.raw`\ln I`} /> em função de <LatexInline expression={String.raw`d`} /> e ajuste uma reta. Determine <LatexInline expression={String.raw`\mu`} /> como o oposto do coeficiente angular, com unidade de <code>cm⁻¹</code> se <LatexInline expression={String.raw`d`} /> estiver em centímetros. Compare o intercepto com <LatexInline expression={String.raw`\ln I_0`} /> calculado sem placa.</li>
+    <li><strong>Distância:</strong> calcule as taxas líquidas e faça o gráfico de <LatexInline expression={String.raw`\ln I`} /> em função de <LatexInline expression={String.raw`\ln r`} />. Ajuste uma reta e compare seu coeficiente angular com <LatexInline expression={String.raw`-2`} />. Discuta principalmente os pontos de menor distância e a definição experimental de <LatexInline expression={String.raw`r`} />.</li>
+    <li><strong>Poisson:</strong> com as 35 contagens brutas, calcule a média <LatexInline expression={String.raw`\bar{k}`} /> e a variância amostral <LatexInline expression={String.raw`s^2`} />. Construa o histograma da frequência observada para cada número inteiro <LatexInline expression={String.raw`k`} />. Sobreponha a frequência esperada <LatexInline expression={String.raw`35P(k;\bar{k})`} /> e compare <LatexInline expression={String.raw`s^2`} /> com <LatexInline expression={String.raw`\bar{k}`} />. Não trate a curva esperada como um ajuste com parâmetro independente: <LatexInline expression={String.raw`\lambda=\bar{k}`} /> é estimado dos próprios dados.</li>
+  </ol>
+  <p>
+    Para uma contagem <LatexInline expression={String.raw`N`} />, a incerteza estatística aproximada é
+    <LatexInline expression={String.raw`\sqrt{N}`} />. Se <LatexInline expression={String.raw`N`} /> e
+    <LatexInline expression={String.raw`N_B`} /> forem contagens independentes de igual duração, a incerteza da taxa líquida é
+    aproximadamente <LatexInline expression={String.raw`\Delta I=\sqrt{N+N_B}/t`} />. Indique também as incertezas instrumentais
+    de distância e espessura quando disponíveis.
+  </p>
+</PracticeSection>
+
+<PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
+  <ol>
+    <li>Por que o fundo deve ser descontado antes dos gráficos de atenuação e distância, mas não de cada valor inteiro usado no histograma de Poisson?</li>
+    <li>O que significa o coeficiente <LatexInline expression={String.raw`\mu`} /> obtido? Como sua unidade depende da unidade escolhida para <LatexInline expression={String.raw`d`} />?</li>
+    <li>Por que a redução da taxa com a distância não mede a meia-vida da fonte?</li>
+    <li>Que limitações da geometria podem afastar o coeficiente angular do valor <LatexInline expression={String.raw`-2`} />?</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="como-organizar-o-relatorio" title="Como organizar o relatório">
+  <ol>
+    <li>Apresente o objetivo e uma descrição breve da fonte, detector, material absorvedor e geometria usada.</li>
+    <li>Inclua as tabelas das três séries com tempos de contagem, unidades, fundo e definição de distância e espessura.</li>
+    <li>Mostre os gráficos <LatexInline expression={String.raw`\ln I`} /> versus <LatexInline expression={String.raw`d`} /> e <LatexInline expression={String.raw`\ln I`} /> versus <LatexInline expression={String.raw`\ln r`} />, as retas ajustadas e os valores de <LatexInline expression={String.raw`\mu`} /> e do expoente da distância.</li>
+    <li>Apresente o histograma das contagens de 10 s com a distribuição de Poisson calculada a partir de <LatexInline expression={String.raw`\bar{k}`} />, além de <LatexInline expression={String.raw`\bar{k}`} /> e <LatexInline expression={String.raw`s^2`} />.</li>
+    <li>Discuta as diferenças entre modelos e dados, as incertezas e as limitações da montagem; conclua separadamente sobre as três séries.</li>
+  </ol>
+</PracticeSection>
+
+<PracticeSection id="referencias" title="Referências Gerais">
+  <ul>
+    <li>Material da disciplina. <em>Laboratório 8: Radioatividade</em>, apostila fornecida para esta prática.</li>
+    <li>Material da disciplina. <em>Folha lab 8 - primeira parte</em> e <em>Folha lab 8 - segunda parte</em>, folhas de manipulação fornecidas para esta prática.</li>
+  </ul>
+</PracticeSection>
