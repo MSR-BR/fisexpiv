@@ -21,7 +21,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <ul>
     <li>Medir a atenuação da radiação gama por placas de um mesmo material e determinar seu coeficiente de atenuação.</li>
     <li>Investigar como a taxa de contagens varia com a distância entre a fonte e o detector.</li>
-    <li>Observar a flutuação estatística das contagens e compará-la com uma distribuição de Poisson.</li>
+    <li>Observar a flutuação estatística das contagens e estimar a média da distribuição de Poisson.</li>
   </ul>
 </PracticeSection>
 
@@ -175,8 +175,8 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
   <h3>Estatística</h3>
   <p>
     Registre as 35 contagens brutas de 10 s em sequência. Cada posição da tabela corresponde a uma leitura
-    <LatexInline expression={String.raw`n_i`} />; preencha as colunas de cima para baixo, da esquerda para a direita. Não
-    transforme os valores em contagens por segundo para construir o histograma de Poisson.
+    <LatexInline expression={String.raw`n_i`} />; preencha as colunas de cima para baixo, da esquerda para a direita. Mantenha
+    os valores como contagens por intervalo de 10 s, sem convertê-los em contagens por segundo.
   </p>
 
   | Leituras 1-7 | Leituras 8-14 | Leituras 15-21 | Leituras 22-28 | Leituras 29-35 |
@@ -191,37 +191,30 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
 
   <p>
     Depois de coletar as leituras, organize os valores distintos encontrados na tabela de frequências abaixo. Acrescente linhas
-    conforme necessário. O eixo horizontal do histograma será <LatexInline expression={String.raw`n`} /> (contagens em 10 s), e
-    o vertical será a frequência observada <LatexInline expression={String.raw`f_{\mathrm{obs}}(n)`} /> (número de leituras).
+    conforme necessário. Para cada valor <LatexInline expression={String.raw`n`} />, registre quantas leituras tiveram essa
+    contagem.
   </p>
 
-  | Contagens em 10 s `n` | Frequência observada `f_obs(n)` | Frequência prevista `f_P(n)` |
-  | ---: | ---: | ---: |
-  |  |  |  |
-  |  |  |  |
-  |  |  |  |
-  |  |  |  |
-  |  |  |  |
+  | Contagens em 10 s `n` | Frequência observada `f_obs(n)` |
+  | ---: | ---: |
+  |  |  |
+  |  |  |
+  |  |  |
+  |  |  |
+  |  |  |
 </PracticeSection>
 
 <PracticeSection id="analise-e-interpretacao-dos-dados" title="Análise e interpretação dos dados">
   <ol>
     <li><strong>Atenuação:</strong> calcule <LatexInline expression={String.raw`I=(N-N_B)/t`} /> para cada espessura. Faça o gráfico de <LatexInline expression={String.raw`\ln I`} /> em função de <LatexInline expression={String.raw`d`} /> e ajuste uma reta. Determine <LatexInline expression={String.raw`\mu`} /> como o oposto do coeficiente angular, com unidade de <code>cm⁻¹</code> se <LatexInline expression={String.raw`d`} /> estiver em centímetros. Compare o intercepto com <LatexInline expression={String.raw`\ln I_0`} /> calculado sem placa.</li>
     <li><strong>Distância:</strong> calcule as taxas líquidas e faça o gráfico de <LatexInline expression={String.raw`\ln I`} /> em função de <LatexInline expression={String.raw`\ln r`} />. Ajuste uma reta e compare seu coeficiente angular com <LatexInline expression={String.raw`-2`} />. Discuta principalmente os pontos de menor distância e a definição experimental de <LatexInline expression={String.raw`r`} />.</li>
-    <li><strong>Poisson:</strong> calcule a média das 35 contagens <LatexInline expression={String.raw`n_i`} /> para estimar <LatexInline expression={String.raw`\lambda=\bar n`} />. Conte quantas vezes apareceu cada valor inteiro <LatexInline expression={String.raw`n`} />; essa é a frequência observada <LatexInline expression={String.raw`f_{\mathrm{obs}}(n)`} />. Faça o histograma dessas frequências e, para os mesmos valores de <LatexInline expression={String.raw`n`} />, compare com a frequência prevista <LatexInline expression={String.raw`f_{\mathrm{P}}(n)=35P(n;\lambda)`} />.</li>
+    <li><strong>Poisson:</strong> calcule a média das 35 contagens <LatexInline expression={String.raw`n_i`} /> para estimar <LatexInline expression={String.raw`\lambda=\bar n`} />. Conte quantas vezes apareceu cada valor inteiro <LatexInline expression={String.raw`n`} />; essa é a frequência observada <LatexInline expression={String.raw`f_{\mathrm{obs}}(n)`} />.</li>
   </ol>
-  <p>
-    Para uma contagem <LatexInline expression={String.raw`N`} />, a incerteza estatística aproximada é
-    <LatexInline expression={String.raw`\sqrt{N}`} />. Se <LatexInline expression={String.raw`N`} /> e
-    <LatexInline expression={String.raw`N_B`} /> forem contagens independentes de igual duração, a incerteza da taxa líquida é
-    aproximadamente <LatexInline expression={String.raw`\Delta I=\sqrt{N+N_B}/t`} />. Indique também as incertezas instrumentais
-    de distância e espessura quando disponíveis.
-  </p>
 </PracticeSection>
 
 <PracticeSection id="perguntas-conceituais-e-aplicadas" title="Perguntas conceituais e aplicadas">
   <ol>
-    <li>Por que o fundo deve ser descontado antes dos gráficos de atenuação e distância, mas não de cada valor inteiro usado no histograma de Poisson?</li>
+    <li>Por que o fundo deve ser descontado antes dos gráficos de atenuação e distância, mas não de cada contagem individual usada na análise estatística?</li>
     <li>O que significa o coeficiente <LatexInline expression={String.raw`\mu`} /> obtido? Como sua unidade depende da unidade escolhida para <LatexInline expression={String.raw`d`} />?</li>
     <li>Que limitações da geometria podem afastar o coeficiente angular do valor <LatexInline expression={String.raw`-2`} />?</li>
   </ol>
@@ -232,7 +225,7 @@ import LatexInline from "../../../components/ui/LatexInline.astro";
     <li>Apresente o objetivo e uma descrição breve da fonte, detector, material absorvedor e geometria usada.</li>
     <li>Inclua as tabelas das três séries com tempos de contagem, unidades, fundo e definição de distância e espessura.</li>
     <li>Mostre os gráficos <LatexInline expression={String.raw`\ln I`} /> versus <LatexInline expression={String.raw`d`} /> e <LatexInline expression={String.raw`\ln I`} /> versus <LatexInline expression={String.raw`\ln r`} />, as retas ajustadas e os valores de <LatexInline expression={String.raw`\mu`} /> e do expoente da distância.</li>
-    <li>Apresente as 35 contagens <LatexInline expression={String.raw`n_i`} /> de 10 s, a média <LatexInline expression={String.raw`\bar n`} /> usada para estimar <LatexInline expression={String.raw`\lambda`} /> e o histograma das frequências observadas com a previsão de Poisson para comparação.</li>
+    <li>Apresente as 35 contagens <LatexInline expression={String.raw`n_i`} /> de 10 s, a média <LatexInline expression={String.raw`\bar n`} /> usada para estimar <LatexInline expression={String.raw`\lambda`} /> e a tabela de frequências observadas.</li>
     <li>Discuta as diferenças entre modelos e dados, as incertezas e as limitações da montagem; conclua separadamente sobre as três séries.</li>
   </ol>
 </PracticeSection>
